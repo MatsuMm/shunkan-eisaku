@@ -1,0 +1,241 @@
+:root {
+  --bg: #121417;
+  --surface: #1c1f23;
+  --surface-2: #262a30;
+  --text: #e8eaed;
+  --text-dim: #9aa0a6;
+  --accent: #4a9eff;
+  --ok: #2ecc71;
+  --tri: #f39c12;
+  --ng: #e74c3c;
+  --border: #2e333a;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", "Yu Gothic", system-ui, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  font-size: 16px;
+  line-height: 1.5;
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.stats {
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+.stats .sep { margin: 0 6px; opacity: 0.5; }
+
+main {
+  flex: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 20px 18px;
+  margin-bottom: 16px;
+}
+
+.level-tag {
+  display: inline-block;
+  background: var(--surface-2);
+  color: var(--text-dim);
+  font-size: 11px;
+  padding: 3px 8px;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  letter-spacing: 0.05em;
+}
+
+.jp {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.45;
+  margin-bottom: 22px;
+  min-height: 60px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  appearance: none;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.05s ease, background 0.2s;
+  min-height: 44px;
+}
+
+.btn:active { transform: scale(0.97); }
+
+.btn.primary {
+  background: var(--accent);
+  color: white;
+  flex: 1;
+}
+
+.btn.ghost {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.icon-btn {
+  appearance: none;
+  border: none;
+  background: var(--surface-2);
+  color: var(--text);
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.mic-result {
+  width: 100%;
+  font-size: 14px;
+  color: var(--text-dim);
+  margin-top: 8px;
+  min-height: 20px;
+  font-style: italic;
+}
+
+.answer { margin-top: 18px; }
+
+.answer.hidden,
+.empty.hidden { display: none; }
+
+.en-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.en {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--accent);
+  flex: 1;
+}
+
+.alt {
+  font-size: 14px;
+  color: var(--text-dim);
+  margin-bottom: 10px;
+}
+
+.alt:not(:empty)::before {
+  content: "別解: ";
+  font-weight: 600;
+}
+
+.note {
+  font-size: 13px;
+  color: var(--text-dim);
+  background: var(--surface-2);
+  padding: 10px 12px;
+  border-radius: 8px;
+  margin-bottom: 18px;
+  line-height: 1.55;
+}
+
+.grade-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.grade-buttons .btn {
+  padding: 14px 4px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.grade-x  { background: rgba(231, 76, 60, 0.15);  color: var(--ng); }
+.grade-tri { background: rgba(243, 156, 18, 0.15); color: var(--tri); }
+.grade-o  { background: rgba(46, 204, 113, 0.15); color: var(--ok); }
+
+.empty {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-dim);
+}
+
+.empty p { font-size: 18px; margin: 8px 0; }
+.empty .sub { font-size: 14px; }
+
+footer {
+  border-top: 1px solid var(--border);
+  padding: 12px 16px;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+
+footer summary {
+  cursor: pointer;
+  user-select: none;
+}
+
+.settings {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.settings label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.settings input[type=range] { flex: 1; }
+
+.hint { font-size: 12px; margin: 4px 0; line-height: 1.5; }
+
+@media (max-width: 380px) {
+  .jp { font-size: 20px; }
+  .en { font-size: 18px; }
+}

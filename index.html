@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1a1a1a">
+<title>瞬間英作</title>
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header>
+  <h1>瞬間英作</h1>
+  <div class="stats">
+    <span id="progress">0 / 0</span>
+    <span class="sep">·</span>
+    <span id="due-count">本日残: 0</span>
+  </div>
+</header>
+
+<main>
+  <section id="card" class="card">
+    <div class="level-tag" id="level-tag">B1</div>
+    <div class="jp" id="jp">読み込み中...</div>
+
+    <div class="actions" id="actions-pre">
+      <button class="btn primary" id="btn-reveal">答えを見る</button>
+      <button class="btn ghost" id="btn-mic" title="自分の発音を試す">🎤</button>
+      <div id="mic-result" class="mic-result"></div>
+    </div>
+
+    <div class="answer hidden" id="answer">
+      <div class="en-row">
+        <span class="en" id="en"></span>
+        <button class="icon-btn" id="btn-tts" title="音声再生">🔊</button>
+      </div>
+      <div class="alt" id="alt"></div>
+      <div class="note" id="note"></div>
+
+      <div class="grade-buttons">
+        <button class="btn grade-x" data-grade="x">× 言えなかった</button>
+        <button class="btn grade-tri" data-grade="tri">△ 惜しい</button>
+        <button class="btn grade-o" data-grade="o">◯ 言えた</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="empty" class="empty hidden">
+    <p>🎉 今日のセッション完了！</p>
+    <p class="sub">明日また続きから。</p>
+    <button class="btn ghost" id="btn-restart">やり直す（全リセット）</button>
+  </section>
+</main>
+
+<footer>
+  <details>
+    <summary>設定 / ヘルプ</summary>
+    <div class="settings">
+      <label>
+        <input type="checkbox" id="opt-gemini-tts">
+        Gemini TTS を使う（より自然な音声、API キー要）
+      </label>
+      <label>
+        音声速度
+        <input type="range" id="opt-rate" min="0.6" max="1.2" step="0.05" value="0.95">
+        <span id="rate-label">0.95</span>
+      </label>
+      <p class="hint">採点: <b>◯</b>=次回3日後 / <b>△</b>=明日 / <b>×</b>=今日中に再出題</p>
+      <p class="hint">進捗は端末内にのみ保存されます。</p>
+    </div>
+  </details>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

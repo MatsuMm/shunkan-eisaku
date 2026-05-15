@@ -1,0 +1,32 @@
+{
+  "scene": "emotion",
+  "label": "感情・反応",
+  "description": "喜び・驚き・怒り・共感など、感情を瞬時に表すフレーズ",
+  "problems": [
+    { "id": "emo-001", "jp": "それは大変だったね。", "en": "That must have been tough.", "alt": ["That sounds rough.", "That must've been hard."], "function": "empathy", "note": "must have + 過去分詞 = 「〜だったに違いない」。共感の鉄板。" },
+    { "id": "emo-002", "jp": "それは残念だね。", "en": "That's too bad.", "alt": ["I'm sorry to hear that.", "What a shame."], "function": "empathy", "note": "悪い知らせへの反応。" },
+    { "id": "emo-003", "jp": "なんとかなるよ。", "en": "It'll work out.", "alt": ["Things will work out.", "It'll be fine."], "function": "reassure", "note": "work out = 何とかうまくいく。" },
+    { "id": "emo-004", "jp": "焦らないで。", "en": "Take your time.", "alt": ["No rush.", "There's no hurry."], "function": "reassure", "note": "「ゆっくりでいいよ」。" },
+    { "id": "emo-005", "jp": "別に気にしないで。", "en": "Don't worry about it.", "alt": ["It's no big deal.", "Never mind."], "function": "reassure", "note": "謝罪への返しにも使える。" },
+    { "id": "emo-006", "jp": "信じられない！", "en": "I can't believe it!", "alt": ["No way!", "Are you kidding me?"], "function": "surprise", "note": "驚き全般。" },
+    { "id": "emo-007", "jp": "それはすごい！", "en": "That's amazing!", "alt": ["That's awesome!", "How cool!"], "function": "reaction", "note": "amazing は超頻出の褒め言葉。" },
+    { "id": "emo-008", "jp": "おめでとう！", "en": "Congratulations!", "alt": ["Congrats!", "Way to go!"], "function": "reaction", "note": "Way to go! = よくやった！(やや男性的)。" },
+    { "id": "emo-009", "jp": "羨ましい。", "en": "I'm jealous.", "alt": ["Lucky you!", "I envy you."], "function": "reaction", "note": "jealous = 嫉妬の意味だが軽い「羨ましい」でも使う。" },
+    { "id": "emo-010", "jp": "ガッカリだよ。", "en": "I'm disappointed.", "alt": ["What a letdown.", "I was let down."], "function": "reaction", "note": "letdown = 期待外れ。" },
+    { "id": "emo-011", "jp": "ホッとした。", "en": "What a relief.", "alt": ["I'm so relieved."], "function": "reaction", "note": "relief = 安堵。relieved は形容詞。" },
+    { "id": "emo-012", "jp": "もう疲れた。", "en": "I'm exhausted.", "alt": ["I'm wiped out.", "I'm beat."], "function": "report", "note": "exhausted > tired。wiped out / beat はくだけた表現。" },
+    { "id": "emo-013", "jp": "イライラする。", "en": "It's frustrating.", "alt": ["It bugs me.", "It's annoying."], "function": "report", "note": "bug = イライラさせる (動詞)。" },
+    { "id": "emo-014", "jp": "気が滅入る。", "en": "It's depressing.", "alt": ["It's a downer.", "It bums me out."], "function": "report", "note": "downer = 気分を下げるもの。bum out = 落ち込ませる。" },
+    { "id": "emo-015", "jp": "ワクワクしてる！", "en": "I'm so excited!", "alt": ["I can't wait!", "I'm pumped!"], "function": "reaction", "note": "pumped = やる気満々 (カジュアル)。" },
+    { "id": "emo-016", "jp": "緊張してる。", "en": "I'm nervous.", "alt": ["I have butterflies.", "I'm on edge."], "function": "report", "note": "have butterflies (in stomach) = 緊張で胃がムカムカする。" },
+    { "id": "emo-017", "jp": "むしろ嬉しい。", "en": "I'm actually happy about it.", "alt": ["If anything, I'm glad."], "function": "opinion", "note": "if anything = むしろ、どちらかと言うと。" },
+    { "id": "emo-018", "jp": "気持ちわかる。", "en": "I know the feeling.", "alt": ["I can relate.", "I feel you."], "function": "empathy", "note": "I feel you. はくだけた共感。" },
+    { "id": "emo-019", "jp": "そんなはずない。", "en": "That can't be right.", "alt": ["No way.", "That doesn't make sense."], "function": "disagree", "note": "can't be + 形容詞 = 〜なはずがない。" },
+    { "id": "emo-020", "jp": "やめてくれよ。", "en": "Cut it out.", "alt": ["Knock it off.", "Stop it."], "function": "request", "note": "cut it out / knock it off = やめろ (カジュアル)。" },
+    { "id": "emo-021", "jp": "それはひどい。", "en": "That's terrible.", "alt": ["That's awful.", "That sucks."], "function": "reaction", "note": "sucks は超口語で「最悪」。" },
+    { "id": "emo-022", "jp": "やっぱりね。", "en": "I knew it.", "alt": ["I thought so.", "Just as I suspected."], "function": "reaction", "note": "I knew it. = 思った通り。" },
+    { "id": "emo-023", "jp": "気が変わった。", "en": "I changed my mind.", "alt": ["I had a change of heart."], "function": "report", "note": "change one's mind = 気が変わる。" },
+    { "id": "emo-024", "jp": "もういいわ。", "en": "Forget it.", "alt": ["Never mind.", "Drop it."], "function": "disagree", "note": "drop it = (話題を) 落とす = もういい。" },
+    { "id": "emo-025", "jp": "ちょっと考えすぎだよ。", "en": "You're overthinking it.", "alt": ["Don't read too much into it."], "function": "advice", "note": "overthink = 考えすぎる。read into = 深読みする。" }
+  ]
+}

@@ -1,12 +1,18 @@
 // Service Worker - 簡易オフラインキャッシュ
-const CACHE = 'shunkan-eisaku-v1';
+const CACHE = 'shunkan-eisaku-v2';
 const ASSETS = [
   './',
   './index.html',
   './styles.css',
   './app.js',
   './manifest.json',
-  './data/problems-b1.json',
+  './data/index.json',
+  './data/scenes/daily.json',
+  './data/scenes/work.json',
+  './data/scenes/travel.json',
+  './data/scenes/restaurant.json',
+  './data/scenes/trouble.json',
+  './data/scenes/emotion.json',
 ];
 
 self.addEventListener('install', e => {

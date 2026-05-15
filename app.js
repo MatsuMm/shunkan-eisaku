@@ -2,35 +2,40 @@
 // 瞬間英作 PWA - メインロジック
 // ====================================================================
 
-const STORAGE_KEY = 'shunkan-eisaku-state-v1';
+const STORAGE_KEY = 'shunkan-eisaku-state-v2';
 const SETTINGS_KEY = 'shunkan-eisaku-settings-v1';
 
 // SRS インターバル (ミリ秒)
 const SRS = {
-  AGAIN: 0,                  // × → 本セッション内で再出題
-  HARD: 24 * 60 * 60 * 1000, // △ → 翌日
-  GOOD: 3 * 24 * 60 * 60 * 1000, // ◯ → 3日後
+  AGAIN: 0,
+  HARD: 24 * 60 * 60 * 1000,
+  GOOD: 3 * 24 * 60 * 60 * 1000,
 };
 
-// ----- State -----
-let problems = [];
-let state = null; // { byId: { [id]: { nextDue, streak, seen } }, sessionQueue: [id] }
-let settings = { geminiTts: false, rate: 0.95 };
+let allProblems = [];        // 全シーン統合
+let scenes = [];             // [{id, label, file}]
+let state = null;            // { byId: {...}, sessionRetry: [] }
+let settings = { geminiTts: false, rate: 0.95, sceneFilter: 'all' };
 let currentId = null;
 let currentProblem = null;
 
-// ----- Init -----
+// ====================================================================
+// Init
+// ====================================================================
 async function init() {
   loadSettings();
   applySettings();
   bindUI();
-  await loadProblems();
+  await loadAllProblems();
   loadOrCreateState();
+  renderSceneSelector();
   buildSessionQueue();
   nextProblem();
 }
 
-// ----- Storage -----
+// ====================================================================
+// Storage
+// ====================================================================
 function loadSettings() {
   try {
     const raw = localStorage.getItem(SETTINGS_KEY);
@@ -45,11 +50,16 @@ function loadOrCreateState() {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       state = JSON.parse(raw);
+      // 新規追加された問題分の entry を埋める
+      for (const p of allProblems) {
+        if (!state.byId[p.id]) state.byId[p.id] = { nextDue: 0, streak: 0, seen: 0 };
+      }
+      saveState();
       return;
     }
   } catch {}
   state = { byId: {}, sessionRetry: [] };
-  for (const p of problems) {
+  for (const p of allProblems) {
     state.byId[p.id] = { nextDue: 0, streak: 0, seen: 0 };
   }
   saveState();
@@ -58,29 +68,48 @@ function saveState() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
 }
 
-// ----- Problem loading -----
-async function loadProblems() {
-  const res = await fetch('data/problems-b1.json');
-  const data = await res.json();
-  problems = data.problems;
+// ====================================================================
+// Problem loading
+// ====================================================================
+async function loadAllProblems() {
+  const idxRes = await fetch('data/index.json');
+  const idx = await idxRes.json();
+  scenes = idx.scenes;
+  allProblems = [];
+  for (const s of scenes) {
+    const r = await fetch('data/' + s.file);
+    const data = await r.json();
+    for (const p of data.problems) {
+      p.scene = s.id;
+      p.sceneLabel = s.label;
+      allProblems.push(p);
+    }
+  }
 }
 
-// ----- SRS queue logic -----
+function problemsForCurrentScene() {
+  if (settings.sceneFilter === 'all') return allProblems;
+  return allProblems.filter(p => p.scene === settings.sceneFilter);
+}
+
+// ====================================================================
+// SRS queue logic
+// ====================================================================
 function buildSessionQueue() {
   const now = Date.now();
-  // 期限切れ (nextDue <= now) を対象に、未学習 → 期限超過順
-  const due = problems.filter(p => (state.byId[p.id]?.nextDue ?? 0) <= now);
+  const pool = problemsForCurrentScene();
+  const due = pool.filter(p => (state.byId[p.id]?.nextDue ?? 0) <= now);
   due.sort((a, b) => {
     const sa = state.byId[a.id];
     const sb = state.byId[b.id];
-    // 未学習 (seen===0) を先に
     if ((sa.seen === 0) !== (sb.seen === 0)) return sa.seen === 0 ? -1 : 1;
     return sa.nextDue - sb.nextDue;
   });
-  // sessionRetry にあるものは末尾に追加
   const retrySet = new Set(state.sessionRetry || []);
+  // 現在のシーン外の retry は除外
+  const validIds = new Set(pool.map(p => p.id));
+  state.sessionRetry = (state.sessionRetry || []).filter(id => validIds.has(id));
   const queue = due.map(p => p.id).filter(id => !retrySet.has(id));
-  queue.push(...(state.sessionRetry || []));
   state.currentQueue = queue;
   saveState();
 }
@@ -88,7 +117,6 @@ function buildSessionQueue() {
 function nextProblem() {
   hideAnswer();
   document.getElementById('mic-result').textContent = '';
-  // sessionRetry を優先消化
   let id;
   if (state.sessionRetry && state.sessionRetry.length > 0) {
     id = state.sessionRetry.shift();
@@ -99,7 +127,7 @@ function nextProblem() {
     return;
   }
   currentId = id;
-  currentProblem = problems.find(p => p.id === id);
+  currentProblem = allProblems.find(p => p.id === id);
   if (!currentProblem) {
     nextProblem();
     return;
@@ -115,13 +143,14 @@ function renderProblem() {
   document.getElementById('en').textContent = currentProblem.en;
   document.getElementById('alt').textContent = (currentProblem.alt || []).join(' / ');
   document.getElementById('note').textContent = currentProblem.note || '';
-  document.getElementById('level-tag').textContent = (currentProblem.id || '').toUpperCase();
+  document.getElementById('level-tag').textContent = currentProblem.sceneLabel || currentProblem.scene;
   updateProgress();
 }
 
 function updateProgress() {
-  const total = problems.length;
-  const learned = problems.filter(p => state.byId[p.id]?.seen > 0).length;
+  const pool = problemsForCurrentScene();
+  const total = pool.length;
+  const learned = pool.filter(p => state.byId[p.id]?.seen > 0).length;
   document.getElementById('progress').textContent = `${learned} / ${total}`;
   const remaining = (state.currentQueue?.length || 0) + (state.sessionRetry?.length || 0);
   document.getElementById('due-count').textContent = `本日残: ${remaining}`;
@@ -133,20 +162,22 @@ function showEmpty() {
   updateProgress();
 }
 
-// ----- Grading -----
+// ====================================================================
+// Grading
+// ====================================================================
 function grade(g) {
   const now = Date.now();
   const s = state.byId[currentId];
   s.seen = (s.seen || 0) + 1;
   if (g === 'o') {
     s.streak = (s.streak || 0) + 1;
-    s.nextDue = now + SRS.GOOD * Math.max(1, s.streak); // 連続正解で間隔伸ばす
+    s.nextDue = now + SRS.GOOD * Math.max(1, s.streak);
   } else if (g === 'tri') {
     s.streak = 0;
     s.nextDue = now + SRS.HARD;
-  } else { // x
+  } else {
     s.streak = 0;
-    s.nextDue = now + SRS.HARD; // 翌日も出すが今日中にも再出題
+    s.nextDue = now + SRS.HARD;
     if (!state.sessionRetry) state.sessionRetry = [];
     if (!state.sessionRetry.includes(currentId)) state.sessionRetry.push(currentId);
   }
@@ -161,21 +192,18 @@ function hideAnswer() {
 function showAnswer() {
   document.getElementById('answer').classList.remove('hidden');
   document.getElementById('actions-pre').classList.add('hidden');
-  speak(currentProblem.en); // 自動で読み上げ
+  speak(currentProblem.en);
 }
 
-// ----- TTS -----
+// ====================================================================
+// TTS
+// ====================================================================
 function speak(text) {
-  if (settings.geminiTts) {
-    // 今のところ Web Speech API のみ実装。Gemini TTS は将来追加。
-    // フォールバックして Web Speech 使用。
-  }
   if (!('speechSynthesis' in window)) return;
   window.speechSynthesis.cancel();
   const utter = new SpeechSynthesisUtterance(text);
   utter.lang = 'en-US';
   utter.rate = settings.rate || 0.95;
-  // 英語ネイティブ音声を優先選択
   const voices = window.speechSynthesis.getVoices();
   const enVoice = voices.find(v => v.lang.startsWith('en-') && /Google|Samantha|Daniel|Karen/i.test(v.name))
                 || voices.find(v => v.lang.startsWith('en-'));
@@ -183,7 +211,9 @@ function speak(text) {
   window.speechSynthesis.speak(utter);
 }
 
-// ----- Speech Recognition (任意) -----
+// ====================================================================
+// Speech Recognition
+// ====================================================================
 let recognition = null;
 function initSTT() {
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
@@ -212,10 +242,36 @@ function startMic() {
   recognition.onend = () => {
     if (result.textContent === '🎙 録音中...') result.textContent = '';
   };
-  try { recognition.start(); } catch (e) { /* already started */ }
+  try { recognition.start(); } catch (e) {}
 }
 
-// ----- UI bindings -----
+// ====================================================================
+// Scene selector
+// ====================================================================
+function renderSceneSelector() {
+  const sel = document.getElementById('scene-select');
+  sel.innerHTML = '';
+  const opts = [{ id: 'all', label: 'すべて' }, ...scenes];
+  for (const s of opts) {
+    const o = document.createElement('option');
+    o.value = s.id;
+    o.textContent = s.label;
+    if (s.id === settings.sceneFilter) o.selected = true;
+    sel.appendChild(o);
+  }
+}
+
+function onSceneChange(e) {
+  settings.sceneFilter = e.target.value;
+  saveSettings();
+  state.sessionRetry = [];
+  buildSessionQueue();
+  nextProblem();
+}
+
+// ====================================================================
+// UI bindings
+// ====================================================================
 function bindUI() {
   document.getElementById('btn-reveal').addEventListener('click', showAnswer);
   document.getElementById('btn-tts').addEventListener('click', () => speak(currentProblem.en));
@@ -228,6 +284,7 @@ function bindUI() {
     localStorage.removeItem(STORAGE_KEY);
     location.reload();
   });
+  document.getElementById('scene-select').addEventListener('change', onSceneChange);
   document.getElementById('opt-gemini-tts').addEventListener('change', (e) => {
     settings.geminiTts = e.target.checked;
     saveSettings();
@@ -245,14 +302,15 @@ function applySettings() {
   document.getElementById('rate-label').textContent = (settings.rate || 0.95).toFixed(2);
 }
 
-// Service Worker 登録 (PWA オフライン対応)
+// ====================================================================
+// Service Worker
+// ====================================================================
 if ('serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     navigator.serviceWorker.register('sw.js').catch(() => {});
   });
 }
 
-// 音声リストが非同期に読まれる Chrome 対策
 if ('speechSynthesis' in window) {
   window.speechSynthesis.onvoiceschanged = () => {};
 }

@@ -36,8 +36,10 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
   padding: 12px 16px;
   border-bottom: 1px solid var(--border);
+  flex-wrap: wrap;
 }
 
 header h1 {
@@ -45,6 +47,25 @@ header h1 {
   font-size: 18px;
   font-weight: 600;
   letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+
+.scene-select {
+  flex: 1;
+  min-width: 100px;
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 10px;
+  font-size: 14px;
+  font-family: inherit;
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path fill='%239aa0a6' d='M2 4l4 4 4-4z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 26px;
 }
 
 .stats {

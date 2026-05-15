@@ -1,0 +1,10 @@
+{
+  "scenes": [
+    { "id": "daily",      "label": "日常会話",   "file": "scenes/daily.json" },
+    { "id": "work",       "label": "仕事",       "file": "scenes/work.json" },
+    { "id": "travel",     "label": "旅行",       "file": "scenes/travel.json" },
+    { "id": "restaurant", "label": "飲食店",     "file": "scenes/restaurant.json" },
+    { "id": "trouble",    "label": "謝罪・確認", "file": "scenes/trouble.json" },
+    { "id": "emotion",    "label": "感情・反応", "file": "scenes/emotion.json" }
+  ]
+}

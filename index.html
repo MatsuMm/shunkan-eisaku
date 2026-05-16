@@ -24,7 +24,8 @@
 <main>
   <div class="mode-tabs">
     <button class="mode-tab active" data-mode="study">学習</button>
-    <button class="mode-tab" data-mode="review">復習 (聞き流し)</button>
+    <button class="mode-tab" data-mode="list">一覧</button>
+    <button class="mode-tab" data-mode="review">復習</button>
   </div>
 
   <section id="card" class="card">
@@ -57,6 +58,20 @@
     <p>🎉 今日のセッション完了！</p>
     <p class="sub">明日また続きから。</p>
     <button class="btn ghost" id="btn-restart">やり直す（全リセット）</button>
+  </section>
+
+  <section id="list" class="list-view hidden">
+    <div class="list-toolbar">
+      <input type="search" id="list-search" class="list-search" placeholder="🔍 日本語/英語で検索" autocomplete="off">
+      <div class="list-toolbar-row">
+        <label class="toolbar-toggle">
+          <input type="checkbox" id="list-show-en" checked>
+          英語を表示
+        </label>
+        <span id="list-count" class="list-count">0 件</span>
+      </div>
+    </div>
+    <ul id="list-items" class="list-items"></ul>
   </section>
 
   <section id="review" class="review hidden">

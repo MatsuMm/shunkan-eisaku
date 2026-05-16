@@ -24,7 +24,9 @@ let settings = {
   reviewNextGap: 1.5,
   reviewJpTts: true,
   reviewLoop: false,
+  listShowEn: true,
 };
+let listSearchTerm = '';
 let currentId = null;
 let currentProblem = null;
 
@@ -291,6 +293,8 @@ function onSceneChange(e) {
   if (settings.mode === 'review') {
     buildReviewQueue();
     renderReviewCard();
+  } else if (settings.mode === 'list') {
+    renderList();
   }
 }
 
@@ -306,19 +310,122 @@ function switchMode(mode) {
     stopReview();
     buildReviewQueue();
     renderReviewCard();
+  } else if (mode === 'list') {
+    renderList();
   }
 }
 
-function applyMode() {
-  const isStudy = settings.mode === 'study';
-  document.querySelectorAll('.mode-tab').forEach(t => {
-    t.classList.toggle('active', t.dataset.mode === settings.mode);
+// ====================================================================
+// List view
+// ====================================================================
+function renderList() {
+  const pool = problemsForCurrentScene();
+  const q = listSearchTerm.trim().toLowerCase();
+  const filtered = q
+    ? pool.filter(p =>
+        p.jp.toLowerCase().includes(q) ||
+        p.en.toLowerCase().includes(q) ||
+        (p.alt || []).some(a => a.toLowerCase().includes(q)) ||
+        (p.note || '').toLowerCase().includes(q)
+      )
+    : pool;
+
+  const ul = document.getElementById('list-items');
+  ul.innerHTML = '';
+  document.getElementById('list-count').textContent = `${filtered.length} 件`;
+
+  if (filtered.length === 0) {
+    const li = document.createElement('li');
+    li.className = 'list-empty';
+    li.textContent = q ? '一致する例文がありません。' : '例文がありません。';
+    ul.appendChild(li);
+    return;
+  }
+
+  const showEn = !!settings.listShowEn;
+  for (const p of filtered) {
+    ul.appendChild(buildListItem(p, showEn));
+  }
+}
+
+function buildListItem(p, showEn) {
+  const li = document.createElement('li');
+  li.className = 'list-item';
+  li.dataset.id = p.id;
+
+  const s = state.byId[p.id] || { seen: 0, streak: 0 };
+  let statusClass = '';
+  let statusText = '';
+  if (s.seen > 0) {
+    if (s.streak >= 1) { statusClass = 's-o'; statusText = '◯'; }
+    else { statusClass = 's-tri'; statusText = '△'; }
+  }
+
+  const head = document.createElement('div');
+  head.className = 'list-item-head';
+  const jp = document.createElement('span');
+  jp.className = 'list-item-jp';
+  jp.textContent = p.jp;
+  const st = document.createElement('span');
+  st.className = 'list-item-status ' + statusClass;
+  st.textContent = statusText;
+  head.appendChild(jp);
+  head.appendChild(st);
+  li.appendChild(head);
+
+  if (showEn) {
+    const enRow = document.createElement('div');
+    enRow.className = 'list-item-en';
+    const enText = document.createElement('span');
+    enText.textContent = p.en;
+    enText.style.flex = '1';
+    const speakBtn = document.createElement('button');
+    speakBtn.className = 'speak-btn';
+    speakBtn.textContent = '🔊';
+    speakBtn.setAttribute('aria-label', '音声再生');
+    speakBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      speak(p.en);
+    });
+    enRow.appendChild(enText);
+    enRow.appendChild(speakBtn);
+    li.appendChild(enRow);
+  }
+
+  const body = document.createElement('div');
+  body.className = 'list-item-body';
+  if (p.alt && p.alt.length) {
+    const alt = document.createElement('div');
+    alt.className = 'alt';
+    alt.textContent = p.alt.join(' / ');
+    body.appendChild(alt);
+  }
+  if (p.note) {
+    const note = document.createElement('div');
+    note.className = 'note';
+    note.textContent = p.note;
+    body.appendChild(note);
+  }
+  li.appendChild(body);
+
+  li.addEventListener('click', () => {
+    li.classList.toggle('open');
   });
-  document.getElementById('card').classList.toggle('hidden', !isStudy);
-  // empty は study モードのみ
-  if (!isStudy) document.getElementById('empty').classList.add('hidden');
-  document.getElementById('review').classList.toggle('hidden', isStudy);
-  if (isStudy) stopReview();
+
+  return li;
+}
+
+function applyMode() {
+  const mode = settings.mode;
+  document.querySelectorAll('.mode-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.mode === mode);
+  });
+  document.getElementById('card').classList.toggle('hidden', mode !== 'study');
+  if (mode !== 'study') document.getElementById('empty').classList.add('hidden');
+  document.getElementById('review').classList.toggle('hidden', mode !== 'review');
+  document.getElementById('list').classList.toggle('hidden', mode !== 'list');
+  if (mode !== 'review') stopReview();
+  if (mode === 'list') renderList();
 }
 
 // ====================================================================
@@ -492,6 +599,15 @@ function bindUI() {
     settings.reviewLoop = e.target.checked;
     saveSettings();
   });
+  document.getElementById('list-search').addEventListener('input', (e) => {
+    listSearchTerm = e.target.value;
+    renderList();
+  });
+  document.getElementById('list-show-en').addEventListener('change', (e) => {
+    settings.listShowEn = e.target.checked;
+    saveSettings();
+    renderList();
+  });
   document.getElementById('opt-gemini-tts').addEventListener('change', (e) => {
     settings.geminiTts = e.target.checked;
     saveSettings();
@@ -513,6 +629,7 @@ function applySettings() {
   document.getElementById('rev-next-gap-label').textContent = settings.reviewNextGap + '秒';
   document.getElementById('rev-jp-tts').checked = !!settings.reviewJpTts;
   document.getElementById('rev-loop').checked = !!settings.reviewLoop;
+  document.getElementById('list-show-en').checked = settings.listShowEn !== false;
 }
 
 // ====================================================================

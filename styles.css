@@ -632,6 +632,7 @@ main {
 
 .answer { margin-top: 18px; }
 
+.card.hidden,
 .answer.hidden,
 .empty.hidden { display: none; }
 

@@ -216,7 +216,7 @@ function hideAnswer() {
 function showAnswer() {
   document.getElementById('answer').classList.remove('hidden');
   document.getElementById('actions-pre').classList.add('hidden');
-  speak(currentProblem.en);
+  speak(currentProblem);
 }
 
 // ====================================================================
@@ -268,14 +268,18 @@ function speakAudio(srcPath, fallbackText, fallbackLang, onEnd, missingKey) {
   };
   audio.onended = finish;
   audio.onerror = () => {
+    // 404 など実エラーのみ permanent に欠落マーク
     audioMissing.add(missingKey);
     if (done) return;
     done = true;
     if (currentAudio === audio) currentAudio = null;
     speakViaWebSpeech(fallbackText, fallbackLang, onEnd);
   };
-  audio.play().catch(() => {
-    audioMissing.add(missingKey);
+  audio.play().catch((err) => {
+    // NotAllowedError (autoplay 制限) はファイル不在ではないのでマークしない
+    if (err && err.name !== 'NotAllowedError') {
+      audioMissing.add(missingKey);
+    }
     if (done) return;
     done = true;
     if (currentAudio === audio) currentAudio = null;
@@ -296,6 +300,8 @@ function speakJa(text, onEnd, problemId) {
 function speakViaWebSpeech(text, lang, onEnd) {
   if (!('speechSynthesis' in window)) { onEnd && onEnd(); return; }
   const ss = window.speechSynthesis;
+  // 前のキューを必ず破棄
+  ss.cancel();
   const utter = new SpeechSynthesisUtterance(text);
   utter.lang = lang;
   utter.rate = settings.rate || 0.95;
@@ -310,7 +316,8 @@ function speakViaWebSpeech(text, lang, onEnd) {
   }
   if (voice) utter.voice = voice;
   if (onEnd) { utter.onend = onEnd; utter.onerror = onEnd; }
-  setTimeout(() => ss.speak(utter), 50);
+  // cancel() が完了するのを少し待ってから speak (Android Chrome の既知タイミング問題対策)
+  setTimeout(() => ss.speak(utter), 80);
 }
 
 // ====================================================================
@@ -465,7 +472,7 @@ function buildListItem(p, showEn) {
     speakBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       e.preventDefault();
-      speak(p.en);
+      speak(p);
     });
     speakBtn.addEventListener('touchend', (e) => {
       // iOS / 一部 Android で click が遅延・吸われる対策
@@ -656,7 +663,7 @@ function reviewNext() {
 // ====================================================================
 function bindUI() {
   document.getElementById('btn-reveal').addEventListener('click', showAnswer);
-  document.getElementById('btn-tts').addEventListener('click', () => speak(currentProblem.en));
+  document.getElementById('btn-tts').addEventListener('click', () => speak(currentProblem));
   document.getElementById('btn-mic').addEventListener('click', startMic);
   document.querySelectorAll('.grade-buttons .btn').forEach(b => {
     b.addEventListener('click', () => grade(b.dataset.grade));

@@ -1,0 +1,116 @@
+{
+  "title": "これだけ覚えときゃ会話文法OK",
+  "intro": "会話で実際に使う文法だけを最小限に凝縮。学校文法の網羅は捨て、口から出る型に絞った。",
+  "sections": [
+    {
+      "title": "1. 時制は実質6つで足りる",
+      "body": "会話の9割はこの6つ。\n\n● 現在形 = 習慣・事実\n   I work in IT. / I don't drink coffee.\n● 現在進行形 = 今/最近・確定した近い予定\n   I'm working on it. / I'm leaving tomorrow.\n● 過去形 = 終わった事\n   I called you yesterday.\n● 現在完了 = 過去と今がつながる (経験/継続/完了)\n   Have you ever been there? / I've just finished.\n● be going to / will = 未来\n   I'm going to quit. (前から決めてた) / I'll get it. (今決めた)\n● 過去進行形 = 〜していた最中\n   I was just about to leave.",
+      "examples": [
+        { "jp": "今それやってます。", "en": "I'm working on it." },
+        { "jp": "もう昼ごはん食べた？", "en": "Have you had lunch yet?" },
+        { "jp": "今行くところだった。", "en": "I was just about to leave." }
+      ]
+    },
+    {
+      "title": "2. will と be going to の使い分け",
+      "body": "● be going to = 前から決めてた予定・予兆\n   I'm going to move next month.\n   It's going to rain. (空を見て)\n● will = その場で決めた・申し出・予測\n   I'll get back to you. / I'll help you.\n\n迷ったら会話では be going to か現在進行形が安全。will は「今この瞬間決めた」感。",
+      "examples": [
+        { "jp": "後で折り返します。", "en": "I'll get back to you." },
+        { "jp": "来月引っ越す予定なんだ。", "en": "I'm going to move next month." }
+      ]
+    },
+    {
+      "title": "3. 現在完了の3つの顔",
+      "body": "have + 過去分詞。日本語に完了形が無いので一番つまずく。\n\n● 経験: 〜したことがある\n   Have you ever been to London?\n● 継続: ずっと〜している (since/for と相性)\n   I've been waiting for an hour.\n● 完了: ちょうど〜した (just/yet/already)\n   I've just finished. / Not yet.\n\nポイント: 「いつ」を言いたいなら過去形。「今に効いてる」なら完了形。\nyesterday などの過去の一点 + 完了形は不可 (× I have seen him yesterday)。",
+      "examples": [
+        { "jp": "ロンドンに行ったことある？", "en": "Have you ever been to London?" },
+        { "jp": "まだだよ。", "en": "Not yet." }
+      ]
+    },
+    {
+      "title": "4. 助動詞のコア意味",
+      "body": "● can = 能力/可能 「できる」\n● could = 丁寧な依頼 / 過去の能力 / 可能性\n   Could you help me?\n● will = 意志・未来\n● would = 仮定・丁寧 「〜だろう/〜してくれる?」\n   Would you mind opening the window?\n● should = 〜すべき / 〜のはず\n   You should see a doctor.\n● must = 〜に違いない / 〜しなければ\n   That must have been tough.\n● may / might = 〜かもしれない\n\n依頼の丁寧度: Can you < Could you < Would you mind ...",
+      "examples": [
+        { "jp": "窓を開けてもらえませんか？", "en": "Would you mind opening the window?" },
+        { "jp": "それは大変だったね。", "en": "That must have been tough." }
+      ]
+    },
+    {
+      "title": "5. 仮定法はこの3型だけ",
+      "body": "● If I were you, I would... 「もし自分なら〜する」\n   ※ were は人称関係なく were\n● I wish + 過去形/過去完了 「〜ならいいのに/〜だったらなあ」\n   I wish I had known earlier.\n● should have + 過去分詞 「〜すべきだった (後悔)」\n   I should have done it.\n\nこの3つで会話の仮定はほぼ回る。現在の妄想は過去形、過去の後悔は過去完了。",
+      "examples": [
+        { "jp": "もし私があなたなら、そうしないな。", "en": "If I were you, I wouldn't do that." },
+        { "jp": "もっと早く知ってればよかった。", "en": "I wish I had known earlier." },
+        { "jp": "やっとけばよかった。", "en": "I should have done it." }
+      ]
+    },
+    {
+      "title": "6. 疑問文・否定文の作り方 (機械的に)",
+      "body": "● 一般動詞: do/does/did を借りる\n   You like it. → Do you like it? / You don't like it.\n   He went. → Did he go? / He didn't go. (didの後は原形!)\n● be動詞・助動詞: そのまま前に出す/not付ける\n   You are busy. → Are you busy? / You aren't busy.\n   You can swim. → Can you swim? / You can't swim.\n\n鉄則: 一度 do/does/did を使ったら本動詞は必ず原形。",
+      "examples": [
+        { "jp": "ちょっと聞いてもいい？", "en": "Can I ask you something?" },
+        { "jp": "どういう意味ですか？", "en": "What do you mean?" }
+      ]
+    },
+    {
+      "title": "7. 不定詞 to do と 動名詞 -ing",
+      "body": "● to + 動詞 = これから/目的「〜すること・〜するために」\n   I want to go. / I'm here to study.\n● 動詞 + ing = 一般・経験済「〜すること」\n   I enjoy reading. / I finished eating.\n\n動名詞をとる代表動詞: enjoy, finish, mind, avoid, give up, keep\nto不定詞をとる代表: want, decide, hope, plan, need, would like\nstop to do (〜するために止まる) ≠ stop doing (〜をやめる) は頻出ワナ。",
+      "examples": [
+        { "jp": "転職を考えてる。", "en": "I'm thinking of changing jobs." },
+        { "jp": "ちょっと考えさせて。", "en": "Let me think about it." }
+      ]
+    },
+    {
+      "title": "8. 文の骨格と語順",
+      "body": "英語は 主語 → 動詞 → 目的語 が絶対。日本語と逆。\n\n● 基本: S V O  「私は・買った・本を」= I bought a book.\n● 場所・時間は後ろ、時間は最後が自然\n   I met him at the station yesterday.\n● 形容詞は名詞の前、副詞は動詞の近く\n   a difficult question / I really like it.\n\n言いたい結論 (動詞) を早く出すのがコツ。日本語のように最後まで溜めない。",
+      "examples": [
+        { "jp": "昨日駅で彼に会った。", "en": "I met him at the station yesterday." }
+      ]
+    },
+    {
+      "title": "9. 関係詞は the one (that) で逃げ切れる",
+      "body": "難しく考えず「the + 名詞 + that + 文」でほぼOK。\n\n● the person who called = 電話してきた人\n● the thing (that) I want = 私が欲しいもの\n● the place where we met = 私たちが会った場所\n\n会話では that はよく省略される: the thing I want。\nまず話して、説明を後ろから付け足す感覚。",
+      "examples": [
+        { "jp": "それ、私が言いたかったこと。", "en": "That's the thing I wanted to say." }
+      ]
+    },
+    {
+      "title": "10. 冠詞 a / the / 無し のざっくり原則",
+      "body": "● a/an = 初登場・1つの (相手は特定できない)\n   I saw a dog.\n● the = お互い分かってる特定のもの・2回目以降\n   The dog was huge.\n● 無冠詞 = 数えられない/一般論の複数\n   I like coffee. / Dogs are loyal.\n\n完璧は無理。会話では「特定済みなら the、初出の数えられる単数は a」だけ意識すれば通じる。",
+      "examples": [
+        { "jp": "コーヒー1杯ください。", "en": "Can I get a cup of coffee?" }
+      ]
+    },
+    {
+      "title": "11. 受動態は「誰がやったか不明/重要でない」時だけ",
+      "body": "be + 過去分詞。会話では使いすぎ注意、能動態が基本。\n\n● It's broken. (誰が壊したかは問題でない)\n● The meeting was canceled.\n● I was told to wait. (誰に言われたか言いたくない/不要)\n\n日本語の「〜される」に釣られて多用しがちだが、英語は能動が自然。",
+      "examples": [
+        { "jp": "壊れています。", "en": "It's broken." },
+        { "jp": "待つように言われた。", "en": "I was told to wait." }
+      ]
+    },
+    {
+      "title": "12. 句動詞は「動詞+前置詞=別の意味」と割り切る",
+      "body": "会話の生命線。直訳せず1語の動詞として丸暗記。\n\n● get along = 仲良くやる\n● work out = うまくいく / 運動する\n● put off = 延期する\n● figure out = 理解する/解明する\n● come up = 発生する\n● run into = 偶然出会う\n● look into = 調べる\n● get back to = 後で返事する\n\nフォーマル動詞 (postpone) より句動詞 (put off) の方が会話では自然。",
+      "examples": [
+        { "jp": "なんとかなるよ。", "en": "It'll work out." },
+        { "jp": "確認して折り返します。", "en": "Let me check and get back to you." }
+      ]
+    },
+    {
+      "title": "13. 比較は -er / more と as ... as",
+      "body": "● 短い語 + er / 長い語は more\n   faster / more difficult\n● than = 〜より\n   This is easier than that.\n● as ... as = 同じくらい / not as ... as = ほど〜でない\n   It's not as hard as you think.\n● the + 最上級 = 一番\n   the best option",
+      "examples": [
+        { "jp": "思ってるほど難しくないよ。", "en": "It's not as hard as you think." }
+      ]
+    },
+    {
+      "title": "14. 会話を回す接続の型",
+      "body": "文法より「つなぎ」が会話を作る。\n\n● 理由: because / so (だから)\n● 逆接: but / though (文末 though = 「〜だけどね」)\n● 追加: and / also / plus\n● 話題転換: by the way / speaking of which\n● 言い換え: I mean / what I'm saying is\n● example: like / for example\n\nNice place. Expensive though. のように though を文末に置くのは超ネイティブ的。",
+      "examples": [
+        { "jp": "ちなみに、", "en": "By the way," },
+        { "jp": "言いたいことはわかるけど…", "en": "I see your point, but..." }
+      ]
+    }
+  ]
+}

@@ -362,6 +362,97 @@ main {
 }
 .dict-score b { color: var(--text); font-size: 18px; }
 
+/* ---------- Grammar ---------- */
+.grammar { display: flex; flex-direction: column; gap: 12px; }
+.grammar.hidden { display: none; }
+
+.grammar-head h2 {
+  font-size: 18px;
+  margin: 4px 0 6px;
+}
+.grammar-intro {
+  font-size: 13px;
+  color: var(--text-dim);
+  line-height: 1.6;
+  margin: 0 0 4px;
+}
+
+.grammar-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.grammar-item {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.grammar-item-head {
+  padding: 14px 14px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.grammar-item-head::after {
+  content: "▾";
+  margin-left: auto;
+  color: var(--text-dim);
+  transition: transform 0.2s;
+}
+.grammar-item.open .grammar-item-head::after { transform: rotate(180deg); }
+
+.grammar-body {
+  display: none;
+  padding: 0 14px 14px;
+}
+.grammar-item.open .grammar-body { display: block; }
+
+.grammar-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text);
+  white-space: pre-wrap;
+  margin-bottom: 12px;
+}
+
+.grammar-ex {
+  background: var(--surface-2);
+  border-radius: 8px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.grammar-ex-row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.grammar-ex-jp { font-size: 13px; color: var(--text-dim); }
+.grammar-ex-en {
+  font-size: 15px;
+  color: var(--accent);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.grammar-ex-en .speak-btn {
+  appearance: none; border: none;
+  background: var(--surface); color: var(--text);
+  width: 36px; height: 36px; border-radius: 6px;
+  font-size: 15px; cursor: pointer; flex-shrink: 0;
+}
+
 /* ---------- Shadowing ---------- */
 .shadow-result {
   margin-top: 8px;

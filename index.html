@@ -27,6 +27,7 @@
     <button class="mode-tab" data-mode="list">一覧</button>
     <button class="mode-tab" data-mode="review">復習</button>
     <button class="mode-tab" data-mode="dictation">聞き取り</button>
+    <button class="mode-tab" data-mode="grammar">文法</button>
   </div>
 
   <section id="card" class="card">
@@ -77,6 +78,14 @@
       </div>
     </div>
     <ul id="list-items" class="list-items"></ul>
+  </section>
+
+  <section id="grammar" class="grammar hidden">
+    <div class="grammar-head">
+      <h2 id="grammar-title"></h2>
+      <p id="grammar-intro" class="grammar-intro"></p>
+    </div>
+    <ul id="grammar-list" class="grammar-list"></ul>
   </section>
 
   <section id="dictation" class="dictation hidden">

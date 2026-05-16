@@ -605,6 +605,76 @@ function escapeHtml(s) {
 }
 
 // ====================================================================
+// Grammar reference
+// ====================================================================
+let grammarData = null;
+
+async function renderGrammar() {
+  if (!grammarData) {
+    try {
+      const res = await fetch('data/grammar.json');
+      grammarData = await res.json();
+    } catch {
+      document.getElementById('grammar-title').textContent = '文法データの読み込みに失敗しました';
+      return;
+    }
+  }
+  document.getElementById('grammar-title').textContent = grammarData.title;
+  document.getElementById('grammar-intro').textContent = grammarData.intro || '';
+  const ul = document.getElementById('grammar-list');
+  if (ul.children.length > 0) return; // 既に描画済みなら維持
+  ul.innerHTML = '';
+  for (const sec of grammarData.sections) {
+    const li = document.createElement('li');
+    li.className = 'grammar-item';
+
+    const head = document.createElement('div');
+    head.className = 'grammar-item-head';
+    head.textContent = sec.title;
+    li.appendChild(head);
+
+    const body = document.createElement('div');
+    body.className = 'grammar-body';
+
+    const txt = document.createElement('div');
+    txt.className = 'grammar-text';
+    txt.textContent = sec.body;
+    body.appendChild(txt);
+
+    if (sec.examples && sec.examples.length) {
+      const ex = document.createElement('div');
+      ex.className = 'grammar-ex';
+      for (const e of sec.examples) {
+        const row = document.createElement('div');
+        row.className = 'grammar-ex-row';
+        const jp = document.createElement('div');
+        jp.className = 'grammar-ex-jp';
+        jp.textContent = e.jp;
+        const en = document.createElement('div');
+        en.className = 'grammar-ex-en';
+        const enText = document.createElement('span');
+        enText.textContent = e.en;
+        enText.style.flex = '1';
+        const sb = document.createElement('button');
+        sb.className = 'speak-btn';
+        sb.textContent = '🔊';
+        sb.addEventListener('click', (ev) => { ev.stopPropagation(); speak(e.en); });
+        en.appendChild(enText);
+        en.appendChild(sb);
+        row.appendChild(jp);
+        row.appendChild(en);
+        ex.appendChild(row);
+      }
+      body.appendChild(ex);
+    }
+
+    li.appendChild(body);
+    head.addEventListener('click', () => li.classList.toggle('open'));
+    ul.appendChild(li);
+  }
+}
+
+// ====================================================================
 // List view
 // ====================================================================
 function renderList() {
@@ -733,10 +803,12 @@ function applyMode() {
   document.getElementById('review').classList.toggle('hidden', mode !== 'review');
   document.getElementById('list').classList.toggle('hidden', mode !== 'list');
   document.getElementById('dictation').classList.toggle('hidden', mode !== 'dictation');
+  document.getElementById('grammar').classList.toggle('hidden', mode !== 'grammar');
   if (mode !== 'review') stopReview();
   if (mode !== 'dictation') stopSpeech();
   if (mode === 'list') renderList();
   if (mode === 'dictation') startDictation();
+  if (mode === 'grammar') renderGrammar();
 }
 
 // ====================================================================

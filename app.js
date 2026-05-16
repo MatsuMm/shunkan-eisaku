@@ -24,6 +24,7 @@ let settings = {
   reviewNextGap: 1.5,
   reviewJpTts: true,
   reviewLoop: false,
+  reviewOnlySeen: false,
   listShowEn: true,
 };
 let listSearchTerm = '';
@@ -524,7 +525,10 @@ function applyMode() {
 // ====================================================================
 function buildReviewQueue() {
   const pool = problemsForCurrentScene();
-  reviewQueue = pool.filter(p => (state.byId[p.id]?.seen || 0) > 0).map(p => p.id);
+  const filtered = settings.reviewOnlySeen
+    ? pool.filter(p => (state.byId[p.id]?.seen || 0) > 0)
+    : pool;
+  reviewQueue = filtered.map(p => p.id);
   if (reviewIndex >= reviewQueue.length) reviewIndex = 0;
 }
 
@@ -534,7 +538,11 @@ function renderReviewCard() {
   const jpEl = document.getElementById('review-jp');
   const enEl = document.getElementById('review-en');
   if (total === 0) {
-    jpEl.innerHTML = '復習する問題がありません。<br>まず「学習」モードで何問か解いてください。';
+    if (settings.reviewOnlySeen) {
+      jpEl.innerHTML = '学習済みの問題がありません。<br>「学習済みだけに絞る」を外すか、まず学習モードで何問か解いてください。';
+    } else {
+      jpEl.innerHTML = 'このシーンに例文がありません。';
+    }
     enEl.textContent = '';
     enEl.classList.remove('visible');
     document.getElementById('btn-rev-play').disabled = true;
@@ -700,6 +708,13 @@ function bindUI() {
     settings.reviewLoop = e.target.checked;
     saveSettings();
   });
+  document.getElementById('rev-only-seen').addEventListener('change', (e) => {
+    settings.reviewOnlySeen = e.target.checked;
+    saveSettings();
+    reviewIndex = 0;
+    buildReviewQueue();
+    renderReviewCard();
+  });
   document.getElementById('list-search').addEventListener('input', (e) => {
     listSearchTerm = e.target.value;
     renderList();
@@ -730,6 +745,7 @@ function applySettings() {
   document.getElementById('rev-next-gap-label').textContent = settings.reviewNextGap + '秒';
   document.getElementById('rev-jp-tts').checked = !!settings.reviewJpTts;
   document.getElementById('rev-loop').checked = !!settings.reviewLoop;
+  document.getElementById('rev-only-seen').checked = !!settings.reviewOnlySeen;
   document.getElementById('list-show-en').checked = settings.listShowEn !== false;
 }
 

@@ -223,15 +223,20 @@ function showAnswer() {
 // ====================================================================
 function speak(text) {
   if (!('speechSynthesis' in window)) return;
-  window.speechSynthesis.cancel();
+  const ss = window.speechSynthesis;
+  // Android Chrome: cancel() の直後 speak() が無音になる既知バグへの対策
+  if (ss.speaking || ss.pending) {
+    ss.cancel();
+  }
   const utter = new SpeechSynthesisUtterance(text);
   utter.lang = 'en-US';
   utter.rate = settings.rate || 0.95;
-  const voices = window.speechSynthesis.getVoices();
+  const voices = ss.getVoices();
   const enVoice = voices.find(v => v.lang.startsWith('en-') && /Google|Samantha|Daniel|Karen/i.test(v.name))
                 || voices.find(v => v.lang.startsWith('en-'));
   if (enVoice) utter.voice = enVoice;
-  window.speechSynthesis.speak(utter);
+  // 直後の speak() を少し遅延させて Android の無音バグを回避
+  setTimeout(() => ss.speak(utter), 50);
 }
 
 // ====================================================================
@@ -385,8 +390,13 @@ function buildListItem(p, showEn) {
     speakBtn.setAttribute('aria-label', '音声再生');
     speakBtn.addEventListener('click', (e) => {
       e.stopPropagation();
+      e.preventDefault();
       speak(p.en);
     });
+    speakBtn.addEventListener('touchend', (e) => {
+      // iOS / 一部 Android で click が遅延・吸われる対策
+      e.stopPropagation();
+    }, { passive: true });
     enRow.appendChild(enText);
     enRow.appendChild(speakBtn);
     li.appendChild(enRow);

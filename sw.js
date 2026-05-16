@@ -1,5 +1,5 @@
-// Service Worker - 簡易オフラインキャッシュ
-const CACHE = 'shunkan-eisaku-v2';
+// Service Worker - network-first (オンラインなら常に最新)、オフライン時のみキャッシュ
+const CACHE = 'shunkan-eisaku-v3';
 const ASSETS = [
   './',
   './index.html',
@@ -24,21 +24,20 @@ self.addEventListener('activate', e => {
   e.waitUntil(
     caches.keys().then(keys =>
       Promise.all(keys.filter(k => k !== CACHE).map(k => caches.delete(k)))
-    )
+    ).then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
 self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET') return;
+  const url = new URL(e.request.url);
+  if (url.origin !== self.location.origin) return;
+  // network-first: 常に最新を試みる、失敗時のみキャッシュへフォールバック
   e.respondWith(
-    caches.match(e.request).then(cached => cached || fetch(e.request).then(res => {
-      // 同一オリジンのみキャッシュ
-      if (new URL(e.request.url).origin === self.location.origin) {
-        const clone = res.clone();
-        caches.open(CACHE).then(c => c.put(e.request, clone));
-      }
+    fetch(e.request).then(res => {
+      const clone = res.clone();
+      caches.open(CACHE).then(c => c.put(e.request, clone));
       return res;
-    }).catch(() => cached))
+    }).catch(() => caches.match(e.request))
   );
 });

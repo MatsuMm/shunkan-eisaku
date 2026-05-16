@@ -36,6 +36,7 @@ let reviewIndex = 0;
 let reviewPlaying = false;
 let reviewTimer = null;
 let reviewSpeakingEn = false;
+let mediaSessionInited = false;
 
 // ====================================================================
 // Init
@@ -248,34 +249,48 @@ function speak(textOrProblem, maybeText) {
   speakEn(id, text, null);
 }
 
-function speakEn(id, text, onEnd) {
+function speakAudio(srcPath, fallbackText, fallbackLang, onEnd, missingKey) {
   stopSpeech();
-  if (id && !audioMissing.has(id)) {
-    const audio = new Audio(`audio/${id}.mp3`);
-    audio.playbackRate = settings.rate || 0.95;
-    let done = false;
-    const finish = () => { if (done) return; done = true; currentAudio = null; onEnd && onEnd(); };
-    audio.onended = finish;
-    audio.onerror = () => {
-      audioMissing.add(id);
-      if (done) return;
-      done = true;
-      speakViaWebSpeech(text, 'en-US', onEnd);
-    };
-    audio.play().then(() => { currentAudio = audio; }).catch(() => {
-      audioMissing.add(id);
-      if (done) return;
-      done = true;
-      speakViaWebSpeech(text, 'en-US', onEnd);
-    });
+  if (audioMissing.has(missingKey)) {
+    speakViaWebSpeech(fallbackText, fallbackLang, onEnd);
     return;
   }
-  speakViaWebSpeech(text, 'en-US', onEnd);
+  const audio = new Audio(srcPath);
+  audio.playbackRate = settings.rate || 0.95;
+  // ★ play() より前に currentAudio に代入。連続呼び出しでも次の stopSpeech() が確実に止められる
+  currentAudio = audio;
+  let done = false;
+  const finish = () => {
+    if (done) return;
+    done = true;
+    if (currentAudio === audio) currentAudio = null;
+    onEnd && onEnd();
+  };
+  audio.onended = finish;
+  audio.onerror = () => {
+    audioMissing.add(missingKey);
+    if (done) return;
+    done = true;
+    if (currentAudio === audio) currentAudio = null;
+    speakViaWebSpeech(fallbackText, fallbackLang, onEnd);
+  };
+  audio.play().catch(() => {
+    audioMissing.add(missingKey);
+    if (done) return;
+    done = true;
+    if (currentAudio === audio) currentAudio = null;
+    speakViaWebSpeech(fallbackText, fallbackLang, onEnd);
+  });
 }
 
-function speakJa(text, onEnd) {
-  stopSpeech();
-  speakViaWebSpeech(text, 'ja-JP', onEnd);
+function speakEn(id, text, onEnd) {
+  if (id) speakAudio(`audio/${id}.mp3`, text, 'en-US', onEnd, id);
+  else { stopSpeech(); speakViaWebSpeech(text, 'en-US', onEnd); }
+}
+
+function speakJa(text, onEnd, problemId) {
+  if (problemId) speakAudio(`audio/jp/${problemId}.mp3`, text, 'ja-JP', onEnd, 'jp/' + problemId);
+  else { stopSpeech(); speakViaWebSpeech(text, 'ja-JP', onEnd); }
 }
 
 function speakViaWebSpeech(text, lang, onEnd) {
@@ -530,6 +545,8 @@ function playReview() {
   reviewPlaying = true;
   document.getElementById('btn-rev-play').textContent = '⏸ 一時停止';
   document.getElementById('review-state').textContent = '再生中';
+  initMediaSession();
+  if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'playing';
   playCurrentReviewItem();
 }
 
@@ -537,9 +554,38 @@ function pauseReview() {
   reviewPlaying = false;
   clearTimeout(reviewTimer);
   reviewTimer = null;
-  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+  stopSpeech();
   document.getElementById('btn-rev-play').textContent = '▶ 再生';
   document.getElementById('review-state').textContent = '停止中';
+  if ('mediaSession' in navigator) navigator.mediaSession.playbackState = 'paused';
+}
+
+// ====================================================================
+// Media Session API - ロック画面・通知エリアでの再生コントロール
+// ====================================================================
+function initMediaSession() {
+  if (mediaSessionInited) return;
+  if (!('mediaSession' in navigator)) return;
+  mediaSessionInited = true;
+  navigator.mediaSession.setActionHandler('play', () => { if (!reviewPlaying) playReview(); });
+  navigator.mediaSession.setActionHandler('pause', () => { if (reviewPlaying) pauseReview(); });
+  navigator.mediaSession.setActionHandler('previoustrack', reviewPrev);
+  navigator.mediaSession.setActionHandler('nexttrack', reviewNext);
+}
+
+function updateMediaSession(p) {
+  if (!('mediaSession' in navigator)) return;
+  try {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: p.en,
+      artist: p.jp,
+      album: p.sceneLabel || '瞬間英作',
+      artwork: [
+        { src: 'icons/icon-192.png', sizes: '192x192', type: 'image/png' },
+        { src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png' },
+      ],
+    });
+  } catch {}
 }
 
 function stopReview() {
@@ -566,8 +612,9 @@ function playCurrentReviewItem() {
       });
     }, settings.reviewGap * 1000);
   };
+  updateMediaSession(p);
   if (settings.reviewJpTts) {
-    speakJa(p.jp, jpDone);
+    speakJa(p.jp, jpDone, p.id);
   } else {
     jpDone();
   }

@@ -286,20 +286,54 @@ main {
   gap: 14px;
 }
 
-.dict-input {
-  width: 100%;
-  min-height: 110px;
+.dict-build {
+  min-height: 56px;
   background: var(--bg);
-  color: var(--text);
   border: 1px solid var(--border);
   border-radius: 10px;
-  padding: 12px;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  align-content: flex-start;
+}
+.dict-build:empty::before {
+  content: "↓ 下の単語をタップして並べる";
+  color: var(--text-dim);
+  font-size: 13px;
+}
+
+.dict-bank {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 4px 0;
+  min-height: 40px;
+}
+
+.word-chip {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  color: var(--text);
   font-size: 16px;
   font-family: inherit;
-  resize: vertical;
-  line-height: 1.5;
+  padding: 9px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.05s, opacity 0.15s;
 }
-.dict-input:focus { outline: none; border-color: var(--accent); }
+.word-chip:active { transform: scale(0.94); }
+.word-chip.used { opacity: 0.25; pointer-events: none; }
+
+.dict-build .word-chip {
+  background: var(--accent);
+  color: #fff;
+  border-color: var(--accent);
+}
+.dict-build .word-chip.ok   { background: var(--ok);  border-color: var(--ok); }
+.dict-build .word-chip.bad  { background: var(--ng);  border-color: var(--ng); }
 
 .dict-actions {
   display: flex;

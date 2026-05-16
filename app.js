@@ -470,6 +470,8 @@ function switchMode(mode) {
 let dictQueue = [];
 let dictIndex = 0;
 let dictCurrent = null;
+let dictCorrectTokens = [];   // 正解の表示用トークン (句読点除去後)
+let dictBuilt = [];           // [{word, bankIdx}] 選択済み
 
 function startDictation() {
   buildDictQueue();
@@ -482,65 +484,119 @@ function buildDictQueue() {
   dictQueue = pool.slice().sort(() => Math.random() - 0.5);
 }
 
+// 表示用トークン: 句読点を外した単語配列 (比較も表示もこれを使う)
+function tokenizeForDict(s) {
+  return s
+    .replace(/[“”‘’]/g, '')
+    .split(/\s+/)
+    .map(w => w.replace(/^[,.!?;:"()]+|[,.!?;:"()]+$/g, ''))
+    .filter(Boolean);
+}
+
+function shuffle(arr) {
+  const a = arr.slice();
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
+
 function renderDictation() {
   if (dictQueue.length === 0) {
     document.getElementById('dict-jp').textContent = '例文がありません。';
     document.getElementById('dict-progress').textContent = '0 / 0';
+    document.getElementById('dict-build').innerHTML = '';
+    document.getElementById('dict-bank').innerHTML = '';
     return;
   }
   dictCurrent = dictQueue[dictIndex];
+  dictCorrectTokens = tokenizeForDict(dictCurrent.en);
+  dictBuilt = [];
   document.getElementById('dict-progress').textContent = `${dictIndex + 1} / ${dictQueue.length}`;
   document.getElementById('dict-jp').textContent = dictCurrent.jp;
-  const input = document.getElementById('dict-input');
-  input.value = '';
-  input.disabled = false;
   document.getElementById('dict-result').classList.add('hidden');
   document.getElementById('dict-tip').classList.add('hidden');
   document.getElementById('dict-next-wrap').classList.add('hidden');
   document.getElementById('dict-check').classList.remove('hidden');
   document.getElementById('dict-skip').classList.remove('hidden');
-  // 自動で 1 回再生
+
+  // バンク生成 (シャッフル)。同一単語が複数あっても index で区別
+  const bankWords = shuffle(dictCorrectTokens.map((w, i) => ({ w, i })));
+  const bank = document.getElementById('dict-bank');
+  bank.innerHTML = '';
+  bankWords.forEach(({ w, i }) => {
+    const chip = document.createElement('button');
+    chip.className = 'word-chip';
+    chip.textContent = w;
+    chip.dataset.bankIdx = String(i);
+    chip.addEventListener('click', () => pickWord(chip, w, i));
+    bank.appendChild(chip);
+  });
+  document.getElementById('dict-build').innerHTML = '';
   setTimeout(() => speak(dictCurrent), 200);
 }
 
-function normalizeForDict(s) {
-  return s.toLowerCase()
-    .replace(/[,.!?;:"()‘’“”]/g, ' ')
-    .replace(/\s+/g, ' ')
-    .trim()
-    .split(' ')
-    .filter(Boolean);
+function pickWord(chip, word, bankIdx) {
+  if (chip.classList.contains('used')) return;
+  chip.classList.add('used');
+  dictBuilt.push({ word, bankIdx });
+  renderBuild();
+}
+
+function renderBuild() {
+  const build = document.getElementById('dict-build');
+  build.innerHTML = '';
+  dictBuilt.forEach((item, pos) => {
+    const c = document.createElement('button');
+    c.className = 'word-chip';
+    c.textContent = item.word;
+    c.addEventListener('click', () => unpickWord(pos));
+    build.appendChild(c);
+  });
+}
+
+function unpickWord(pos) {
+  const item = dictBuilt[pos];
+  if (!item) return;
+  dictBuilt.splice(pos, 1);
+  // バンク側の used を解除
+  const chip = document.querySelector(`#dict-bank .word-chip[data-bank-idx="${item.bankIdx}"]`);
+  if (chip) chip.classList.remove('used');
+  renderBuild();
 }
 
 function dictCheck() {
   if (!dictCurrent) return;
-  const userWords = normalizeForDict(document.getElementById('dict-input').value);
-  const correctWords = normalizeForDict(dictCurrent.en);
-  const html = diffWordsHtml(userWords, correctWords);
-  const okCount = html.okCount;
-  const total = correctWords.length;
+  const build = document.getElementById('dict-build');
+  const chips = Array.from(build.children);
+  let okCount = 0;
+  dictBuilt.forEach((item, i) => {
+    const correct = dictCorrectTokens[i];
+    const good = correct && item.word.toLowerCase() === correct.toLowerCase();
+    if (good) okCount++;
+    if (chips[i]) chips[i].classList.add(good ? 'ok' : 'bad');
+  });
+  const total = dictCorrectTokens.length;
   const score = total > 0 ? Math.round((okCount / total) * 100) : 0;
 
   const resEl = document.getElementById('dict-result');
-  resEl.innerHTML = html.body
-    + `<div class="dict-correct"><div class="full">${escapeHtml(dictCurrent.en)}</div></div>`
-    + `<div class="dict-score">スコア: <b>${score}%</b> (${okCount}/${total} 語)</div>`;
+  resEl.innerHTML =
+    `<div class="dict-correct"><div class="full">${escapeHtml(dictCurrent.en)}</div></div>` +
+    `<div class="dict-score">スコア: <b>${score}%</b> (${okCount}/${total} 語が正しい位置)</div>`;
   resEl.classList.remove('hidden');
-  document.getElementById('dict-input').disabled = true;
   document.getElementById('dict-check').classList.add('hidden');
   document.getElementById('dict-skip').classList.add('hidden');
   document.getElementById('dict-next-wrap').classList.remove('hidden');
-
   if (dictCurrent.tip) {
     const tipEl = document.getElementById('dict-tip');
     tipEl.textContent = dictCurrent.tip;
     tipEl.classList.remove('hidden');
   }
-  speak(dictCurrent); // 答え合わせと同時にもう一度再生
+  speak(dictCurrent);
 }
 
 function dictSkip() {
-  document.getElementById('dict-input').disabled = true;
   document.getElementById('dict-check').classList.add('hidden');
   document.getElementById('dict-skip').classList.add('hidden');
   const resEl = document.getElementById('dict-result');
@@ -1026,12 +1082,6 @@ function bindUI() {
   document.getElementById('dict-check').addEventListener('click', dictCheck);
   document.getElementById('dict-skip').addEventListener('click', dictSkip);
   document.getElementById('dict-next').addEventListener('click', dictNext);
-  document.getElementById('dict-input').addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
-      e.preventDefault();
-      dictCheck();
-    }
-  });
   document.getElementById('opt-gemini-tts').addEventListener('change', (e) => {
     settings.geminiTts = e.target.checked;
     saveSettings();

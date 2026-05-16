@@ -219,23 +219,82 @@ function showAnswer() {
 }
 
 // ====================================================================
-// TTS
+// TTS - 事前生成 MP3 (audio/<id>.mp3) を優先、無ければ Web Speech にフォールバック
 // ====================================================================
-function speak(text) {
-  if (!('speechSynthesis' in window)) return;
-  const ss = window.speechSynthesis;
-  // Android Chrome: cancel() の直後 speak() が無音になる既知バグへの対策
-  if (ss.speaking || ss.pending) {
-    ss.cancel();
+let currentAudio = null;
+const audioMissing = new Set(); // 404 だった ID をキャッシュ
+
+function stopSpeech() {
+  if (currentAudio) {
+    try { currentAudio.pause(); currentAudio.currentTime = 0; } catch {}
+    currentAudio = null;
   }
+  if ('speechSynthesis' in window) {
+    const ss = window.speechSynthesis;
+    if (ss.speaking || ss.pending) ss.cancel();
+  }
+}
+
+function speak(textOrProblem, maybeText) {
+  // 互換: speak("text") も speak(problemObj) も speak(id, text) も受ける
+  let id = null, text = null;
+  if (typeof textOrProblem === 'object' && textOrProblem) {
+    id = textOrProblem.id; text = textOrProblem.en;
+  } else if (typeof textOrProblem === 'string' && typeof maybeText === 'string') {
+    id = textOrProblem; text = maybeText;
+  } else {
+    text = textOrProblem;
+  }
+  speakEn(id, text, null);
+}
+
+function speakEn(id, text, onEnd) {
+  stopSpeech();
+  if (id && !audioMissing.has(id)) {
+    const audio = new Audio(`audio/${id}.mp3`);
+    audio.playbackRate = settings.rate || 0.95;
+    let done = false;
+    const finish = () => { if (done) return; done = true; currentAudio = null; onEnd && onEnd(); };
+    audio.onended = finish;
+    audio.onerror = () => {
+      audioMissing.add(id);
+      if (done) return;
+      done = true;
+      speakViaWebSpeech(text, 'en-US', onEnd);
+    };
+    audio.play().then(() => { currentAudio = audio; }).catch(() => {
+      audioMissing.add(id);
+      if (done) return;
+      done = true;
+      speakViaWebSpeech(text, 'en-US', onEnd);
+    });
+    return;
+  }
+  speakViaWebSpeech(text, 'en-US', onEnd);
+}
+
+function speakJa(text, onEnd) {
+  stopSpeech();
+  speakViaWebSpeech(text, 'ja-JP', onEnd);
+}
+
+function speakViaWebSpeech(text, lang, onEnd) {
+  if (!('speechSynthesis' in window)) { onEnd && onEnd(); return; }
+  const ss = window.speechSynthesis;
   const utter = new SpeechSynthesisUtterance(text);
-  utter.lang = 'en-US';
+  utter.lang = lang;
   utter.rate = settings.rate || 0.95;
   const voices = ss.getVoices();
-  const enVoice = voices.find(v => v.lang.startsWith('en-') && /Google|Samantha|Daniel|Karen/i.test(v.name))
-                || voices.find(v => v.lang.startsWith('en-'));
-  if (enVoice) utter.voice = enVoice;
-  // 直後の speak() を少し遅延させて Android の無音バグを回避
+  let voice = null;
+  if (lang.startsWith('en')) {
+    voice = voices.find(v => v.lang.startsWith('en-') && /Google|Samantha|Daniel|Karen/i.test(v.name))
+         || voices.find(v => v.lang.startsWith('en-'));
+  } else if (lang.startsWith('ja')) {
+    voice = voices.find(v => v.lang.startsWith('ja-') && /Google|Kyoko/i.test(v.name))
+         || voices.find(v => v.lang.startsWith('ja-'));
+  }
+  if (voice) utter.voice = voice;
+  if (onEnd) { utter.onend = onEnd; utter.onerror = onEnd; }
   setTimeout(() => ss.speak(utter), 50);
 }
 
@@ -500,7 +559,7 @@ function playCurrentReviewItem() {
     reviewTimer = setTimeout(() => {
       if (!reviewPlaying) return;
       document.getElementById('review-en').classList.add('visible');
-      speakWithCallback(p.en, 'en-US', () => {
+      speakEn(p.id, p.en, () => {
         if (!reviewPlaying) return;
         // 次へ進む間隔
         reviewTimer = setTimeout(advanceReview, settings.reviewNextGap * 1000);
@@ -508,7 +567,7 @@ function playCurrentReviewItem() {
     }, settings.reviewGap * 1000);
   };
   if (settings.reviewJpTts) {
-    speakWithCallback(p.jp, 'ja-JP', jpDone);
+    speakJa(p.jp, jpDone);
   } else {
     jpDone();
   }
@@ -543,28 +602,6 @@ function reviewNext() {
   reviewIndex = Math.min(reviewQueue.length - 1, reviewIndex + 1);
   renderReviewCard();
   if (wasPlaying) playReview();
-}
-
-// 共通: コールバック付き発話
-function speakWithCallback(text, lang, cb) {
-  if (!('speechSynthesis' in window)) { cb(); return; }
-  window.speechSynthesis.cancel();
-  const utter = new SpeechSynthesisUtterance(text);
-  utter.lang = lang;
-  utter.rate = settings.rate || 0.95;
-  const voices = window.speechSynthesis.getVoices();
-  let voice = null;
-  if (lang.startsWith('en')) {
-    voice = voices.find(v => v.lang.startsWith('en-') && /Google|Samantha|Daniel|Karen/i.test(v.name))
-         || voices.find(v => v.lang.startsWith('en-'));
-  } else if (lang.startsWith('ja')) {
-    voice = voices.find(v => v.lang.startsWith('ja-') && /Google|Kyoko/i.test(v.name))
-         || voices.find(v => v.lang.startsWith('ja-'));
-  }
-  if (voice) utter.voice = voice;
-  utter.onend = cb;
-  utter.onerror = cb;
-  window.speechSynthesis.speak(utter);
 }
 
 // ====================================================================

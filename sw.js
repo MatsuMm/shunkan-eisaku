@@ -1,5 +1,5 @@
 // Service Worker - network-first (オンラインなら常に最新)、オフライン時のみキャッシュ
-const CACHE = 'shunkan-eisaku-v11';
+const CACHE = 'shunkan-eisaku-v12';
 // プリキャッシュ対象は最低限 (HTML/JS/CSS/JSON)。音声 mp3 は再生時に都度キャッシュされる。
 const ASSETS = [
   './',
@@ -15,6 +15,11 @@ const ASSETS = [
   './data/scenes/trouble.json',
   './data/scenes/emotion.json',
   './data/scenes/reduction.json',
+  './data/levels/lv1.json',
+  './data/levels/lv2.json',
+  './data/levels/lv3.json',
+  './data/levels/lv4.json',
+  './data/levels/lv5.json',
   './data/grammar.json',
   './data/dialogues.json',
   './data/reading.json',

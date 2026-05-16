@@ -1,5 +1,10 @@
 {
   "scenes": [
+    { "id": "lv1",        "label": "Lv1 基礎",        "file": "levels/lv1.json" },
+    { "id": "lv2",        "label": "Lv2 日常基本",    "file": "levels/lv2.json" },
+    { "id": "lv3",        "label": "Lv3 会話標準",    "file": "levels/lv3.json" },
+    { "id": "lv4",        "label": "Lv4 中上級",      "file": "levels/lv4.json" },
+    { "id": "lv5",        "label": "Lv5 上級ニュアンス", "file": "levels/lv5.json" },
     { "id": "daily",      "label": "日常会話",   "file": "scenes/daily.json" },
     { "id": "work",       "label": "仕事",       "file": "scenes/work.json" },
     { "id": "travel",     "label": "旅行",       "file": "scenes/travel.json" },

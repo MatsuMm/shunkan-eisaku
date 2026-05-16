@@ -658,7 +658,11 @@ async function renderGrammar() {
         const sb = document.createElement('button');
         sb.className = 'speak-btn';
         sb.textContent = '🔊';
-        sb.addEventListener('click', (ev) => { ev.stopPropagation(); speak(e.en); });
+        sb.addEventListener('click', (ev) => {
+          ev.stopPropagation();
+          if (e.id) speak({ id: e.id, en: e.en });
+          else speak(e.en);
+        });
         en.appendChild(enText);
         en.appendChild(sb);
         row.appendChild(jp);

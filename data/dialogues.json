@@ -1,0 +1,139 @@
+{
+  "title": "会話シミュレーション",
+  "description": "相手の発話を聞いて理解 → 自分の番を瞬間英作。実際の往復に近い即応力を鍛える。A=相手(男声) / YOU=あなた(女声)。",
+  "dialogues": [
+    {
+      "id": "dlg-01",
+      "scene": "daily",
+      "title": "久しぶりの再会",
+      "turns": [
+        { "sp": "A", "en": "Hey! Long time no see. How have you been?", "jp": "やあ！久しぶり。元気にしてた？" },
+        { "sp": "YOU", "en": "Not bad. I've been pretty busy with work.", "jp": "まあまあかな。仕事でけっこう忙しくてさ。" },
+        { "sp": "A", "en": "Same here. We should catch up sometime.", "jp": "こっちも同じ。今度ゆっくり話そうよ。" },
+        { "sp": "YOU", "en": "Definitely. Let's grab a coffee next week.", "jp": "ぜひ。来週コーヒーでも飲もう。" },
+        { "sp": "A", "en": "Sounds good. I'll text you.", "jp": "いいね。連絡するよ。" },
+        { "sp": "YOU", "en": "Great, talk to you then.", "jp": "了解、またその時に。" }
+      ]
+    },
+    {
+      "id": "dlg-02",
+      "scene": "restaurant",
+      "title": "レストランで注文",
+      "turns": [
+        { "sp": "A", "en": "Hi, welcome. A table for how many?", "jp": "いらっしゃいませ。何名様ですか？" },
+        { "sp": "YOU", "en": "Table for two, please.", "jp": "2名でお願いします。" },
+        { "sp": "A", "en": "Right this way. Here are your menus.", "jp": "こちらへどうぞ。メニューです。" },
+        { "sp": "YOU", "en": "Thanks. What do you recommend?", "jp": "ありがとう。おすすめは何ですか？" },
+        { "sp": "A", "en": "The grilled salmon is very popular today.", "jp": "本日はグリルサーモンが人気です。" },
+        { "sp": "YOU", "en": "I'll have that. And could I get some water?", "jp": "それにします。あと水をもらえますか？" },
+        { "sp": "A", "en": "Of course. I'll be right back.", "jp": "もちろん。すぐ戻ります。" }
+      ]
+    },
+    {
+      "id": "dlg-03",
+      "scene": "work",
+      "title": "進捗の確認",
+      "turns": [
+        { "sp": "A", "en": "Do you have a minute? I wanted to check on the project.", "jp": "今ちょっといい？プロジェクトの確認をしたくて。" },
+        { "sp": "YOU", "en": "Sure. What would you like to know?", "jp": "もちろん。何が知りたいですか？" },
+        { "sp": "A", "en": "Where are we on the report?", "jp": "レポートはどこまで進んでる？" },
+        { "sp": "YOU", "en": "I'm almost done. I'll have it ready by Friday.", "jp": "ほぼ終わってます。金曜までに仕上げます。" },
+        { "sp": "A", "en": "Perfect. Let me know if you run into any issues.", "jp": "完璧。何か問題があったら教えて。" },
+        { "sp": "YOU", "en": "Will do. I'll keep you posted.", "jp": "そうします。進捗は共有します。" }
+      ]
+    },
+    {
+      "id": "dlg-04",
+      "scene": "travel",
+      "title": "ホテルのチェックイン",
+      "turns": [
+        { "sp": "A", "en": "Good evening. Do you have a reservation?", "jp": "こんばんは。ご予約はありますか？" },
+        { "sp": "YOU", "en": "Yes, I have a reservation under Tanaka.", "jp": "はい、田中で予約してます。" },
+        { "sp": "A", "en": "Let me check. Yes, a double room for two nights.", "jp": "確認します。はい、ダブルルームで2泊ですね。" },
+        { "sp": "YOU", "en": "That's right. Is early check-in possible?", "jp": "その通りです。アーリーチェックインはできますか？" },
+        { "sp": "A", "en": "I'm afraid the room isn't ready yet.", "jp": "申し訳ありませんが、まだお部屋の準備ができていません。" },
+        { "sp": "YOU", "en": "No problem. Could you hold my bags?", "jp": "大丈夫です。荷物を預かってもらえますか？" },
+        { "sp": "A", "en": "Certainly. We'll keep them for you.", "jp": "もちろんです。お預かりします。" }
+      ]
+    },
+    {
+      "id": "dlg-05",
+      "scene": "trouble",
+      "title": "間違った商品が届いた",
+      "turns": [
+        { "sp": "A", "en": "Thank you for calling. How can I help you?", "jp": "お電話ありがとうございます。どうされましたか？" },
+        { "sp": "YOU", "en": "I received the wrong item.", "jp": "間違ったものが届きました。" },
+        { "sp": "A", "en": "I'm sorry to hear that. Could you give me your order number?", "jp": "申し訳ございません。注文番号を教えていただけますか？" },
+        { "sp": "YOU", "en": "Sure, it's 4-4-2-1.", "jp": "はい、4421です。" },
+        { "sp": "A", "en": "Thank you. We'll send the correct one right away.", "jp": "ありがとうございます。正しいものをすぐお送りします。" },
+        { "sp": "YOU", "en": "Could I get a refund instead?", "jp": "代わりに返金してもらえますか？" },
+        { "sp": "A", "en": "Of course. It'll take a few business days.", "jp": "もちろんです。数営業日かかります。" }
+      ]
+    },
+    {
+      "id": "dlg-06",
+      "scene": "daily",
+      "title": "週末の予定",
+      "turns": [
+        { "sp": "A", "en": "Any plans for the weekend?", "jp": "週末は何か予定ある？" },
+        { "sp": "YOU", "en": "Nothing much. Why, what's up?", "jp": "特に何も。どうかした？" },
+        { "sp": "A", "en": "Why don't we go see a movie?", "jp": "映画でも見に行かない？" },
+        { "sp": "YOU", "en": "Sounds great. What's playing?", "jp": "いいね。何やってるの？" },
+        { "sp": "A", "en": "There's a new action film. I heard it's good.", "jp": "新しいアクション映画があるよ。評判いいって。" },
+        { "sp": "YOU", "en": "Let's do it. Saturday afternoon works for me.", "jp": "やろう。土曜の午後なら都合いいよ。" }
+      ]
+    },
+    {
+      "id": "dlg-07",
+      "scene": "work",
+      "title": "会議のリスケ",
+      "turns": [
+        { "sp": "A", "en": "Are we still on for the meeting at three?", "jp": "3時の会議、まだ予定通り？" },
+        { "sp": "YOU", "en": "Actually, could we reschedule?", "jp": "実は、リスケできますか？" },
+        { "sp": "A", "en": "Sure. What time works for you?", "jp": "いいよ。何時なら都合いい？" },
+        { "sp": "YOU", "en": "Would tomorrow morning work?", "jp": "明日の朝はどうですか？" },
+        { "sp": "A", "en": "Tomorrow at ten is fine.", "jp": "明日の10時で大丈夫。" },
+        { "sp": "YOU", "en": "Great. I'll send a new invite.", "jp": "では新しい招待を送ります。" }
+      ]
+    },
+    {
+      "id": "dlg-08",
+      "scene": "travel",
+      "title": "道を尋ねる",
+      "turns": [
+        { "sp": "YOU", "en": "Excuse me, how do I get to the station?", "jp": "すみません、駅にはどう行きますか？" },
+        { "sp": "A", "en": "Go straight and turn left at the second light.", "jp": "まっすぐ行って、2つ目の信号を左です。" },
+        { "sp": "YOU", "en": "Is it within walking distance?", "jp": "歩いて行けますか？" },
+        { "sp": "A", "en": "Yes, about ten minutes on foot.", "jp": "はい、徒歩10分くらいです。" },
+        { "sp": "YOU", "en": "Thank you so much for your help.", "jp": "ご親切にありがとうございます。" },
+        { "sp": "A", "en": "No problem. Have a good day.", "jp": "どういたしまして。良い一日を。" }
+      ]
+    },
+    {
+      "id": "dlg-09",
+      "scene": "emotion",
+      "title": "悪い知らせへの反応",
+      "turns": [
+        { "sp": "A", "en": "I didn't get the job I applied for.", "jp": "応募してた仕事、ダメだった。" },
+        { "sp": "YOU", "en": "Oh no, I'm sorry to hear that.", "jp": "ええ、それは残念だね。" },
+        { "sp": "A", "en": "Yeah, I was really hoping for it.", "jp": "うん、本当に期待してたんだ。" },
+        { "sp": "YOU", "en": "That must have been tough. But it'll work out.", "jp": "それは辛かったね。でもなんとかなるよ。" },
+        { "sp": "A", "en": "Thanks. I needed to hear that.", "jp": "ありがとう。その言葉が必要だった。" },
+        { "sp": "YOU", "en": "Hang in there. Something better will come up.", "jp": "頑張って。もっといいのが出てくるよ。" }
+      ]
+    },
+    {
+      "id": "dlg-10",
+      "scene": "work",
+      "title": "助けを頼む",
+      "turns": [
+        { "sp": "YOU", "en": "Could you do me a favor?", "jp": "ちょっとお願いしてもいい？" },
+        { "sp": "A", "en": "Sure, what do you need?", "jp": "もちろん、何が必要？" },
+        { "sp": "YOU", "en": "Could you review this before I send it?", "jp": "送る前にこれを確認してもらえますか？" },
+        { "sp": "A", "en": "No problem. Give me a few minutes.", "jp": "問題ないよ。少し時間をくれ。" },
+        { "sp": "YOU", "en": "Take your time. There's no rush.", "jp": "ゆっくりでいいよ。急がないから。" },
+        { "sp": "A", "en": "Got it. I'll get back to you shortly.", "jp": "了解。すぐ折り返すよ。" }
+      ]
+    }
+  ]
+}

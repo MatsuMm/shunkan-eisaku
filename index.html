@@ -28,6 +28,9 @@
     <button class="mode-tab" data-mode="review">復習</button>
     <button class="mode-tab" data-mode="dictation">聞き取り</button>
     <button class="mode-tab" data-mode="grammar">文法</button>
+    <button class="mode-tab" data-mode="dialogue">会話</button>
+    <button class="mode-tab" data-mode="reading">読解</button>
+    <button class="mode-tab" data-mode="vocab">語彙</button>
   </div>
 
   <section id="card" class="card">
@@ -78,6 +81,73 @@
       </div>
     </div>
     <ul id="list-items" class="list-items"></ul>
+  </section>
+
+  <section id="dialogue" class="dialogue hidden">
+    <div class="dlg-status">
+      <span id="dlg-title">—</span>
+      <span class="sep">·</span>
+      <span id="dlg-progress">0 / 0</span>
+    </div>
+    <div class="dlg-log" id="dlg-log"></div>
+    <div class="dlg-prompt hidden" id="dlg-prompt">
+      <div class="dlg-prompt-jp" id="dlg-prompt-jp"></div>
+      <div class="dlg-prompt-actions">
+        <button class="btn primary" id="dlg-reveal">あなたの番 — 答えを見る</button>
+      </div>
+      <div class="dlg-prompt-answer hidden" id="dlg-prompt-answer">
+        <div class="dlg-ans-en" id="dlg-ans-en"></div>
+        <button class="btn ghost" id="dlg-continue">次へ →</button>
+      </div>
+    </div>
+    <div class="dlg-done hidden" id="dlg-done">
+      <p>会話おわり 🎉</p>
+      <button class="btn primary" id="dlg-next-dialogue">次の会話 →</button>
+      <button class="btn ghost" id="dlg-replay">もう一度</button>
+    </div>
+  </section>
+
+  <section id="reading" class="reading hidden">
+    <div class="rd-status">
+      <span id="rd-kind">—</span>
+      <span class="sep">·</span>
+      <span id="rd-progress">0 / 0</span>
+    </div>
+    <div class="rd-card">
+      <div class="rd-title" id="rd-title"></div>
+      <div class="rd-controls">
+        <button class="icon-btn lg" id="rd-play">🔊</button>
+        <button class="icon-btn lg" id="rd-play-slow">🐢</button>
+        <button class="btn ghost" id="rd-toggle-jp">和訳</button>
+      </div>
+      <div class="rd-en" id="rd-en"></div>
+      <div class="rd-jp hidden" id="rd-jp"></div>
+      <div class="rd-q" id="rd-q"></div>
+      <div class="rd-choices" id="rd-choices"></div>
+      <div class="rd-next hidden" id="rd-next-wrap">
+        <button class="btn primary" id="rd-next">次へ →</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="vocab" class="vocab hidden">
+    <div class="voc-status">
+      <span id="voc-progress">0 / 0</span>
+      <span class="sep">·</span>
+      <span id="voc-score">正解 0</span>
+    </div>
+    <div class="voc-card">
+      <div class="voc-word-row">
+        <span class="voc-word" id="voc-word"></span>
+        <button class="icon-btn" id="voc-play">🔊</button>
+      </div>
+      <div class="voc-ex" id="voc-ex"></div>
+      <div class="voc-choices" id="voc-choices"></div>
+      <div class="voc-explain hidden" id="voc-explain"></div>
+      <div class="voc-next hidden" id="voc-next-wrap">
+        <button class="btn primary" id="voc-next">次へ →</button>
+      </div>
+    </div>
   </section>
 
   <section id="grammar" class="grammar hidden">

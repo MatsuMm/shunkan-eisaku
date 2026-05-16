@@ -1,0 +1,106 @@
+{
+  "title": "読解 & 多聴",
+  "description": "メール/お知らせ/チャット/記事を読む(聴く)→意味を取る。語彙の幅・読解速度・長め音声の処理を鍛える。",
+  "passages": [
+    {
+      "id": "rd-01",
+      "kind": "email",
+      "title": "会議のお知らせ",
+      "en": "Hi team, just a quick note. The weekly meeting has been moved from Tuesday to Thursday at 2 p.m. due to a scheduling conflict. Please update your calendars. If you can't make it, let me know in advance and I'll share the notes afterward. Thanks, Mark.",
+      "jp": "チームへ、簡単な連絡です。週次会議は予定が重なったため火曜から木曜の午後2時に変更になりました。カレンダーを更新してください。出られない場合は事前に知らせてくれれば、後でメモを共有します。よろしく、マーク。",
+      "q": "Why was the meeting moved?",
+      "choices": ["A scheduling conflict", "Mark was sick", "No meeting room", "A holiday"],
+      "answer": 0
+    },
+    {
+      "id": "rd-02",
+      "kind": "notice",
+      "title": "店の貼り紙",
+      "en": "Notice to customers: Our store will close early at 5 p.m. this Friday for maintenance. We will reopen at our regular hours on Saturday. We apologize for any inconvenience and thank you for your understanding.",
+      "jp": "お客様へ：当店は今週金曜、メンテナンスのため午後5時に早く閉店します。土曜は通常時間に営業を再開します。ご不便をおかけしますが、ご理解のほどよろしくお願いします。",
+      "q": "What will happen on Friday?",
+      "choices": ["The store closes early", "The store opens late", "The store is closed all day", "Nothing changes"],
+      "answer": 0
+    },
+    {
+      "id": "rd-03",
+      "kind": "chat",
+      "title": "友人とのチャット",
+      "en": "— Hey, are we still on for dinner tonight? — Yeah, but can we push it back to 8? Something came up at work. — No problem. Same place? — Actually, let's try the new Italian place. — Sounds good, see you there.",
+      "jp": "—ねえ、今夜の夕食まだ予定通り？ —うん、でも8時にずらせる？仕事でちょっとあって。 —問題ないよ。同じ店？ —というか、新しいイタリアンを試そう。 —いいね、現地で会おう。",
+      "q": "What did they decide to change?",
+      "choices": ["The time and the place", "Only the people", "Nothing", "Only the date"],
+      "answer": 0
+    },
+    {
+      "id": "rd-04",
+      "kind": "article",
+      "title": "短いコラム: 早起き",
+      "en": "Many successful people say they wake up early. They claim the quiet morning hours help them focus before the day gets busy. However, research suggests that what matters most is not the exact time you wake up, but getting enough quality sleep. Forcing yourself to wake up early while sleeping less can do more harm than good.",
+      "jp": "成功者の多くは早起きをすると言う。一日が忙しくなる前の静かな朝の時間が集中に役立つと主張する。しかし研究によれば、最も重要なのは起きる正確な時刻ではなく、質の良い睡眠を十分とることだ。睡眠を削って無理に早起きすると、良いどころか害になりうる。",
+      "q": "What does the research suggest matters most?",
+      "choices": ["Quality sleep", "Waking up before 5 a.m.", "Working in the morning", "Sleeping less"],
+      "answer": 0
+    },
+    {
+      "id": "rd-05",
+      "kind": "email",
+      "title": "問い合わせへの返信",
+      "en": "Dear Ms. Sato, thank you for reaching out. Unfortunately, the item you asked about is currently out of stock. We expect it to be available again in about two weeks. Would you like us to notify you when it arrives? Please let us know. Best regards, Support Team.",
+      "jp": "佐藤様、お問い合わせありがとうございます。あいにくお尋ねの商品は現在在庫切れです。約2週間で再入荷の見込みです。入荷時にお知らせしましょうか？ご希望をお知らせください。よろしくお願いいたします。サポートチーム。",
+      "q": "What is the problem with the item?",
+      "choices": ["It is out of stock", "It is too expensive", "It was discontinued", "It was damaged"],
+      "answer": 0
+    },
+    {
+      "id": "rd-06",
+      "kind": "notice",
+      "title": "電車の遅延案内",
+      "en": "Attention passengers: Due to heavy rain, trains on the Blue Line are running about fifteen minutes late. We are working to recover the schedule as soon as possible. Please allow extra time for your journey. We apologize for the delay.",
+      "jp": "ご乗車のみなさまへ：大雨のため、ブルーラインの電車は約15分遅れて運行しています。できるだけ早くダイヤを回復するよう努めています。移動には余裕を持ってください。遅延をお詫びします。",
+      "q": "Why are the trains late?",
+      "choices": ["Heavy rain", "An accident", "A strike", "Construction"],
+      "answer": 0
+    },
+    {
+      "id": "rd-07",
+      "kind": "article",
+      "title": "短いコラム: スマホと集中",
+      "en": "Studies show that just having your phone on the desk can lower your concentration, even if it is turned off. The brain uses energy resisting the urge to check it. One simple fix is to keep the phone in another room while you work. Out of sight really can mean out of mind.",
+      "jp": "研究によると、スマホを机に置いているだけで、たとえ電源が切れていても集中力が下がりうる。脳は確認したい衝動を抑えるためにエネルギーを使う。簡単な対策は、作業中スマホを別の部屋に置くこと。見えないことは本当に「気にならない」につながりうる。",
+      "q": "What simple fix does the article suggest?",
+      "choices": ["Keep the phone in another room", "Turn the phone off", "Use a smaller phone", "Check it every hour"],
+      "answer": 0
+    },
+    {
+      "id": "rd-08",
+      "kind": "chat",
+      "title": "同僚とのやりとり",
+      "en": "— Did you finish the slides? — Almost. I'm stuck on the budget part. — Want me to take a look? — That would be a huge help. — Send it over, I'll check it after lunch. — Thanks, you're a lifesaver.",
+      "jp": "—スライド終わった？ —もうちょっと。予算のところで詰まってる。 —見ようか？ —すごく助かる。 —送って、昼の後に見るよ。 —ありがとう、本当に助かる。",
+      "q": "What is the second person stuck on?",
+      "choices": ["The budget part", "The title slide", "The schedule", "The email"],
+      "answer": 0
+    },
+    {
+      "id": "rd-09",
+      "kind": "email",
+      "title": "予約確認",
+      "en": "Hello, this email confirms your hotel booking for two nights, checking in on June 10th and checking out on June 12th. Check-in starts at 3 p.m. If you arrive earlier, we can store your luggage. Please reply if you have any special requests. We look forward to your stay.",
+      "jp": "こんにちは、6月10日チェックイン・6月12日チェックアウトの2泊のホテル予約を確認します。チェックインは午後3時からです。早く着いた場合は荷物をお預かりできます。特別なご要望があれば返信ください。ご滞在をお待ちしています。",
+      "q": "What can the hotel do if you arrive early?",
+      "choices": ["Store your luggage", "Give a free room", "Cancel the booking", "Serve dinner"],
+      "answer": 0
+    },
+    {
+      "id": "rd-10",
+      "kind": "article",
+      "title": "短いコラム: 小さな習慣",
+      "en": "If you want to build a new habit, start absurdly small. Instead of planning to read fifty pages a day, commit to just one page. The goal is not the page itself but showing up every day. Once the habit is automatic, increasing it becomes easy. Consistency beats intensity.",
+      "jp": "新しい習慣を作りたいなら、ばかばかしいほど小さく始めよ。1日50ページ読む計画ではなく、たった1ページに絞る。目的はそのページ自体ではなく、毎日続けること。習慣が自動になれば、増やすのは簡単だ。継続は強度に勝る。",
+      "q": "What is the main advice?",
+      "choices": ["Start absurdly small", "Read fifty pages a day", "Work very hard once", "Set a big goal"],
+      "answer": 0
+    }
+  ]
+}

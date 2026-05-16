@@ -661,6 +661,228 @@ function escapeHtml(s) {
 }
 
 // ====================================================================
+// Dialogue mode
+// ====================================================================
+let dialoguesData = null;
+let dlgIndex = 0;
+let dlgTurn = 0;
+
+async function startDialogue() {
+  if (!dialoguesData) {
+    try {
+      dialoguesData = (await (await fetch('data/dialogues.json')).json()).dialogues;
+    } catch { return; }
+  }
+  dlgTurn = 0;
+  renderDialogueTurn();
+}
+
+function currentDialogue() { return dialoguesData[dlgIndex]; }
+
+function renderDialogueTurn() {
+  const d = currentDialogue();
+  document.getElementById('dlg-title').textContent = d.title;
+  document.getElementById('dlg-progress').textContent = `${dlgIndex + 1} / ${dialoguesData.length}`;
+  const log = document.getElementById('dlg-log');
+  const prompt = document.getElementById('dlg-prompt');
+  const done = document.getElementById('dlg-done');
+  if (dlgTurn === 0) log.innerHTML = '';
+  prompt.classList.add('hidden');
+  done.classList.add('hidden');
+
+  // 終了
+  if (dlgTurn >= d.turns.length) {
+    done.classList.remove('hidden');
+    return;
+  }
+
+  const turn = d.turns[dlgTurn];
+  if (turn.sp === 'A') {
+    addDialogueBubble(turn, dlgTurn, 'a');
+    speak({ id: `${d.id}-${dlgTurn + 1}`, en: turn.en });
+    dlgTurn++;
+    setTimeout(renderDialogueTurn, 200); // 連続で次へ (YOU が来るまで A を流す)
+  } else {
+    // YOU の番: プロンプト表示
+    document.getElementById('dlg-prompt-jp').textContent = turn.jp;
+    document.getElementById('dlg-prompt-answer').classList.add('hidden');
+    document.getElementById('dlg-reveal').classList.remove('hidden');
+    prompt.classList.remove('hidden');
+  }
+}
+
+function addDialogueBubble(turn, turnIdx, cls) {
+  const log = document.getElementById('dlg-log');
+  const b = document.createElement('div');
+  b.className = 'dlg-bubble ' + cls;
+  const en = document.createElement('div');
+  en.innerHTML = escapeHtml(turn.en) +
+    ` <button class="b-speak" aria-label="再生">🔊</button>`;
+  const jp = document.createElement('div');
+  jp.className = 'b-jp';
+  jp.textContent = turn.jp;
+  b.appendChild(en);
+  b.appendChild(jp);
+  log.appendChild(b);
+  b.querySelector('.b-speak').addEventListener('click', () =>
+    speak({ id: `${currentDialogue().id}-${turnIdx + 1}`, en: turn.en }));
+  b.scrollIntoView({ behavior: 'smooth', block: 'end' });
+}
+
+function dlgReveal() {
+  const d = currentDialogue();
+  const turn = d.turns[dlgTurn];
+  document.getElementById('dlg-ans-en').textContent = turn.en;
+  document.getElementById('dlg-prompt-answer').classList.remove('hidden');
+  document.getElementById('dlg-reveal').classList.add('hidden');
+  speak({ id: `${d.id}-${dlgTurn + 1}`, en: turn.en });
+}
+
+function dlgContinue() {
+  const d = currentDialogue();
+  const turn = d.turns[dlgTurn];
+  addDialogueBubble(turn, dlgTurn, 'you');
+  dlgTurn++;
+  document.getElementById('dlg-prompt').classList.add('hidden');
+  renderDialogueTurn();
+}
+
+function dlgNextDialogue() {
+  dlgIndex = (dlgIndex + 1) % dialoguesData.length;
+  dlgTurn = 0;
+  renderDialogueTurn();
+}
+function dlgReplay() { dlgTurn = 0; renderDialogueTurn(); }
+
+// ====================================================================
+// Reading mode
+// ====================================================================
+let readingData = null;
+let rdIndex = 0;
+let rdAnswered = false;
+
+async function startReading() {
+  if (!readingData) {
+    try {
+      readingData = (await (await fetch('data/reading.json')).json()).passages;
+    } catch { return; }
+  }
+  renderReading();
+}
+
+function renderReading() {
+  const p = readingData[rdIndex];
+  rdAnswered = false;
+  document.getElementById('rd-kind').textContent = p.kind;
+  document.getElementById('rd-progress').textContent = `${rdIndex + 1} / ${readingData.length}`;
+  document.getElementById('rd-title').textContent = p.title;
+  document.getElementById('rd-en').textContent = p.en;
+  const jpEl = document.getElementById('rd-jp');
+  jpEl.textContent = p.jp;
+  jpEl.classList.add('hidden');
+  document.getElementById('rd-q').textContent = p.q;
+  document.getElementById('rd-next-wrap').classList.add('hidden');
+  const ch = document.getElementById('rd-choices');
+  ch.innerHTML = '';
+  p.choices.forEach((c, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'rd-choice';
+    btn.textContent = c;
+    btn.addEventListener('click', () => rdAnswer(i, btn));
+    ch.appendChild(btn);
+  });
+}
+
+function rdAnswer(i, btn) {
+  if (rdAnswered) return;
+  rdAnswered = true;
+  const p = readingData[rdIndex];
+  const buttons = document.querySelectorAll('#rd-choices .rd-choice');
+  buttons.forEach((b, idx) => {
+    b.disabled = true;
+    if (idx === p.answer) b.classList.add('ok');
+  });
+  if (i !== p.answer) btn.classList.add('bad');
+  document.getElementById('rd-jp').classList.remove('hidden');
+  document.getElementById('rd-next-wrap').classList.remove('hidden');
+}
+
+function rdNext() {
+  rdIndex = (rdIndex + 1) % readingData.length;
+  renderReading();
+}
+
+// ====================================================================
+// Vocab mode
+// ====================================================================
+let vocabData = null;
+let vocOrder = [];
+let vocPos = 0;
+let vocScore = 0;
+let vocAnswered = false;
+
+async function startVocab() {
+  if (!vocabData) {
+    try {
+      vocabData = (await (await fetch('data/vocab.json')).json()).items;
+    } catch { return; }
+  }
+  vocOrder = vocabData.map((_, i) => i).sort(() => Math.random() - 0.5);
+  vocPos = 0;
+  vocScore = 0;
+  renderVocab();
+}
+
+function renderVocab() {
+  vocAnswered = false;
+  const item = vocabData[vocOrder[vocPos]];
+  document.getElementById('voc-progress').textContent = `${vocPos + 1} / ${vocabData.length}`;
+  document.getElementById('voc-score').textContent = `正解 ${vocScore}`;
+  document.getElementById('voc-word').textContent = item.word;
+  document.getElementById('voc-ex').textContent = item.en;
+  document.getElementById('voc-explain').classList.add('hidden');
+  document.getElementById('voc-next-wrap').classList.add('hidden');
+
+  // 4択 (正解 + 他項目から3つ)
+  const others = vocabData.filter(x => x.id !== item.id);
+  const distractors = others.sort(() => Math.random() - 0.5).slice(0, 3).map(x => x.jp);
+  const choices = [item.jp, ...distractors].sort(() => Math.random() - 0.5);
+  const ch = document.getElementById('voc-choices');
+  ch.innerHTML = '';
+  choices.forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = 'voc-choice';
+    btn.textContent = c;
+    btn.addEventListener('click', () => vocAnswer(c, item, btn));
+    ch.appendChild(btn);
+  });
+  setTimeout(() => speak({ id: item.id, en: item.en }), 150);
+}
+
+function vocAnswer(choice, item, btn) {
+  if (vocAnswered) return;
+  vocAnswered = true;
+  const correct = choice === item.jp;
+  if (correct) vocScore++;
+  document.querySelectorAll('#voc-choices .voc-choice').forEach(b => {
+    b.disabled = true;
+    if (b.textContent === item.jp) b.classList.add('ok');
+  });
+  if (!correct) btn.classList.add('bad');
+  const ex = document.getElementById('voc-explain');
+  ex.innerHTML = `<b>${escapeHtml(item.word)}</b> = ${escapeHtml(item.jp)}<br>${escapeHtml(item.en)}<br><span style="color:var(--text-dim)">${escapeHtml(item.exjp)}</span>`;
+  ex.classList.remove('hidden');
+  document.getElementById('voc-score').textContent = `正解 ${vocScore}`;
+  document.getElementById('voc-next-wrap').classList.remove('hidden');
+}
+
+function vocNext() {
+  vocPos = (vocPos + 1) % vocabData.length;
+  if (vocPos === 0) vocOrder.sort(() => Math.random() - 0.5);
+  renderVocab();
+}
+
+// ====================================================================
 // Grammar reference
 // ====================================================================
 let grammarData = null;
@@ -864,11 +1086,17 @@ function applyMode() {
   document.getElementById('list').classList.toggle('hidden', mode !== 'list');
   document.getElementById('dictation').classList.toggle('hidden', mode !== 'dictation');
   document.getElementById('grammar').classList.toggle('hidden', mode !== 'grammar');
+  document.getElementById('dialogue').classList.toggle('hidden', mode !== 'dialogue');
+  document.getElementById('reading').classList.toggle('hidden', mode !== 'reading');
+  document.getElementById('vocab').classList.toggle('hidden', mode !== 'vocab');
   if (mode !== 'review') stopReview();
   if (mode !== 'dictation') stopSpeech();
   if (mode === 'list') renderList();
   if (mode === 'dictation') startDictation();
   if (mode === 'grammar') renderGrammar();
+  if (mode === 'dialogue') startDialogue();
+  if (mode === 'reading') startReading();
+  if (mode === 'vocab') startVocab();
 }
 
 // ====================================================================
@@ -1082,6 +1310,27 @@ function bindUI() {
   document.getElementById('dict-check').addEventListener('click', dictCheck);
   document.getElementById('dict-skip').addEventListener('click', dictSkip);
   document.getElementById('dict-next').addEventListener('click', dictNext);
+  document.getElementById('dlg-reveal').addEventListener('click', dlgReveal);
+  document.getElementById('dlg-continue').addEventListener('click', dlgContinue);
+  document.getElementById('dlg-next-dialogue').addEventListener('click', dlgNextDialogue);
+  document.getElementById('dlg-replay').addEventListener('click', dlgReplay);
+  document.getElementById('rd-play').addEventListener('click', () => {
+    const p = readingData && readingData[rdIndex];
+    if (p) speak({ id: p.id, en: p.en });
+  });
+  document.getElementById('rd-play-slow').addEventListener('click', () => {
+    const p = readingData && readingData[rdIndex];
+    if (p) speakSlow({ id: p.id, en: p.en });
+  });
+  document.getElementById('rd-toggle-jp').addEventListener('click', () => {
+    document.getElementById('rd-jp').classList.toggle('hidden');
+  });
+  document.getElementById('rd-next').addEventListener('click', rdNext);
+  document.getElementById('voc-play').addEventListener('click', () => {
+    const it = vocabData && vocabData[vocOrder[vocPos]];
+    if (it) speak({ id: it.id, en: it.en });
+  });
+  document.getElementById('voc-next').addEventListener('click', vocNext);
   document.getElementById('opt-gemini-tts').addEventListener('change', (e) => {
     settings.geminiTts = e.target.checked;
     saveSettings();

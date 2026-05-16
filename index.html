@@ -22,6 +22,11 @@
 </header>
 
 <main>
+  <div class="mode-tabs">
+    <button class="mode-tab active" data-mode="study">学習</button>
+    <button class="mode-tab" data-mode="review">復習 (聞き流し)</button>
+  </div>
+
   <section id="card" class="card">
     <div class="level-tag" id="level-tag">B1</div>
     <div class="jp" id="jp">読み込み中...</div>
@@ -52,6 +57,47 @@
     <p>🎉 今日のセッション完了！</p>
     <p class="sub">明日また続きから。</p>
     <button class="btn ghost" id="btn-restart">やり直す（全リセット）</button>
+  </section>
+
+  <section id="review" class="review hidden">
+    <div class="review-status">
+      <span id="review-progress">0 / 0</span>
+      <span class="sep">·</span>
+      <span id="review-state">停止中</span>
+    </div>
+
+    <div class="review-card">
+      <div class="jp" id="review-jp">復習する問題がありません。<br>まず「学習」モードで何問か解いてください。</div>
+      <div class="en" id="review-en"></div>
+    </div>
+
+    <div class="review-controls">
+      <button class="icon-btn lg" id="btn-rev-prev" aria-label="前へ">⏮</button>
+      <button class="btn primary" id="btn-rev-play">▶ 再生</button>
+      <button class="icon-btn lg" id="btn-rev-next" aria-label="次へ">⏭</button>
+    </div>
+
+    <div class="review-options">
+      <label>
+        JP → EN の間隔
+        <input type="range" id="rev-gap" min="0.5" max="5" step="0.5" value="2.5">
+        <span id="rev-gap-label">2.5秒</span>
+      </label>
+      <label>
+        次へ進む間隔
+        <input type="range" id="rev-next-gap" min="0.5" max="4" step="0.5" value="1.5">
+        <span id="rev-next-gap-label">1.5秒</span>
+      </label>
+      <label>
+        <input type="checkbox" id="rev-jp-tts" checked>
+        日本語も読み上げる
+      </label>
+      <label>
+        <input type="checkbox" id="rev-loop">
+        最後まで行ったら繰り返す
+      </label>
+      <p class="hint">対象: 現在のシーンで <b>1回以上学習した問題</b>。シーン切替で対象も変わります。</p>
+    </div>
   </section>
 </main>
 

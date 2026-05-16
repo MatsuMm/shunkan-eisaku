@@ -15,9 +15,25 @@ const SRS = {
 let allProblems = [];        // 全シーン統合
 let scenes = [];             // [{id, label, file}]
 let state = null;            // { byId: {...}, sessionRetry: [] }
-let settings = { geminiTts: false, rate: 0.95, sceneFilter: 'all' };
+let settings = {
+  geminiTts: false,
+  rate: 0.95,
+  sceneFilter: 'all',
+  mode: 'study',
+  reviewGap: 2.5,
+  reviewNextGap: 1.5,
+  reviewJpTts: true,
+  reviewLoop: false,
+};
 let currentId = null;
 let currentProblem = null;
+
+// Review mode state
+let reviewQueue = [];        // 学習済み problem IDs (current scene)
+let reviewIndex = 0;
+let reviewPlaying = false;
+let reviewTimer = null;
+let reviewSpeakingEn = false;
 
 // ====================================================================
 // Init
@@ -31,6 +47,11 @@ async function init() {
   renderSceneSelector();
   buildSessionQueue();
   nextProblem();
+  applyMode();
+  if (settings.mode === 'review') {
+    buildReviewQueue();
+    renderReviewCard();
+  }
 }
 
 // ====================================================================
@@ -267,6 +288,166 @@ function onSceneChange(e) {
   state.sessionRetry = [];
   buildSessionQueue();
   nextProblem();
+  if (settings.mode === 'review') {
+    buildReviewQueue();
+    renderReviewCard();
+  }
+}
+
+// ====================================================================
+// Mode switching (study / review)
+// ====================================================================
+function switchMode(mode) {
+  if (settings.mode === mode) return;
+  settings.mode = mode;
+  saveSettings();
+  applyMode();
+  if (mode === 'review') {
+    stopReview();
+    buildReviewQueue();
+    renderReviewCard();
+  }
+}
+
+function applyMode() {
+  const isStudy = settings.mode === 'study';
+  document.querySelectorAll('.mode-tab').forEach(t => {
+    t.classList.toggle('active', t.dataset.mode === settings.mode);
+  });
+  document.getElementById('card').classList.toggle('hidden', !isStudy);
+  // empty は study モードのみ
+  if (!isStudy) document.getElementById('empty').classList.add('hidden');
+  document.getElementById('review').classList.toggle('hidden', isStudy);
+  if (isStudy) stopReview();
+}
+
+// ====================================================================
+// Review mode
+// ====================================================================
+function buildReviewQueue() {
+  const pool = problemsForCurrentScene();
+  reviewQueue = pool.filter(p => (state.byId[p.id]?.seen || 0) > 0).map(p => p.id);
+  if (reviewIndex >= reviewQueue.length) reviewIndex = 0;
+}
+
+function renderReviewCard() {
+  const total = reviewQueue.length;
+  document.getElementById('review-progress').textContent = total > 0 ? `${reviewIndex + 1} / ${total}` : '0 / 0';
+  const jpEl = document.getElementById('review-jp');
+  const enEl = document.getElementById('review-en');
+  if (total === 0) {
+    jpEl.innerHTML = '復習する問題がありません。<br>まず「学習」モードで何問か解いてください。';
+    enEl.textContent = '';
+    enEl.classList.remove('visible');
+    document.getElementById('btn-rev-play').disabled = true;
+    return;
+  }
+  document.getElementById('btn-rev-play').disabled = false;
+  const p = allProblems.find(x => x.id === reviewQueue[reviewIndex]);
+  jpEl.textContent = p.jp;
+  enEl.textContent = p.en;
+  enEl.classList.remove('visible');
+}
+
+function playReview() {
+  if (reviewQueue.length === 0) return;
+  reviewPlaying = true;
+  document.getElementById('btn-rev-play').textContent = '⏸ 一時停止';
+  document.getElementById('review-state').textContent = '再生中';
+  playCurrentReviewItem();
+}
+
+function pauseReview() {
+  reviewPlaying = false;
+  clearTimeout(reviewTimer);
+  reviewTimer = null;
+  if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+  document.getElementById('btn-rev-play').textContent = '▶ 再生';
+  document.getElementById('review-state').textContent = '停止中';
+}
+
+function stopReview() {
+  pauseReview();
+}
+
+function playCurrentReviewItem() {
+  if (!reviewPlaying) return;
+  if (reviewQueue.length === 0) { pauseReview(); return; }
+  const p = allProblems.find(x => x.id === reviewQueue[reviewIndex]);
+  if (!p) { advanceReview(); return; }
+  renderReviewCard();
+  // 日本語読み上げ (任意)
+  const jpDone = () => {
+    if (!reviewPlaying) return;
+    // JP → EN 間隔
+    reviewTimer = setTimeout(() => {
+      if (!reviewPlaying) return;
+      document.getElementById('review-en').classList.add('visible');
+      speakWithCallback(p.en, 'en-US', () => {
+        if (!reviewPlaying) return;
+        // 次へ進む間隔
+        reviewTimer = setTimeout(advanceReview, settings.reviewNextGap * 1000);
+      });
+    }, settings.reviewGap * 1000);
+  };
+  if (settings.reviewJpTts) {
+    speakWithCallback(p.jp, 'ja-JP', jpDone);
+  } else {
+    jpDone();
+  }
+}
+
+function advanceReview() {
+  if (!reviewPlaying) return;
+  reviewIndex++;
+  if (reviewIndex >= reviewQueue.length) {
+    if (settings.reviewLoop) {
+      reviewIndex = 0;
+    } else {
+      reviewIndex = reviewQueue.length - 1;
+      pauseReview();
+      document.getElementById('review-state').textContent = '完了';
+      return;
+    }
+  }
+  playCurrentReviewItem();
+}
+
+function reviewPrev() {
+  const wasPlaying = reviewPlaying;
+  pauseReview();
+  reviewIndex = Math.max(0, reviewIndex - 1);
+  renderReviewCard();
+  if (wasPlaying) playReview();
+}
+function reviewNext() {
+  const wasPlaying = reviewPlaying;
+  pauseReview();
+  reviewIndex = Math.min(reviewQueue.length - 1, reviewIndex + 1);
+  renderReviewCard();
+  if (wasPlaying) playReview();
+}
+
+// 共通: コールバック付き発話
+function speakWithCallback(text, lang, cb) {
+  if (!('speechSynthesis' in window)) { cb(); return; }
+  window.speechSynthesis.cancel();
+  const utter = new SpeechSynthesisUtterance(text);
+  utter.lang = lang;
+  utter.rate = settings.rate || 0.95;
+  const voices = window.speechSynthesis.getVoices();
+  let voice = null;
+  if (lang.startsWith('en')) {
+    voice = voices.find(v => v.lang.startsWith('en-') && /Google|Samantha|Daniel|Karen/i.test(v.name))
+         || voices.find(v => v.lang.startsWith('en-'));
+  } else if (lang.startsWith('ja')) {
+    voice = voices.find(v => v.lang.startsWith('ja-') && /Google|Kyoko/i.test(v.name))
+         || voices.find(v => v.lang.startsWith('ja-'));
+  }
+  if (voice) utter.voice = voice;
+  utter.onend = cb;
+  utter.onerror = cb;
+  window.speechSynthesis.speak(utter);
 }
 
 // ====================================================================
@@ -285,6 +466,32 @@ function bindUI() {
     location.reload();
   });
   document.getElementById('scene-select').addEventListener('change', onSceneChange);
+  document.querySelectorAll('.mode-tab').forEach(t => {
+    t.addEventListener('click', () => switchMode(t.dataset.mode));
+  });
+  document.getElementById('btn-rev-play').addEventListener('click', () => {
+    if (reviewPlaying) pauseReview(); else playReview();
+  });
+  document.getElementById('btn-rev-prev').addEventListener('click', reviewPrev);
+  document.getElementById('btn-rev-next').addEventListener('click', reviewNext);
+  document.getElementById('rev-gap').addEventListener('input', (e) => {
+    settings.reviewGap = parseFloat(e.target.value);
+    document.getElementById('rev-gap-label').textContent = settings.reviewGap + '秒';
+    saveSettings();
+  });
+  document.getElementById('rev-next-gap').addEventListener('input', (e) => {
+    settings.reviewNextGap = parseFloat(e.target.value);
+    document.getElementById('rev-next-gap-label').textContent = settings.reviewNextGap + '秒';
+    saveSettings();
+  });
+  document.getElementById('rev-jp-tts').addEventListener('change', (e) => {
+    settings.reviewJpTts = e.target.checked;
+    saveSettings();
+  });
+  document.getElementById('rev-loop').addEventListener('change', (e) => {
+    settings.reviewLoop = e.target.checked;
+    saveSettings();
+  });
   document.getElementById('opt-gemini-tts').addEventListener('change', (e) => {
     settings.geminiTts = e.target.checked;
     saveSettings();
@@ -300,6 +507,12 @@ function applySettings() {
   document.getElementById('opt-gemini-tts').checked = !!settings.geminiTts;
   document.getElementById('opt-rate').value = settings.rate;
   document.getElementById('rate-label').textContent = (settings.rate || 0.95).toFixed(2);
+  document.getElementById('rev-gap').value = settings.reviewGap;
+  document.getElementById('rev-gap-label').textContent = settings.reviewGap + '秒';
+  document.getElementById('rev-next-gap').value = settings.reviewNextGap;
+  document.getElementById('rev-next-gap-label').textContent = settings.reviewNextGap + '秒';
+  document.getElementById('rev-jp-tts').checked = !!settings.reviewJpTts;
+  document.getElementById('rev-loop').checked = !!settings.reviewLoop;
 }
 
 // ====================================================================

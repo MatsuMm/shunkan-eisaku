@@ -3,38 +3,352 @@
   "label": "旅行",
   "description": "空港・ホテル・移動・観光・買い物など、海外旅行で遭遇するシーン",
   "problems": [
-    { "id": "travel-001", "jp": "通路側の席をお願いします。", "en": "I'd like an aisle seat, please.", "alt": ["Aisle seat, please.", "Could I get an aisle seat?"], "function": "request", "note": "aisle = 通路。発音 [áɪl]、s 発音しない。窓側は window seat。" },
-    { "id": "travel-002", "jp": "預ける荷物は1つです。", "en": "I have one bag to check.", "alt": ["Just one checked bag.", "I'm checking one piece of luggage."], "function": "report", "note": "check = 預ける (動詞)。check-in counter で使う。" },
-    { "id": "travel-003", "jp": "搭乗開始は何時ですか？", "en": "What time does boarding start?", "alt": ["When does boarding begin?"], "function": "clarify", "note": "boarding = 搭乗。" },
-    { "id": "travel-004", "jp": "搭乗口の変更はありますか？", "en": "Has there been a gate change?", "alt": ["Did the gate change?"], "function": "clarify", "note": "gate change は頻発。完了形で「変更があったか」。" },
-    { "id": "travel-005", "jp": "Wi-Fi のパスワードを教えてください。", "en": "Could I get the Wi-Fi password?", "alt": ["What's the Wi-Fi password?"], "function": "request", "note": "海外旅行で最重要フレーズの1つ。" },
-    { "id": "travel-006", "jp": "観光で来ました。", "en": "I'm here for sightseeing.", "alt": ["I'm here on vacation.", "Tourism."], "function": "report", "note": "入国審査の鉄板。on vacation = 休暇で。" },
-    { "id": "travel-007", "jp": "1週間滞在します。", "en": "I'll be staying for a week.", "alt": ["I'm staying for seven days.", "One week."], "function": "report", "note": "未来進行形 will be staying が自然。" },
-    { "id": "travel-008", "jp": "チェックインお願いします。", "en": "I'd like to check in, please.", "alt": ["Checking in.", "I have a reservation under [name]."], "function": "request", "note": "under [名前] で予約者名を伝える。" },
-    { "id": "travel-009", "jp": "予約を確認させてください。", "en": "Let me confirm my reservation.", "alt": ["I'd like to confirm my booking."], "function": "request", "note": "reservation / booking どちらも予約。" },
-    { "id": "travel-010", "jp": "アーリーチェックインできますか？", "en": "Is early check-in possible?", "alt": ["Can I check in early?"], "function": "request", "note": "ホテル定番。" },
-    { "id": "travel-011", "jp": "朝食は何時からですか？", "en": "What time is breakfast?", "alt": ["When does breakfast start?"], "function": "clarify", "note": "ホテル朝食の確認。" },
-    { "id": "travel-012", "jp": "荷物を預かってもらえますか？", "en": "Could you hold my bags?", "alt": ["Could I leave my bags here?", "Can you store my luggage?"], "function": "request", "note": "hold = 一時保管する。" },
-    { "id": "travel-013", "jp": "部屋が寒すぎます。", "en": "The room is too cold.", "alt": ["It's freezing in my room."], "function": "report", "note": "freezing = 凍えるほど寒い。" },
-    { "id": "travel-014", "jp": "タオルを追加でもらえますか？", "en": "Could I get some extra towels?", "alt": ["Can I have more towels?"], "function": "request", "note": "extra = 追加の。" },
-    { "id": "travel-015", "jp": "ここから空港までいくらですか？", "en": "How much is it to the airport?", "alt": ["What's the fare to the airport?"], "function": "clarify", "note": "fare = 運賃。タクシー定番。" },
-    { "id": "travel-016", "jp": "メーターを使ってください。", "en": "Please use the meter.", "alt": ["Could you turn on the meter?"], "function": "request", "note": "海外タクシーでのトラブル防止。" },
-    { "id": "travel-017", "jp": "ここで止めてください。", "en": "Please stop here.", "alt": ["You can drop me off here.", "Right here is fine."], "function": "request", "note": "drop off = 降ろす。" },
-    { "id": "travel-018", "jp": "釣りはいりません。", "en": "Keep the change.", "alt": [], "function": "request", "note": "チップ文化圏で頻出。" },
-    { "id": "travel-019", "jp": "○○駅にはどう行きますか？", "en": "How do I get to the station?", "alt": ["Could you tell me the way to the station?"], "function": "clarify", "note": "get to = たどり着く。" },
-    { "id": "travel-020", "jp": "ここから歩いて行けますか？", "en": "Is it within walking distance?", "alt": ["Can I walk there?"], "function": "clarify", "note": "within walking distance = 徒歩圏内。" },
-    { "id": "travel-021", "jp": "道に迷ってしまいました。", "en": "I think I'm lost.", "alt": ["I got lost.", "I can't find my way."], "function": "report", "note": "I'm lost. の進行的言い方は I think I'm lost. (柔らかい)。" },
-    { "id": "travel-022", "jp": "ここは何ですか？", "en": "What is this place?", "alt": ["What's this?", "Where am I?"], "function": "clarify", "note": "観光中の素朴な質問。" },
-    { "id": "travel-023", "jp": "写真を撮ってもらえますか？", "en": "Could you take a picture for me?", "alt": ["Would you mind taking our picture?"], "function": "request", "note": "観光定番。" },
-    { "id": "travel-024", "jp": "もう1枚お願いします。", "en": "One more, please.", "alt": ["Could you take another one?"], "function": "request", "note": "「もう1枚」のシンプル形。" },
-    { "id": "travel-025", "jp": "おすすめはありますか？", "en": "Do you have any recommendations?", "alt": ["What would you recommend?", "Any suggestions?"], "function": "request", "note": "店員に聞く時の汎用句。" },
-    { "id": "travel-026", "jp": "試着していいですか？", "en": "Can I try this on?", "alt": ["May I try it on?"], "function": "request", "note": "try on = 試着する。on を忘れない。" },
-    { "id": "travel-027", "jp": "もう少し小さいのありますか？", "en": "Do you have this in a smaller size?", "alt": ["Got a smaller size?"], "function": "request", "note": "in a + サイズ。" },
-    { "id": "travel-028", "jp": "見てるだけです。", "en": "I'm just looking.", "alt": ["Just browsing, thanks."], "function": "decline", "note": "店員の声かけへの返し。" },
-    { "id": "travel-029", "jp": "これいくらですか？", "en": "How much is this?", "alt": ["What's the price?"], "function": "clarify", "note": "How much does this cost? でもOK。" },
-    { "id": "travel-030", "jp": "カードで払えますか？", "en": "Can I pay by card?", "alt": ["Do you take cards?"], "function": "clarify", "note": "take = 受け付ける。" },
-    { "id": "travel-031", "jp": "レシートをもらえますか？", "en": "Could I get a receipt?", "alt": ["May I have a receipt?"], "function": "request", "note": "receipt の p は黙字。" },
-    { "id": "travel-032", "jp": "両替したいです。", "en": "I'd like to exchange some money.", "alt": ["Can I change some currency?"], "function": "request", "note": "exchange / change どちらも両替。" },
-    { "id": "travel-033", "jp": "現金しかありません。", "en": "I only have cash.", "alt": ["I don't have a card on me."], "function": "report", "note": "on me = 身につけている。" }
+    {
+      "id": "travel-001",
+      "jp": "通路側の席をお願いします。",
+      "en": "I'd like an aisle seat, please.",
+      "alt": [
+        "Aisle seat, please.",
+        "Could I get an aisle seat?"
+      ],
+      "function": "request",
+      "note": "aisle = 通路。発音 [áɪl]、s 発音しない。窓側は window seat。"
+    },
+    {
+      "id": "travel-002",
+      "jp": "預ける荷物は1つです。",
+      "en": "I have one bag to check.",
+      "alt": [
+        "Just one checked bag.",
+        "I'm checking one piece of luggage."
+      ],
+      "function": "report",
+      "note": "check = 預ける (動詞)。check-in counter で使う。"
+    },
+    {
+      "id": "travel-003",
+      "jp": "搭乗開始は何時ですか？",
+      "en": "What time does boarding start?",
+      "alt": [
+        "When does boarding begin?"
+      ],
+      "function": "clarify",
+      "note": "boarding = 搭乗。"
+    },
+    {
+      "id": "travel-004",
+      "jp": "搭乗口の変更はありますか？",
+      "en": "Has there been a gate change?",
+      "alt": [
+        "Did the gate change?"
+      ],
+      "function": "clarify",
+      "note": "gate change は頻発。完了形で「変更があったか」。"
+    },
+    {
+      "id": "travel-005",
+      "jp": "Wi-Fi のパスワードを教えてください。",
+      "en": "Could I get the Wi-Fi password?",
+      "alt": [
+        "What's the Wi-Fi password?"
+      ],
+      "function": "request",
+      "note": "海外旅行で最重要フレーズの1つ。"
+    },
+    {
+      "id": "travel-006",
+      "jp": "観光で来ました。",
+      "en": "I'm here for sightseeing.",
+      "alt": [
+        "I'm here on vacation.",
+        "Tourism."
+      ],
+      "function": "report",
+      "note": "入国審査の鉄板。on vacation = 休暇で。",
+      "tip": "I'm → アイム、弱化形でアム /əm/ にも"
+    },
+    {
+      "id": "travel-007",
+      "jp": "1週間滞在します。",
+      "en": "I'll be staying for a week.",
+      "alt": [
+        "I'm staying for seven days.",
+        "One week."
+      ],
+      "function": "report",
+      "note": "未来進行形 will be staying が自然。",
+      "tip": "I'll → アイル → アゥ /aʊ/ に近づく\nfor a → フォラ /fərə/: 連結 + 弱化"
+    },
+    {
+      "id": "travel-008",
+      "jp": "チェックインお願いします。",
+      "en": "I'd like to check in, please.",
+      "alt": [
+        "Checking in.",
+        "I have a reservation under [name]."
+      ],
+      "function": "request",
+      "note": "under [名前] で予約者名を伝える。"
+    },
+    {
+      "id": "travel-009",
+      "jp": "予約を確認させてください。",
+      "en": "Let me confirm my reservation.",
+      "alt": [
+        "I'd like to confirm my booking."
+      ],
+      "function": "request",
+      "note": "reservation / booking どちらも予約。",
+      "tip": "let me → レミ /ˈlɛmi/: t が脱落"
+    },
+    {
+      "id": "travel-010",
+      "jp": "アーリーチェックインできますか？",
+      "en": "Is early check-in possible?",
+      "alt": [
+        "Can I check in early?"
+      ],
+      "function": "request",
+      "note": "ホテル定番。"
+    },
+    {
+      "id": "travel-011",
+      "jp": "朝食は何時からですか？",
+      "en": "What time is breakfast?",
+      "alt": [
+        "When does breakfast start?"
+      ],
+      "function": "clarify",
+      "note": "ホテル朝食の確認。"
+    },
+    {
+      "id": "travel-012",
+      "jp": "荷物を預かってもらえますか？",
+      "en": "Could you hold my bags?",
+      "alt": [
+        "Could I leave my bags here?",
+        "Can you store my luggage?"
+      ],
+      "function": "request",
+      "note": "hold = 一時保管する。",
+      "tip": "could you → クッジャ /ˈkʊdʒə/: d + y で /dʒ/ 音"
+    },
+    {
+      "id": "travel-013",
+      "jp": "部屋が寒すぎます。",
+      "en": "The room is too cold.",
+      "alt": [
+        "It's freezing in my room."
+      ],
+      "function": "report",
+      "note": "freezing = 凍えるほど寒い。"
+    },
+    {
+      "id": "travel-014",
+      "jp": "タオルを追加でもらえますか？",
+      "en": "Could I get some extra towels?",
+      "alt": [
+        "Can I have more towels?"
+      ],
+      "function": "request",
+      "note": "extra = 追加の。"
+    },
+    {
+      "id": "travel-015",
+      "jp": "ここから空港までいくらですか？",
+      "en": "How much is it to the airport?",
+      "alt": [
+        "What's the fare to the airport?"
+      ],
+      "function": "clarify",
+      "note": "fare = 運賃。タクシー定番。"
+    },
+    {
+      "id": "travel-016",
+      "jp": "メーターを使ってください。",
+      "en": "Please use the meter.",
+      "alt": [
+        "Could you turn on the meter?"
+      ],
+      "function": "request",
+      "note": "海外タクシーでのトラブル防止。"
+    },
+    {
+      "id": "travel-017",
+      "jp": "ここで止めてください。",
+      "en": "Please stop here.",
+      "alt": [
+        "You can drop me off here.",
+        "Right here is fine."
+      ],
+      "function": "request",
+      "note": "drop off = 降ろす。"
+    },
+    {
+      "id": "travel-018",
+      "jp": "釣りはいりません。",
+      "en": "Keep the change.",
+      "alt": [],
+      "function": "request",
+      "note": "チップ文化圏で頻出。"
+    },
+    {
+      "id": "travel-019",
+      "jp": "○○駅にはどう行きますか？",
+      "en": "How do I get to the station?",
+      "alt": [
+        "Could you tell me the way to the station?"
+      ],
+      "function": "clarify",
+      "note": "get to = たどり着く。"
+    },
+    {
+      "id": "travel-020",
+      "jp": "ここから歩いて行けますか？",
+      "en": "Is it within walking distance?",
+      "alt": [
+        "Can I walk there?"
+      ],
+      "function": "clarify",
+      "note": "within walking distance = 徒歩圏内。"
+    },
+    {
+      "id": "travel-021",
+      "jp": "道に迷ってしまいました。",
+      "en": "I think I'm lost.",
+      "alt": [
+        "I got lost.",
+        "I can't find my way."
+      ],
+      "function": "report",
+      "note": "I'm lost. の進行的言い方は I think I'm lost. (柔らかい)。",
+      "tip": "I'm → アイム、弱化形でアム /əm/ にも"
+    },
+    {
+      "id": "travel-022",
+      "jp": "ここは何ですか？",
+      "en": "What is this place?",
+      "alt": [
+        "What's this?",
+        "Where am I?"
+      ],
+      "function": "clarify",
+      "note": "観光中の素朴な質問。"
+    },
+    {
+      "id": "travel-023",
+      "jp": "写真を撮ってもらえますか？",
+      "en": "Could you take a picture for me?",
+      "alt": [
+        "Would you mind taking our picture?"
+      ],
+      "function": "request",
+      "note": "観光定番。",
+      "tip": "could you → クッジャ /ˈkʊdʒə/: d + y で /dʒ/ 音"
+    },
+    {
+      "id": "travel-024",
+      "jp": "もう1枚お願いします。",
+      "en": "One more, please.",
+      "alt": [
+        "Could you take another one?"
+      ],
+      "function": "request",
+      "note": "「もう1枚」のシンプル形。"
+    },
+    {
+      "id": "travel-025",
+      "jp": "おすすめはありますか？",
+      "en": "Do you have any recommendations?",
+      "alt": [
+        "What would you recommend?",
+        "Any suggestions?"
+      ],
+      "function": "request",
+      "note": "店員に聞く時の汎用句。",
+      "tip": "do you → ジャ/ジュ /dʒə/: 完全に縮約"
+    },
+    {
+      "id": "travel-026",
+      "jp": "試着していいですか？",
+      "en": "Can I try this on?",
+      "alt": [
+        "May I try it on?"
+      ],
+      "function": "request",
+      "note": "try on = 試着する。on を忘れない。"
+    },
+    {
+      "id": "travel-027",
+      "jp": "もう少し小さいのありますか？",
+      "en": "Do you have this in a smaller size?",
+      "alt": [
+        "Got a smaller size?"
+      ],
+      "function": "request",
+      "note": "in a + サイズ。",
+      "tip": "do you → ジャ/ジュ /dʒə/: 完全に縮約\nin a → イナ /ɪnə/: 連結"
+    },
+    {
+      "id": "travel-028",
+      "jp": "見てるだけです。",
+      "en": "I'm just looking.",
+      "alt": [
+        "Just browsing, thanks."
+      ],
+      "function": "decline",
+      "note": "店員の声かけへの返し。",
+      "tip": "I'm → アイム、弱化形でアム /əm/ にも"
+    },
+    {
+      "id": "travel-029",
+      "jp": "これいくらですか？",
+      "en": "How much is this?",
+      "alt": [
+        "What's the price?"
+      ],
+      "function": "clarify",
+      "note": "How much does this cost? でもOK。"
+    },
+    {
+      "id": "travel-030",
+      "jp": "カードで払えますか？",
+      "en": "Can I pay by card?",
+      "alt": [
+        "Do you take cards?"
+      ],
+      "function": "clarify",
+      "note": "take = 受け付ける。"
+    },
+    {
+      "id": "travel-031",
+      "jp": "レシートをもらえますか？",
+      "en": "Could I get a receipt?",
+      "alt": [
+        "May I have a receipt?"
+      ],
+      "function": "request",
+      "note": "receipt の p は黙字。"
+    },
+    {
+      "id": "travel-032",
+      "jp": "両替したいです。",
+      "en": "I'd like to exchange some money.",
+      "alt": [
+        "Can I change some currency?"
+      ],
+      "function": "request",
+      "note": "exchange / change どちらも両替。"
+    },
+    {
+      "id": "travel-033",
+      "jp": "現金しかありません。",
+      "en": "I only have cash.",
+      "alt": [
+        "I don't have a card on me."
+      ],
+      "function": "report",
+      "note": "on me = 身につけている。"
+    }
   ]
 }

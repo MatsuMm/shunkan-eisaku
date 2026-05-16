@@ -1,0 +1,277 @@
+{
+  "scene": "reduction",
+  "label": "リダクション特訓",
+  "description": "音声変化 (リダクション・連結・フラップT・縮約) が密集する例文。聞き取りの最大の壁を集中突破。",
+  "problems": [
+    {
+      "id": "red-001",
+      "jp": "やるべきだったよ。",
+      "en": "You should have done it.",
+      "alt": ["You shoulda done it."],
+      "function": "regret",
+      "note": "should have → shoulda の代表例。",
+      "tip": "should have → シュダ /ˈʃʊdə/: have が完全弱化、d で繋がる"
+    },
+    {
+      "id": "red-002",
+      "jp": "やればよかったのに。",
+      "en": "I could have done it.",
+      "alt": ["I coulda done it."],
+      "function": "regret",
+      "note": "could have → coulda。話し言葉では常にこれ。",
+      "tip": "could have → クッダ /ˈkʊdə/: have の h と母音が脱落"
+    },
+    {
+      "id": "red-003",
+      "jp": "そうしたかもしれない。",
+      "en": "I would have done it.",
+      "alt": ["I woulda done it."],
+      "function": "regret",
+      "note": "would have → woulda。",
+      "tip": "would have → ウッダ /ˈwʊdə/: have が完全弱化"
+    },
+    {
+      "id": "red-004",
+      "jp": "電話するつもりだったんだ。",
+      "en": "I was going to call you.",
+      "alt": ["I was gonna call you."],
+      "function": "report",
+      "note": "going to → gonna は会話で最頻出。",
+      "tip": "going to → ガナ /ˈɡənə/: 弱化して連結\nI was → アワズ /əwəz/ に弱化することも"
+    },
+    {
+      "id": "red-005",
+      "jp": "コーヒー飲みたい？",
+      "en": "Do you want to grab some coffee?",
+      "alt": ["Wanna grab coffee?"],
+      "function": "suggest",
+      "note": "want to → wanna + do you の弱化が連続する。",
+      "tip": "do you → ジャ /dʒə/: 完全に縮約\nwant to → ワナ /ˈwɑnə/: t が脱落"
+    },
+    {
+      "id": "red-006",
+      "jp": "もう行かなきゃ。",
+      "en": "I've got to go now.",
+      "alt": ["I gotta go.", "I gotta go now."],
+      "function": "farewell",
+      "note": "have got to → gotta。have は完全脱落することが多い。",
+      "tip": "got to → ガラ /ˈɡɑɾə/: t がフラップ化 (ほぼ R 音)"
+    },
+    {
+      "id": "red-007",
+      "jp": "それやらなきゃダメ。",
+      "en": "You have to do it.",
+      "alt": ["You hafta do it."],
+      "function": "advice",
+      "note": "have to は実際 hafta と発音される。",
+      "tip": "have to → ハフタ /ˈhæftə/: v が無声化して f 音に"
+    },
+    {
+      "id": "red-008",
+      "jp": "彼はそれを終わらせないといけない。",
+      "en": "He has to finish it.",
+      "alt": ["He hasta finish it."],
+      "function": "report",
+      "note": "has to → hasta、z が無声化。",
+      "tip": "has to → ハスタ /ˈhæstə/: z が無声化して s 音に"
+    },
+    {
+      "id": "red-009",
+      "jp": "彼女に伝えてくれた？",
+      "en": "Did you tell her?",
+      "alt": ["Didja tell her?"],
+      "function": "clarify",
+      "note": "did you → didja は超頻出。聞き取れないと会話が止まる。",
+      "tip": "did you → ディジャ /ˈdɪdʒə/: d + y で /dʒ/ 音\ntell her → テラー: h が脱落して連結"
+    },
+    {
+      "id": "red-010",
+      "jp": "これ手伝ってくれない？",
+      "en": "Could you help me with this?",
+      "alt": ["Couldja help me out?"],
+      "function": "request",
+      "note": "could you → couldja。",
+      "tip": "could you → クッジャ /ˈkʊdʒə/: d + y で /dʒ/ 音\nhelp me → ヘウミ: p が脱落気味"
+    },
+    {
+      "id": "red-011",
+      "jp": "ちょっとそれ取ってくれる？",
+      "en": "Would you pass me that?",
+      "alt": ["Wouldja pass me that?"],
+      "function": "request",
+      "note": "would you → wouldja。",
+      "tip": "would you → ウッジャ /ˈwʊdʒə/: d + y で /dʒ/ 音\npass me → パスミ: 連結"
+    },
+    {
+      "id": "red-012",
+      "jp": "それやってあげるよ。",
+      "en": "Let me do it for you.",
+      "alt": ["Lemme do it for ya."],
+      "function": "suggest",
+      "note": "let me → lemme、for you → for ya。",
+      "tip": "let me → レミ /ˈlɛmi/: t が脱落\nfor you → フォーヤ /fərjə/: you が ya に弱化"
+    },
+    {
+      "id": "red-013",
+      "jp": "ちょっと貸して。",
+      "en": "Give me a second.",
+      "alt": ["Gimme a sec."],
+      "function": "request",
+      "note": "give me → gimme。秒数を頼む時の鉄板。",
+      "tip": "give me → ギミ /ˈɡɪmi/: v が脱落\nGimme a → ギミア: 連結"
+    },
+    {
+      "id": "red-014",
+      "jp": "ちょっとそれ嫌だなあ。",
+      "en": "I kind of don't like it.",
+      "alt": ["I kinda don't like it."],
+      "function": "opinion",
+      "note": "kind of → kinda。「ちょっと」のニュアンス。",
+      "tip": "kind of → カインダ /ˈkaɪndə/: of が完全弱化\ndon't → ドウン: t が脱落"
+    },
+    {
+      "id": "red-015",
+      "jp": "なんとなくね。",
+      "en": "Sort of.",
+      "alt": ["Sorta."],
+      "function": "agree",
+      "note": "sort of → sorta。「まあね」程度のあいまい返事。",
+      "tip": "sort of → ソータ /ˈsɔɾə/: t フラップ + of 弱化"
+    },
+    {
+      "id": "red-016",
+      "jp": "それたくさん知ってる。",
+      "en": "I know a lot of them.",
+      "alt": ["I know a lotta them."],
+      "function": "report",
+      "note": "a lot of → a lotta。",
+      "tip": "a lot of → アロッタ /əˈlɑɾə/: t フラップ + of 弱化"
+    },
+    {
+      "id": "red-017",
+      "jp": "ここから出ようよ。",
+      "en": "Let's get out of here.",
+      "alt": ["Let's get outta here."],
+      "function": "suggest",
+      "note": "out of → outta。映画で頻出。",
+      "tip": "out of → アウラ /ˈaʊɾə/: t フラップ + of 弱化\nget outta → ゲラウラ: 全部つながる"
+    },
+    {
+      "id": "red-018",
+      "jp": "わかった！",
+      "en": "Got it!",
+      "alt": ["Gotcha!"],
+      "function": "agree",
+      "note": "got it → gotcha。t がフラップして I と連結。",
+      "tip": "got it → ガリッ /ˈɡɑɾɪt/: t がフラップ (R 音に近い)"
+    },
+    {
+      "id": "red-019",
+      "jp": "何してるの？",
+      "en": "What are you doing?",
+      "alt": ["Whatcha doin'?", "What're you doing?"],
+      "function": "small_talk",
+      "note": "what are you → whatcha。doing → doin。",
+      "tip": "what are you → ワッチャ /ˈwʌtʃə/: are と you が完全融合\ndoing → ドゥイン: g が脱落"
+    },
+    {
+      "id": "red-020",
+      "jp": "何欲しい？",
+      "en": "What do you want?",
+      "alt": ["Whaddaya want?"],
+      "function": "request",
+      "note": "what do you → whaddaya。Tフラップ + 弱化。",
+      "tip": "what do you → ワッダヤ /ˈwʌɾəjə/: t フラップ + 全部弱化"
+    },
+    {
+      "id": "red-021",
+      "jp": "どう思う？",
+      "en": "What do you think?",
+      "alt": ["Whaddaya think?"],
+      "function": "opinion",
+      "note": "what do you の同パターン。最頻出疑問。",
+      "tip": "what do you → ワッダヤ /ˈwʌɾəjə/: t フラップ + 全部弱化"
+    },
+    {
+      "id": "red-022",
+      "jp": "5分くらいかな。",
+      "en": "About five minutes or so.",
+      "alt": [],
+      "function": "report",
+      "note": "or so の前に間がほぼなく繋がる。",
+      "tip": "About → アバウッ: t がほぼ消失\nor so → オーソウ /ɔrsoʊ/: 連結"
+    },
+    {
+      "id": "red-023",
+      "jp": "コーヒー1杯ください。",
+      "en": "Can I get a cup of coffee?",
+      "alt": [],
+      "function": "request",
+      "note": "Can I → /kənaɪ/、cup of → cuppa。",
+      "tip": "Can I → カナイ /kənaɪ/: 連結\ncup of → カッパ /ˈkʌpə/: of が弱化\nget a → ゲラ: t がフラップ"
+    },
+    {
+      "id": "red-024",
+      "jp": "気をつけたほうがいいよ。",
+      "en": "You'd better watch out.",
+      "alt": ["You better watch out."],
+      "function": "advice",
+      "note": "you'd → /jud/、watch out → /wɑtʃaʊt/ 連結。",
+      "tip": "you'd → ユドゥ /jud/: d がほぼ脱落\nwatch out → ワッチャウト: 連結"
+    },
+    {
+      "id": "red-025",
+      "jp": "それやってみる気ある？",
+      "en": "Are you up for it?",
+      "alt": ["You up for it?"],
+      "function": "suggest",
+      "note": "up for → upfer、語尾はそれぞれ連結。",
+      "tip": "up for → アッパフォー /ʌpfər/: 連結\nfor it → フォーリッ: t がフラップ"
+    },
+    {
+      "id": "red-026",
+      "jp": "一杯飲もう。",
+      "en": "Let's grab a drink.",
+      "alt": [],
+      "function": "suggest",
+      "note": "Let's → /lɛts/、grab a → /ɡræbə/ 連結。",
+      "tip": "grab a → グラバ /ˈɡræbə/: 連結\nLet's → レッツ: t と s が同時に出る"
+    },
+    {
+      "id": "red-027",
+      "jp": "もう一度言うけど、",
+      "en": "Let me put it another way.",
+      "alt": [],
+      "function": "transition",
+      "note": "let me + put it + another way、3連続で連結する。",
+      "tip": "let me → レミ\nput it → プリッ: t がフラップ\nanother way → アナザウェイ"
+    },
+    {
+      "id": "red-028",
+      "jp": "それで合ってる？",
+      "en": "Is that right?",
+      "alt": [],
+      "function": "clarify",
+      "note": "Is that → /ɪzæt/、t は次の単語で活きる。",
+      "tip": "Is that → イザッ /ɪˈzæt/: 連結して z で繋がる\nthat right → ザッライ: 連結"
+    },
+    {
+      "id": "red-029",
+      "jp": "話したかったんだ。",
+      "en": "I wanted to talk to you.",
+      "alt": ["I wanned to talk to ya."],
+      "function": "report",
+      "note": "wanted to の t は ほぼ脱落、talk to も連結。",
+      "tip": "wanted to → ワニッド・トゥ /ˈwɑnɪdtə/: 中の t がほぼ消える\ntalk to → トーック・タ /tɔktə/: 連結\nto you → トゥ・ヤ /tə jə/"
+    },
+    {
+      "id": "red-030",
+      "jp": "そんなのありえないよ。",
+      "en": "That's not gonna happen.",
+      "alt": [],
+      "function": "disagree",
+      "note": "not gonna → 「ナガナ」みたいに t がほぼ消える。",
+      "tip": "not gonna → ナガナ /ˌnʌɡənə/: t が脱落\nthat's → ザッツ: 連結"
+    }
+  ]
+}

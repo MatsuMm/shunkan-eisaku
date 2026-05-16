@@ -26,6 +26,7 @@
     <button class="mode-tab active" data-mode="study">学習</button>
     <button class="mode-tab" data-mode="list">一覧</button>
     <button class="mode-tab" data-mode="review">復習</button>
+    <button class="mode-tab" data-mode="dictation">聞き取り</button>
   </div>
 
   <section id="card" class="card">
@@ -42,9 +43,13 @@
       <div class="en-row">
         <span class="en" id="en"></span>
         <button class="icon-btn" id="btn-tts" title="音声再生">🔊</button>
+        <button class="icon-btn" id="btn-tts-slow" title="ゆっくり再生">🐢</button>
+        <button class="icon-btn" id="btn-shadow" title="シャドウイング (聞く→真似る)">👥</button>
       </div>
+      <div id="shadow-result" class="shadow-result"></div>
       <div class="alt" id="alt"></div>
       <div class="note" id="note"></div>
+      <div class="tip" id="tip"></div>
 
       <div class="grade-buttons">
         <button class="btn grade-x" data-grade="x">× 言えなかった</button>
@@ -72,6 +77,32 @@
       </div>
     </div>
     <ul id="list-items" class="list-items"></ul>
+  </section>
+
+  <section id="dictation" class="dictation hidden">
+    <div class="dict-status">
+      <span id="dict-progress">0 / 0</span>
+      <span class="sep">·</span>
+      <span id="dict-mode-label">聞き取り</span>
+    </div>
+
+    <div class="dict-card">
+      <div class="dict-jp" id="dict-jp">日本語ヒント</div>
+      <div class="dict-controls">
+        <button class="icon-btn lg" id="dict-play">🔊</button>
+        <button class="icon-btn lg" id="dict-play-slow">🐢</button>
+      </div>
+      <textarea id="dict-input" class="dict-input" placeholder="聞こえた英語を書く (大文字小文字・句読点は無視されます)" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+      <div class="dict-actions">
+        <button class="btn ghost" id="dict-skip">スキップ</button>
+        <button class="btn primary" id="dict-check">答え合わせ</button>
+      </div>
+      <div class="dict-result hidden" id="dict-result"></div>
+      <div class="dict-tip hidden" id="dict-tip"></div>
+      <div class="dict-next hidden" id="dict-next-wrap">
+        <button class="btn primary" id="dict-next">次の問題 →</button>
+      </div>
+    </div>
   </section>
 
   <section id="review" class="review hidden">

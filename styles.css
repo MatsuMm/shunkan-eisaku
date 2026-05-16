@@ -249,6 +249,138 @@ main {
   font-size: 14px;
 }
 
+/* ---------- Dictation ---------- */
+.dictation { display: flex; flex-direction: column; gap: 12px; }
+.dictation.hidden { display: none; }
+
+.dict-status {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: var(--text-dim);
+}
+.dict-status .sep { margin: 0 6px; opacity: 0.5; }
+
+.dict-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.dict-jp {
+  font-size: 16px;
+  color: var(--text-dim);
+  text-align: center;
+  padding: 4px 0;
+  border-bottom: 1px dashed var(--border);
+  padding-bottom: 12px;
+}
+
+.dict-controls {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.dict-input {
+  width: 100%;
+  min-height: 110px;
+  background: var(--bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 16px;
+  font-family: inherit;
+  resize: vertical;
+  line-height: 1.5;
+}
+.dict-input:focus { outline: none; border-color: var(--accent); }
+
+.dict-actions {
+  display: flex;
+  gap: 8px;
+}
+.dict-actions .btn { flex: 1; }
+
+.dict-result {
+  font-size: 17px;
+  line-height: 1.7;
+  background: var(--surface-2);
+  padding: 12px;
+  border-radius: 8px;
+  word-break: break-word;
+}
+.dict-result.hidden { display: none; }
+
+.dict-word { padding: 1px 3px; border-radius: 3px; margin: 0 1px; }
+.dict-word.ok   { background: rgba(46, 204, 113, 0.2); color: var(--ok); }
+.dict-word.miss { background: rgba(231, 76, 60, 0.2); color: var(--ng); text-decoration: line-through; }
+.dict-word.extra{ background: rgba(243, 156, 18, 0.2); color: var(--tri); font-style: italic; }
+.dict-correct {
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--text-dim);
+}
+.dict-correct .full { color: var(--text); font-weight: 600; font-size: 16px; }
+
+.dict-tip {
+  font-size: 13px;
+  color: #f0b87b;
+  background: rgba(243, 156, 18, 0.08);
+  border-left: 3px solid var(--tri);
+  padding: 10px 12px;
+  border-radius: 6px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+.dict-tip.hidden { display: none; }
+.dict-tip::before {
+  content: "🎧 発音メモ";
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: var(--tri);
+}
+
+.dict-next { text-align: center; }
+.dict-next.hidden { display: none; }
+.dict-next .btn { width: 100%; }
+
+.dict-score {
+  margin-top: 8px;
+  font-size: 14px;
+  color: var(--text-dim);
+  text-align: center;
+}
+.dict-score b { color: var(--text); font-size: 18px; }
+
+/* ---------- Shadowing ---------- */
+.shadow-result {
+  margin-top: 8px;
+  padding: 8px 10px;
+  font-size: 13px;
+  background: var(--surface-2);
+  border-radius: 6px;
+  min-height: 18px;
+  display: none;
+  line-height: 1.5;
+}
+.shadow-result.visible { display: block; }
+.shadow-result .label { font-size: 11px; color: var(--text-dim); font-weight: 600; margin-bottom: 4px; }
+.shadow-result .heard { color: var(--text); word-break: break-word; }
+.shadow-result .score { font-weight: 600; margin-top: 4px; }
+.shadow-result .score.s-good { color: var(--ok); }
+.shadow-result .score.s-mid  { color: var(--tri); }
+.shadow-result .score.s-low  { color: var(--ng); }
+
 .review-status {
   display: flex;
   align-items: center;
@@ -443,8 +575,30 @@ main {
   background: var(--surface-2);
   padding: 10px 12px;
   border-radius: 8px;
-  margin-bottom: 18px;
+  margin-bottom: 12px;
   line-height: 1.55;
+}
+
+.tip {
+  font-size: 13px;
+  color: #f0b87b;
+  background: rgba(243, 156, 18, 0.08);
+  border-left: 3px solid var(--tri);
+  padding: 10px 12px;
+  border-radius: 6px;
+  margin-bottom: 18px;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+.tip:empty { display: none; }
+.tip::before {
+  content: "🎧 発音メモ";
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  margin-bottom: 6px;
+  color: var(--tri);
 }
 
 .grade-buttons {

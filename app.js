@@ -168,6 +168,7 @@ function renderProblem() {
   document.getElementById('en').textContent = currentProblem.en;
   document.getElementById('alt').textContent = (currentProblem.alt || []).join(' / ');
   document.getElementById('note').textContent = currentProblem.note || '';
+  document.getElementById('tip').textContent = currentProblem.tip || '';
   document.getElementById('level-tag').textContent = currentProblem.sceneLabel || currentProblem.scene;
   updateProgress();
 }
@@ -213,6 +214,8 @@ function grade(g) {
 function hideAnswer() {
   document.getElementById('answer').classList.add('hidden');
   document.getElementById('actions-pre').classList.remove('hidden');
+  const shadow = document.getElementById('shadow-result');
+  if (shadow) { shadow.classList.remove('visible'); shadow.innerHTML = ''; }
 }
 function showAnswer() {
   document.getElementById('answer').classList.remove('hidden');
@@ -238,7 +241,6 @@ function stopSpeech() {
 }
 
 function speak(textOrProblem, maybeText) {
-  // 互換: speak("text") も speak(problemObj) も speak(id, text) も受ける
   let id = null, text = null;
   if (typeof textOrProblem === 'object' && textOrProblem) {
     id = textOrProblem.id; text = textOrProblem.en;
@@ -250,14 +252,22 @@ function speak(textOrProblem, maybeText) {
   speakEn(id, text, null);
 }
 
-function speakAudio(srcPath, fallbackText, fallbackLang, onEnd, missingKey) {
+// 0.7x slow play 用 (リダクション・連結の聞き取り訓練用)
+function speakSlow(problemObj) {
+  if (!problemObj) return;
+  const id = problemObj.id;
+  const text = problemObj.en;
+  speakAudio(`audio/${id}.mp3`, text, 'en-US', null, id, 0.7);
+}
+
+function speakAudio(srcPath, fallbackText, fallbackLang, onEnd, missingKey, rateOverride) {
   stopSpeech();
   if (audioMissing.has(missingKey)) {
-    speakViaWebSpeech(fallbackText, fallbackLang, onEnd);
+    speakViaWebSpeech(fallbackText, fallbackLang, onEnd, rateOverride);
     return;
   }
   const audio = new Audio(srcPath);
-  audio.playbackRate = settings.rate || 0.95;
+  audio.playbackRate = rateOverride || settings.rate || 0.95;
   // ★ play() より前に currentAudio に代入。連続呼び出しでも次の stopSpeech() が確実に止められる
   currentAudio = audio;
   let done = false;
@@ -298,14 +308,13 @@ function speakJa(text, onEnd, problemId) {
   else { stopSpeech(); speakViaWebSpeech(text, 'ja-JP', onEnd); }
 }
 
-function speakViaWebSpeech(text, lang, onEnd) {
+function speakViaWebSpeech(text, lang, onEnd, rateOverride) {
   if (!('speechSynthesis' in window)) { onEnd && onEnd(); return; }
   const ss = window.speechSynthesis;
-  // 前のキューを必ず破棄
   ss.cancel();
   const utter = new SpeechSynthesisUtterance(text);
   utter.lang = lang;
-  utter.rate = settings.rate || 0.95;
+  utter.rate = rateOverride || settings.rate || 0.95;
   const voices = ss.getVoices();
   let voice = null;
   if (lang.startsWith('en')) {
@@ -355,6 +364,57 @@ function startMic() {
   try { recognition.start(); } catch (e) {}
 }
 
+// シャドウイング: 模範を再生 → 終わったらマイク自動 ON → 結果を模範と比較
+function startShadowing() {
+  if (!currentProblem) return;
+  const shadowEl = document.getElementById('shadow-result');
+  shadowEl.classList.add('visible');
+  shadowEl.innerHTML = '<div class="label">▶ 模範音声を再生中...</div>';
+  speakAudio(`audio/${currentProblem.id}.mp3`, currentProblem.en, 'en-US', () => {
+    // 模範終了後にマイク ON
+    runShadowRecognition();
+  }, currentProblem.id);
+}
+
+function runShadowRecognition() {
+  if (!recognition) recognition = initSTT();
+  const shadowEl = document.getElementById('shadow-result');
+  if (!recognition) {
+    shadowEl.innerHTML = '<div class="label">⚠ この端末は音声認識に未対応</div>';
+    return;
+  }
+  shadowEl.innerHTML = '<div class="label">🎙 マイク ON - 真似て話してください</div>';
+  recognition.onresult = (e) => {
+    const heard = e.results[0][0].transcript;
+    renderShadowResult(heard, currentProblem.en);
+  };
+  recognition.onerror = (e) => {
+    shadowEl.innerHTML = `<div class="label">⚠ ${e.error}</div>`;
+  };
+  recognition.onend = () => {};
+  try { recognition.start(); }
+  catch (e) {
+    // すでに動作中の場合は一度止めて再起動
+    try { recognition.stop(); } catch {}
+    setTimeout(() => { try { recognition.start(); } catch {} }, 300);
+  }
+}
+
+function renderShadowResult(heard, correct) {
+  const shadowEl = document.getElementById('shadow-result');
+  const userWords = normalizeForDict(heard);
+  const correctWords = normalizeForDict(correct);
+  const diff = diffWordsHtml(userWords, correctWords);
+  const score = correctWords.length > 0 ? Math.round((diff.okCount / correctWords.length) * 100) : 0;
+  let cls = 's-low';
+  if (score >= 85) cls = 's-good';
+  else if (score >= 60) cls = 's-mid';
+  shadowEl.innerHTML =
+    `<div class="label">あなたの発音 (聞き取り結果):</div>` +
+    `<div class="heard">${diff.body}</div>` +
+    `<div class="score ${cls}">一致度: ${score}% (${diff.okCount}/${correctWords.length} 語)</div>`;
+}
+
 // ====================================================================
 // Scene selector
 // ====================================================================
@@ -382,6 +442,8 @@ function onSceneChange(e) {
     renderReviewCard();
   } else if (settings.mode === 'list') {
     renderList();
+  } else if (settings.mode === 'dictation') {
+    startDictation();
   }
 }
 
@@ -400,6 +462,146 @@ function switchMode(mode) {
   } else if (mode === 'list') {
     renderList();
   }
+}
+
+// ====================================================================
+// Dictation mode
+// ====================================================================
+let dictQueue = [];
+let dictIndex = 0;
+let dictCurrent = null;
+
+function startDictation() {
+  buildDictQueue();
+  dictIndex = 0;
+  renderDictation();
+}
+
+function buildDictQueue() {
+  const pool = problemsForCurrentScene();
+  dictQueue = pool.slice().sort(() => Math.random() - 0.5);
+}
+
+function renderDictation() {
+  if (dictQueue.length === 0) {
+    document.getElementById('dict-jp').textContent = '例文がありません。';
+    document.getElementById('dict-progress').textContent = '0 / 0';
+    return;
+  }
+  dictCurrent = dictQueue[dictIndex];
+  document.getElementById('dict-progress').textContent = `${dictIndex + 1} / ${dictQueue.length}`;
+  document.getElementById('dict-jp').textContent = dictCurrent.jp;
+  const input = document.getElementById('dict-input');
+  input.value = '';
+  input.disabled = false;
+  document.getElementById('dict-result').classList.add('hidden');
+  document.getElementById('dict-tip').classList.add('hidden');
+  document.getElementById('dict-next-wrap').classList.add('hidden');
+  document.getElementById('dict-check').classList.remove('hidden');
+  document.getElementById('dict-skip').classList.remove('hidden');
+  // 自動で 1 回再生
+  setTimeout(() => speak(dictCurrent), 200);
+}
+
+function normalizeForDict(s) {
+  return s.toLowerCase()
+    .replace(/[,.!?;:"()‘’“”]/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim()
+    .split(' ')
+    .filter(Boolean);
+}
+
+function dictCheck() {
+  if (!dictCurrent) return;
+  const userWords = normalizeForDict(document.getElementById('dict-input').value);
+  const correctWords = normalizeForDict(dictCurrent.en);
+  const html = diffWordsHtml(userWords, correctWords);
+  const okCount = html.okCount;
+  const total = correctWords.length;
+  const score = total > 0 ? Math.round((okCount / total) * 100) : 0;
+
+  const resEl = document.getElementById('dict-result');
+  resEl.innerHTML = html.body
+    + `<div class="dict-correct"><div class="full">${escapeHtml(dictCurrent.en)}</div></div>`
+    + `<div class="dict-score">スコア: <b>${score}%</b> (${okCount}/${total} 語)</div>`;
+  resEl.classList.remove('hidden');
+  document.getElementById('dict-input').disabled = true;
+  document.getElementById('dict-check').classList.add('hidden');
+  document.getElementById('dict-skip').classList.add('hidden');
+  document.getElementById('dict-next-wrap').classList.remove('hidden');
+
+  if (dictCurrent.tip) {
+    const tipEl = document.getElementById('dict-tip');
+    tipEl.textContent = dictCurrent.tip;
+    tipEl.classList.remove('hidden');
+  }
+  speak(dictCurrent); // 答え合わせと同時にもう一度再生
+}
+
+function dictSkip() {
+  document.getElementById('dict-input').disabled = true;
+  document.getElementById('dict-check').classList.add('hidden');
+  document.getElementById('dict-skip').classList.add('hidden');
+  const resEl = document.getElementById('dict-result');
+  resEl.innerHTML = `<div class="dict-correct"><div class="full">${escapeHtml(dictCurrent.en)}</div></div>`;
+  resEl.classList.remove('hidden');
+  document.getElementById('dict-next-wrap').classList.remove('hidden');
+  if (dictCurrent.tip) {
+    const tipEl = document.getElementById('dict-tip');
+    tipEl.textContent = dictCurrent.tip;
+    tipEl.classList.remove('hidden');
+  }
+  speak(dictCurrent);
+}
+
+function dictNext() {
+  dictIndex = (dictIndex + 1) % dictQueue.length;
+  renderDictation();
+}
+
+// 簡易 word-diff: ユーザー入力と正解を順に並べ、Longest Common Subsequence 風
+function diffWordsHtml(userWords, correctWords) {
+  // LCS テーブル
+  const m = userWords.length, n = correctWords.length;
+  const dp = Array.from({ length: m + 1 }, () => new Array(n + 1).fill(0));
+  for (let i = 0; i < m; i++) {
+    for (let j = 0; j < n; j++) {
+      if (userWords[i] === correctWords[j]) dp[i + 1][j + 1] = dp[i][j] + 1;
+      else dp[i + 1][j + 1] = Math.max(dp[i + 1][j], dp[i][j + 1]);
+    }
+  }
+  // 正解側を中心に並べる: 各 correctWord が user に存在するか
+  const matched = new Array(n).fill(false);
+  // バックトラックして対応関係
+  let i = m, j = n;
+  const userMatch = new Array(m).fill(false);
+  while (i > 0 && j > 0) {
+    if (userWords[i - 1] === correctWords[j - 1]) {
+      matched[j - 1] = true;
+      userMatch[i - 1] = true;
+      i--; j--;
+    } else if (dp[i - 1][j] >= dp[i][j - 1]) i--;
+    else j--;
+  }
+  let okCount = 0;
+  const parts = [];
+  for (let k = 0; k < n; k++) {
+    if (matched[k]) { parts.push(`<span class="dict-word ok">${escapeHtml(correctWords[k])}</span>`); okCount++; }
+    else { parts.push(`<span class="dict-word miss">${escapeHtml(correctWords[k])}</span>`); }
+  }
+  // 余分な user words (extra) も末尾に
+  const extras = [];
+  for (let k = 0; k < m; k++) {
+    if (!userMatch[k]) extras.push(`<span class="dict-word extra">${escapeHtml(userWords[k])}</span>`);
+  }
+  let body = `<div>${parts.join(' ')}</div>`;
+  if (extras.length) body += `<div style="margin-top:6px;font-size:13px;color:var(--text-dim)">余分: ${extras.join(' ')}</div>`;
+  return { body, okCount };
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 }
 
 // ====================================================================
@@ -475,12 +677,20 @@ function buildListItem(p, showEn) {
       e.preventDefault();
       speak(p);
     });
-    speakBtn.addEventListener('touchend', (e) => {
-      // iOS / 一部 Android で click が遅延・吸われる対策
+    speakBtn.addEventListener('touchend', (e) => { e.stopPropagation(); }, { passive: true });
+    const slowBtn = document.createElement('button');
+    slowBtn.className = 'speak-btn';
+    slowBtn.textContent = '🐢';
+    slowBtn.setAttribute('aria-label', 'ゆっくり再生');
+    slowBtn.addEventListener('click', (e) => {
       e.stopPropagation();
-    }, { passive: true });
+      e.preventDefault();
+      speakSlow(p);
+    });
+    slowBtn.addEventListener('touchend', (e) => { e.stopPropagation(); }, { passive: true });
     enRow.appendChild(enText);
     enRow.appendChild(speakBtn);
+    enRow.appendChild(slowBtn);
     li.appendChild(enRow);
   }
 
@@ -497,6 +707,12 @@ function buildListItem(p, showEn) {
     note.className = 'note';
     note.textContent = p.note;
     body.appendChild(note);
+  }
+  if (p.tip) {
+    const tip = document.createElement('div');
+    tip.className = 'tip';
+    tip.textContent = p.tip;
+    body.appendChild(tip);
   }
   li.appendChild(body);
 
@@ -516,8 +732,11 @@ function applyMode() {
   if (mode !== 'study') document.getElementById('empty').classList.add('hidden');
   document.getElementById('review').classList.toggle('hidden', mode !== 'review');
   document.getElementById('list').classList.toggle('hidden', mode !== 'list');
+  document.getElementById('dictation').classList.toggle('hidden', mode !== 'dictation');
   if (mode !== 'review') stopReview();
+  if (mode !== 'dictation') stopSpeech();
   if (mode === 'list') renderList();
+  if (mode === 'dictation') startDictation();
 }
 
 // ====================================================================
@@ -672,6 +891,8 @@ function reviewNext() {
 function bindUI() {
   document.getElementById('btn-reveal').addEventListener('click', showAnswer);
   document.getElementById('btn-tts').addEventListener('click', () => speak(currentProblem));
+  document.getElementById('btn-tts-slow').addEventListener('click', () => speakSlow(currentProblem));
+  document.getElementById('btn-shadow').addEventListener('click', startShadowing);
   document.getElementById('btn-mic').addEventListener('click', startMic);
   document.querySelectorAll('.grade-buttons .btn').forEach(b => {
     b.addEventListener('click', () => grade(b.dataset.grade));
@@ -723,6 +944,17 @@ function bindUI() {
     settings.listShowEn = e.target.checked;
     saveSettings();
     renderList();
+  });
+  document.getElementById('dict-play').addEventListener('click', () => speak(dictCurrent));
+  document.getElementById('dict-play-slow').addEventListener('click', () => speakSlow(dictCurrent));
+  document.getElementById('dict-check').addEventListener('click', dictCheck);
+  document.getElementById('dict-skip').addEventListener('click', dictSkip);
+  document.getElementById('dict-next').addEventListener('click', dictNext);
+  document.getElementById('dict-input').addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
+      e.preventDefault();
+      dictCheck();
+    }
   });
   document.getElementById('opt-gemini-tts').addEventListener('change', (e) => {
     settings.geminiTts = e.target.checked;

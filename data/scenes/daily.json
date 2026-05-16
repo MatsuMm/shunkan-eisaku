@@ -3,55 +3,567 @@
   "label": "日常会話",
   "description": "挨拶・スモールトーク・別れ際・近況など、最頻出の日常会話パターン",
   "problems": [
-    { "id": "daily-001", "jp": "最近どう？", "en": "How have you been?", "alt": ["How's it going?", "What have you been up to?"], "function": "greeting", "note": "How are you? より自然な再会時のあいさつ。完了形がポイント。" },
-    { "id": "daily-002", "jp": "なんとかやってるよ。", "en": "I'm getting by.", "alt": ["I'm hanging in there.", "Can't complain."], "function": "small_talk", "note": "「ぼちぼち」のニュアンス。get by = なんとかやっていく。" },
-    { "id": "daily-003", "jp": "久しぶり！", "en": "Long time no see!", "alt": ["It's been a while.", "It's been ages!"], "function": "greeting", "note": "定型句として丸暗記。文法的に変だが超頻出。" },
-    { "id": "daily-004", "jp": "あなたに会えてよかった。", "en": "It was nice meeting you.", "alt": ["It was great to meet you.", "Nice meeting you."], "function": "farewell", "note": "初対面の別れ際。meeting (動名詞) が自然。" },
-    { "id": "daily-005", "jp": "それいいね！", "en": "That sounds great!", "alt": ["Sounds good to me.", "That sounds awesome."], "function": "reaction", "note": "提案への肯定反応。sound + 形容詞 で「〜に聞こえる」。" },
-    { "id": "daily-006", "jp": "ちょっと考えさせて。", "en": "Let me think about it.", "alt": ["Give me a moment to think.", "Let me think it over."], "function": "buying_time", "note": "Let me + 動詞原形 = 「〜させて」。会話の間つなぎ最頻出。" },
-    { "id": "daily-007", "jp": "もう一度言ってもらえますか？", "en": "Could you say that again?", "alt": ["Could you repeat that?", "Sorry, what was that?"], "function": "clarify", "note": "Pardon? より自然。聞き返しの基本。" },
-    { "id": "daily-008", "jp": "どういう意味ですか？", "en": "What do you mean?", "alt": ["What do you mean by that?", "Could you explain?"], "function": "clarify", "note": "What's the meaning? は不自然。これで丸暗記。" },
-    { "id": "daily-009", "jp": "週末は何か予定ある？", "en": "Do you have any plans for the weekend?", "alt": ["Any plans this weekend?", "What are you up to this weekend?"], "function": "small_talk", "note": "plans は複数形が普通。" },
-    { "id": "daily-010", "jp": "特に何も。", "en": "Nothing much.", "alt": ["Not much.", "Nothing special."], "function": "small_talk", "note": "What's up? への返しにも使える。" },
-    { "id": "daily-011", "jp": "映画でも見に行かない？", "en": "Why don't we go see a movie?", "alt": ["How about going to a movie?", "Want to catch a movie?"], "function": "suggest", "note": "Why don't we 〜? = 〜しない？(提案)。go see (go and see の口語)。" },
-    { "id": "daily-012", "jp": "予定が合えばね。", "en": "If it works for me, sure.", "alt": ["If I'm free, sure.", "It depends on my schedule."], "function": "tentative", "note": "work for + 人 = 「〜にとって都合がいい」。" },
-    { "id": "daily-013", "jp": "ちょっと聞いてもいい？", "en": "Can I ask you something?", "alt": ["Mind if I ask you a question?", "Quick question."], "function": "request", "note": "本題に入る前のクッション。" },
-    { "id": "daily-014", "jp": "正直に言うと、よくわからない。", "en": "To be honest, I'm not sure.", "alt": ["Honestly, I don't know.", "To tell you the truth, I have no idea."], "function": "opinion", "note": "To be honest = 「正直に言うと」の決まり文句。" },
-    { "id": "daily-015", "jp": "なるほどね。", "en": "I see what you mean.", "alt": ["That makes sense.", "Got it."], "function": "agree", "note": "理解した時の自然な相槌。I see. 単体より会話が続きやすい。" },
-    { "id": "daily-016", "jp": "それは言えてる。", "en": "You have a point.", "alt": ["That's a good point.", "You've got a point there."], "function": "agree", "note": "完全同意ではないが認める時。" },
-    { "id": "daily-017", "jp": "言いたいことはわかるけど…", "en": "I see your point, but...", "alt": ["I get what you're saying, but...", "I hear you, but..."], "function": "disagree", "note": "やんわり反対する時のクッション。" },
-    { "id": "daily-018", "jp": "全くその通り。", "en": "I couldn't agree more.", "alt": ["Absolutely.", "You can say that again."], "function": "agree", "note": "「これ以上同意できない」=「完全同意」。否定形なのに最大肯定。" },
-    { "id": "daily-019", "jp": "ロンドンに行ったことある？", "en": "Have you ever been to London?", "alt": ["Have you been to London before?"], "function": "experience", "note": "have been to = 行ったことがある (経験)。have gone to は今いない意味。" },
-    { "id": "daily-020", "jp": "一度もない。", "en": "I've never been there.", "alt": ["No, not yet.", "Never."], "function": "experience", "note": "経験否定の鉄板。there は副詞なので to は不要。" },
-    { "id": "daily-021", "jp": "前にどこかで会ったことある？", "en": "Have we met before?", "alt": ["Do I know you from somewhere?"], "function": "experience", "note": "before があるので完了形。" },
-    { "id": "daily-022", "jp": "もう昼ごはん食べた？", "en": "Have you had lunch yet?", "alt": ["Did you eat lunch?"], "function": "experience", "note": "yet は疑問文で「もう」。完了形と相性が良い。" },
-    { "id": "daily-023", "jp": "まだだよ。", "en": "Not yet.", "alt": ["I haven't yet.", "Still haven't."], "function": "experience", "note": "完了形の否定では yet が「まだ」。" },
-    { "id": "daily-024", "jp": "来月引っ越す予定なんだ。", "en": "I'm planning to move next month.", "alt": ["I'm going to move next month.", "I'm moving next month."], "function": "future", "note": "確定的予定は現在進行形でもOK (I'm moving)。" },
-    { "id": "daily-025", "jp": "転職を考えてる。", "en": "I'm thinking of changing jobs.", "alt": ["I'm thinking about switching jobs.", "I'm considering a career change."], "function": "future", "note": "think of/about + 動名詞 = 〜しようかと考える。" },
-    { "id": "daily-026", "jp": "もし私があなたなら、そうしないな。", "en": "If I were you, I wouldn't do that.", "alt": ["I wouldn't do that if I were you."], "function": "advice", "note": "仮定法過去。were は人称関係なく were。アドバイスの定型。" },
-    { "id": "daily-027", "jp": "もっと早く知ってればよかった。", "en": "I wish I had known earlier.", "alt": ["I should have known earlier."], "function": "regret", "note": "I wish + 過去完了 = 過去の後悔。" },
-    { "id": "daily-028", "jp": "やっとけばよかった。", "en": "I should have done it.", "alt": ["I wish I had done it."], "function": "regret", "note": "should have + 過去分詞 = 〜すべきだった (後悔)。発音は shoulda。" },
-    { "id": "daily-029", "jp": "結局どうなったの？", "en": "How did it turn out?", "alt": ["How did it go?", "What happened in the end?"], "function": "small_talk", "note": "turn out = 結果〜になる。" },
-    { "id": "daily-030", "jp": "うまくいったよ。", "en": "It went well.", "alt": ["It worked out fine.", "It turned out great."], "function": "small_talk", "note": "go well = うまくいく。過去形 went well で。" },
-    { "id": "daily-031", "jp": "ちなみに、", "en": "By the way,", "alt": ["Speaking of which,", "On a side note,"], "function": "transition", "note": "話題転換の鉄板。略してBTW。" },
-    { "id": "daily-032", "jp": "その話で思い出したんだけど、", "en": "That reminds me,", "alt": ["Speaking of that,"], "function": "transition", "note": "remind は「思い出させる」、it/that が主語。" },
-    { "id": "daily-033", "jp": "言いたいこと、なんだっけ。", "en": "What was I going to say?", "alt": ["What was I saying?"], "function": "buying_time", "note": "be going to の過去形で「〜しようとしていた」。" },
-    { "id": "daily-034", "jp": "話が逸れちゃった。", "en": "I got off track.", "alt": ["I got sidetracked.", "Anyway, where was I?"], "function": "transition", "note": "get off track = 話が逸れる。" },
-    { "id": "daily-035", "jp": "もう行かなきゃ。", "en": "I've got to go.", "alt": ["I need to get going.", "I should head out."], "function": "farewell", "note": "have got to = have to の口語。発音は gotta。" },
-    { "id": "daily-036", "jp": "また連絡するね。", "en": "I'll keep in touch.", "alt": ["I'll be in touch.", "Let's stay in touch."], "function": "farewell", "note": "keep/stay in touch = 連絡を取り合う。" },
-    { "id": "daily-037", "jp": "気をつけてね。", "en": "Take care.", "alt": ["Take care of yourself.", "Stay safe."], "function": "farewell", "note": "別れ際の定番。命令形だが優しいニュアンス。" },
-    { "id": "daily-038", "jp": "それ慣れてないんだよね。", "en": "I'm not used to it.", "alt": ["I'm not used to doing that.", "I haven't gotten used to it yet."], "function": "experience", "note": "be used to + 名詞/動名詞 = 〜に慣れている。used to + 原形 (昔よく〜した) と混同注意。" },
-    { "id": "daily-039", "jp": "なんとなくそんな気がする。", "en": "I have a feeling.", "alt": ["Something tells me.", "I get the feeling."], "function": "opinion", "note": "I have a feeling (that) 〜. の形で文を続けられる。" },
-    { "id": "daily-040", "jp": "今日はどんな1日だった？", "en": "How was your day?", "alt": ["How did your day go?"], "function": "small_talk", "note": "夕方の超頻出フレーズ。" },
-    { "id": "daily-041", "jp": "あっという間だったね。", "en": "Time flies.", "alt": ["Time flew by.", "That went by fast."], "function": "reaction", "note": "Time flies = 時間が経つのが早い。" },
-    { "id": "daily-042", "jp": "それ初めて知った。", "en": "I didn't know that.", "alt": ["That's news to me.", "I had no idea."], "function": "reaction", "note": "新情報への自然な反応。" },
-    { "id": "daily-043", "jp": "冗談だよ。", "en": "I'm just kidding.", "alt": ["Just joking.", "I'm pulling your leg."], "function": "reaction", "note": "pull someone's leg = からかう (足を引っ張るではない)。" },
-    { "id": "daily-044", "jp": "本気で言ってる？", "en": "Are you serious?", "alt": ["No way!", "You're kidding me."], "function": "reaction", "note": "驚き/疑い。トーンで意味が変わる。" },
-    { "id": "daily-045", "jp": "それあるある。", "en": "I know the feeling.", "alt": ["Same here.", "I can relate."], "function": "agree", "note": "共感の鉄板。" },
-    { "id": "daily-046", "jp": "なんでもいいよ。", "en": "Whatever works.", "alt": ["I'm easy.", "Up to you."], "function": "agree", "note": "選択を相手に委ねる時。" },
-    { "id": "daily-047", "jp": "気分転換が必要だな。", "en": "I need a change of pace.", "alt": ["I need a break.", "I need to switch things up."], "function": "opinion", "note": "change of pace = 気分転換。" },
-    { "id": "daily-048", "jp": "ずっとそうしたかったんだ。", "en": "I've been wanting to do that.", "alt": ["I've always wanted to do that."], "function": "experience", "note": "have been wanting = ずっと〜したかった (継続的願望)。" },
-    { "id": "daily-049", "jp": "やってみる価値はあるね。", "en": "It's worth a shot.", "alt": ["It's worth trying.", "Why not give it a try?"], "function": "suggest", "note": "worth a shot = 試す価値あり。会話定型。" },
-    { "id": "daily-050", "jp": "じゃ、決まりだね。", "en": "It's settled, then.", "alt": ["Deal.", "Sounds like a plan."], "function": "agree", "note": "話し合いをまとめる時。" }
+    {
+      "id": "daily-001",
+      "jp": "最近どう？",
+      "en": "How have you been?",
+      "alt": [
+        "How's it going?",
+        "What have you been up to?"
+      ],
+      "function": "greeting",
+      "note": "How are you? より自然な再会時のあいさつ。完了形がポイント。"
+    },
+    {
+      "id": "daily-002",
+      "jp": "なんとかやってるよ。",
+      "en": "I'm getting by.",
+      "alt": [
+        "I'm hanging in there.",
+        "Can't complain."
+      ],
+      "function": "small_talk",
+      "note": "「ぼちぼち」のニュアンス。get by = なんとかやっていく。",
+      "tip": "I'm → アイム、弱化形でアム /əm/ にも"
+    },
+    {
+      "id": "daily-003",
+      "jp": "久しぶり！",
+      "en": "Long time no see!",
+      "alt": [
+        "It's been a while.",
+        "It's been ages!"
+      ],
+      "function": "greeting",
+      "note": "定型句として丸暗記。文法的に変だが超頻出。"
+    },
+    {
+      "id": "daily-004",
+      "jp": "あなたに会えてよかった。",
+      "en": "It was nice meeting you.",
+      "alt": [
+        "It was great to meet you.",
+        "Nice meeting you."
+      ],
+      "function": "farewell",
+      "note": "初対面の別れ際。meeting (動名詞) が自然。"
+    },
+    {
+      "id": "daily-005",
+      "jp": "それいいね！",
+      "en": "That sounds great!",
+      "alt": [
+        "Sounds good to me.",
+        "That sounds awesome."
+      ],
+      "function": "reaction",
+      "note": "提案への肯定反応。sound + 形容詞 で「〜に聞こえる」。"
+    },
+    {
+      "id": "daily-006",
+      "jp": "ちょっと考えさせて。",
+      "en": "Let me think about it.",
+      "alt": [
+        "Give me a moment to think.",
+        "Let me think it over."
+      ],
+      "function": "buying_time",
+      "note": "Let me + 動詞原形 = 「〜させて」。会話の間つなぎ最頻出。",
+      "tip": "let me → レミ /ˈlɛmi/: t が脱落"
+    },
+    {
+      "id": "daily-007",
+      "jp": "もう一度言ってもらえますか？",
+      "en": "Could you say that again?",
+      "alt": [
+        "Could you repeat that?",
+        "Sorry, what was that?"
+      ],
+      "function": "clarify",
+      "note": "Pardon? より自然。聞き返しの基本。",
+      "tip": "could you → クッジャ /ˈkʊdʒə/: d + y で /dʒ/ 音"
+    },
+    {
+      "id": "daily-008",
+      "jp": "どういう意味ですか？",
+      "en": "What do you mean?",
+      "alt": [
+        "What do you mean by that?",
+        "Could you explain?"
+      ],
+      "function": "clarify",
+      "note": "What's the meaning? は不自然。これで丸暗記。",
+      "tip": "do you → ジャ/ジュ /dʒə/: 完全に縮約\nwhat do you → ワッダヤ /ˈwʌɾəjə/: 一気に弱化"
+    },
+    {
+      "id": "daily-009",
+      "jp": "週末は何か予定ある？",
+      "en": "Do you have any plans for the weekend?",
+      "alt": [
+        "Any plans this weekend?",
+        "What are you up to this weekend?"
+      ],
+      "function": "small_talk",
+      "note": "plans は複数形が普通。",
+      "tip": "do you → ジャ/ジュ /dʒə/: 完全に縮約"
+    },
+    {
+      "id": "daily-010",
+      "jp": "特に何も。",
+      "en": "Nothing much.",
+      "alt": [
+        "Not much.",
+        "Nothing special."
+      ],
+      "function": "small_talk",
+      "note": "What's up? への返しにも使える。"
+    },
+    {
+      "id": "daily-011",
+      "jp": "映画でも見に行かない？",
+      "en": "Why don't we go see a movie?",
+      "alt": [
+        "How about going to a movie?",
+        "Want to catch a movie?"
+      ],
+      "function": "suggest",
+      "note": "Why don't we 〜? = 〜しない？(提案)。go see (go and see の口語)。",
+      "tip": "don't → ドウン /doʊn/: t が脱落 (次が子音の時)"
+    },
+    {
+      "id": "daily-012",
+      "jp": "予定が合えばね。",
+      "en": "If it works for me, sure.",
+      "alt": [
+        "If I'm free, sure.",
+        "It depends on my schedule."
+      ],
+      "function": "tentative",
+      "note": "work for + 人 = 「〜にとって都合がいい」。"
+    },
+    {
+      "id": "daily-013",
+      "jp": "ちょっと聞いてもいい？",
+      "en": "Can I ask you something?",
+      "alt": [
+        "Mind if I ask you a question?",
+        "Quick question."
+      ],
+      "function": "request",
+      "note": "本題に入る前のクッション。"
+    },
+    {
+      "id": "daily-014",
+      "jp": "正直に言うと、よくわからない。",
+      "en": "To be honest, I'm not sure.",
+      "alt": [
+        "Honestly, I don't know.",
+        "To tell you the truth, I have no idea."
+      ],
+      "function": "opinion",
+      "note": "To be honest = 「正直に言うと」の決まり文句。",
+      "tip": "I'm → アイム、弱化形でアム /əm/ にも"
+    },
+    {
+      "id": "daily-015",
+      "jp": "なるほどね。",
+      "en": "I see what you mean.",
+      "alt": [
+        "That makes sense.",
+        "Got it."
+      ],
+      "function": "agree",
+      "note": "理解した時の自然な相槌。I see. 単体より会話が続きやすい。"
+    },
+    {
+      "id": "daily-016",
+      "jp": "それは言えてる。",
+      "en": "You have a point.",
+      "alt": [
+        "That's a good point.",
+        "You've got a point there."
+      ],
+      "function": "agree",
+      "note": "完全同意ではないが認める時。"
+    },
+    {
+      "id": "daily-017",
+      "jp": "言いたいことはわかるけど…",
+      "en": "I see your point, but...",
+      "alt": [
+        "I get what you're saying, but...",
+        "I hear you, but..."
+      ],
+      "function": "disagree",
+      "note": "やんわり反対する時のクッション。"
+    },
+    {
+      "id": "daily-018",
+      "jp": "全くその通り。",
+      "en": "I couldn't agree more.",
+      "alt": [
+        "Absolutely.",
+        "You can say that again."
+      ],
+      "function": "agree",
+      "note": "「これ以上同意できない」=「完全同意」。否定形なのに最大肯定。",
+      "tip": "couldn't → クッドゥン /ˈkʊdn̩/: t が脱落"
+    },
+    {
+      "id": "daily-019",
+      "jp": "ロンドンに行ったことある？",
+      "en": "Have you ever been to London?",
+      "alt": [
+        "Have you been to London before?"
+      ],
+      "function": "experience",
+      "note": "have been to = 行ったことがある (経験)。have gone to は今いない意味。"
+    },
+    {
+      "id": "daily-020",
+      "jp": "一度もない。",
+      "en": "I've never been there.",
+      "alt": [
+        "No, not yet.",
+        "Never."
+      ],
+      "function": "experience",
+      "note": "経験否定の鉄板。there は副詞なので to は不要。",
+      "tip": "I've → アイヴ → アヴ /əv/ に弱化"
+    },
+    {
+      "id": "daily-021",
+      "jp": "前にどこかで会ったことある？",
+      "en": "Have we met before?",
+      "alt": [
+        "Do I know you from somewhere?"
+      ],
+      "function": "experience",
+      "note": "before があるので完了形。"
+    },
+    {
+      "id": "daily-022",
+      "jp": "もう昼ごはん食べた？",
+      "en": "Have you had lunch yet?",
+      "alt": [
+        "Did you eat lunch?"
+      ],
+      "function": "experience",
+      "note": "yet は疑問文で「もう」。完了形と相性が良い。"
+    },
+    {
+      "id": "daily-023",
+      "jp": "まだだよ。",
+      "en": "Not yet.",
+      "alt": [
+        "I haven't yet.",
+        "Still haven't."
+      ],
+      "function": "experience",
+      "note": "完了形の否定では yet が「まだ」。"
+    },
+    {
+      "id": "daily-024",
+      "jp": "来月引っ越す予定なんだ。",
+      "en": "I'm planning to move next month.",
+      "alt": [
+        "I'm going to move next month.",
+        "I'm moving next month."
+      ],
+      "function": "future",
+      "note": "確定的予定は現在進行形でもOK (I'm moving)。",
+      "tip": "I'm → アイム、弱化形でアム /əm/ にも"
+    },
+    {
+      "id": "daily-025",
+      "jp": "転職を考えてる。",
+      "en": "I'm thinking of changing jobs.",
+      "alt": [
+        "I'm thinking about switching jobs.",
+        "I'm considering a career change."
+      ],
+      "function": "future",
+      "note": "think of/about + 動名詞 = 〜しようかと考える。",
+      "tip": "I'm → アイム、弱化形でアム /əm/ にも"
+    },
+    {
+      "id": "daily-026",
+      "jp": "もし私があなたなら、そうしないな。",
+      "en": "If I were you, I wouldn't do that.",
+      "alt": [
+        "I wouldn't do that if I were you."
+      ],
+      "function": "advice",
+      "note": "仮定法過去。were は人称関係なく were。アドバイスの定型。",
+      "tip": "wouldn't → ウッドゥン /ˈwʊdn̩/: t が脱落"
+    },
+    {
+      "id": "daily-027",
+      "jp": "もっと早く知ってればよかった。",
+      "en": "I wish I had known earlier.",
+      "alt": [
+        "I should have known earlier."
+      ],
+      "function": "regret",
+      "note": "I wish + 過去完了 = 過去の後悔。",
+      "tip": "I had → アイハッド → アド /əd/ に弱化"
+    },
+    {
+      "id": "daily-028",
+      "jp": "やっとけばよかった。",
+      "en": "I should have done it.",
+      "alt": [
+        "I wish I had done it."
+      ],
+      "function": "regret",
+      "note": "should have + 過去分詞 = 〜すべきだった (後悔)。発音は shoulda。",
+      "tip": "should have → シュダ /ˈʃʊdə/: have が完全弱化"
+    },
+    {
+      "id": "daily-029",
+      "jp": "結局どうなったの？",
+      "en": "How did it turn out?",
+      "alt": [
+        "How did it go?",
+        "What happened in the end?"
+      ],
+      "function": "small_talk",
+      "note": "turn out = 結果〜になる。"
+    },
+    {
+      "id": "daily-030",
+      "jp": "うまくいったよ。",
+      "en": "It went well.",
+      "alt": [
+        "It worked out fine.",
+        "It turned out great."
+      ],
+      "function": "small_talk",
+      "note": "go well = うまくいく。過去形 went well で。"
+    },
+    {
+      "id": "daily-031",
+      "jp": "ちなみに、",
+      "en": "By the way,",
+      "alt": [
+        "Speaking of which,",
+        "On a side note,"
+      ],
+      "function": "transition",
+      "note": "話題転換の鉄板。略してBTW。"
+    },
+    {
+      "id": "daily-032",
+      "jp": "その話で思い出したんだけど、",
+      "en": "That reminds me,",
+      "alt": [
+        "Speaking of that,"
+      ],
+      "function": "transition",
+      "note": "remind は「思い出させる」、it/that が主語。"
+    },
+    {
+      "id": "daily-033",
+      "jp": "言いたいこと、なんだっけ。",
+      "en": "What was I going to say?",
+      "alt": [
+        "What was I saying?"
+      ],
+      "function": "buying_time",
+      "note": "be going to の過去形で「〜しようとしていた」。",
+      "tip": "going to → ガナ/ガナ /ˈɡənə/: 弱化して連結"
+    },
+    {
+      "id": "daily-034",
+      "jp": "話が逸れちゃった。",
+      "en": "I got off track.",
+      "alt": [
+        "I got sidetracked.",
+        "Anyway, where was I?"
+      ],
+      "function": "transition",
+      "note": "get off track = 話が逸れる。"
+    },
+    {
+      "id": "daily-035",
+      "jp": "もう行かなきゃ。",
+      "en": "I've got to go.",
+      "alt": [
+        "I need to get going.",
+        "I should head out."
+      ],
+      "function": "farewell",
+      "note": "have got to = have to の口語。発音は gotta。",
+      "tip": "got to → ガラ /ˈɡɑɾə/: t がフラップ化\nI've → アイヴ → アヴ /əv/ に弱化"
+    },
+    {
+      "id": "daily-036",
+      "jp": "また連絡するね。",
+      "en": "I'll keep in touch.",
+      "alt": [
+        "I'll be in touch.",
+        "Let's stay in touch."
+      ],
+      "function": "farewell",
+      "note": "keep/stay in touch = 連絡を取り合う。",
+      "tip": "I'll → アイル → アゥ /aʊ/ に近づく"
+    },
+    {
+      "id": "daily-037",
+      "jp": "気をつけてね。",
+      "en": "Take care.",
+      "alt": [
+        "Take care of yourself.",
+        "Stay safe."
+      ],
+      "function": "farewell",
+      "note": "別れ際の定番。命令形だが優しいニュアンス。"
+    },
+    {
+      "id": "daily-038",
+      "jp": "それ慣れてないんだよね。",
+      "en": "I'm not used to it.",
+      "alt": [
+        "I'm not used to doing that.",
+        "I haven't gotten used to it yet."
+      ],
+      "function": "experience",
+      "note": "be used to + 名詞/動名詞 = 〜に慣れている。used to + 原形 (昔よく〜した) と混同注意。",
+      "tip": "I'm → アイム、弱化形でアム /əm/ にも"
+    },
+    {
+      "id": "daily-039",
+      "jp": "なんとなくそんな気がする。",
+      "en": "I have a feeling.",
+      "alt": [
+        "Something tells me.",
+        "I get the feeling."
+      ],
+      "function": "opinion",
+      "note": "I have a feeling (that) 〜. の形で文を続けられる。"
+    },
+    {
+      "id": "daily-040",
+      "jp": "今日はどんな1日だった？",
+      "en": "How was your day?",
+      "alt": [
+        "How did your day go?"
+      ],
+      "function": "small_talk",
+      "note": "夕方の超頻出フレーズ。"
+    },
+    {
+      "id": "daily-041",
+      "jp": "あっという間だったね。",
+      "en": "Time flies.",
+      "alt": [
+        "Time flew by.",
+        "That went by fast."
+      ],
+      "function": "reaction",
+      "note": "Time flies = 時間が経つのが早い。"
+    },
+    {
+      "id": "daily-042",
+      "jp": "それ初めて知った。",
+      "en": "I didn't know that.",
+      "alt": [
+        "That's news to me.",
+        "I had no idea."
+      ],
+      "function": "reaction",
+      "note": "新情報への自然な反応。"
+    },
+    {
+      "id": "daily-043",
+      "jp": "冗談だよ。",
+      "en": "I'm just kidding.",
+      "alt": [
+        "Just joking.",
+        "I'm pulling your leg."
+      ],
+      "function": "reaction",
+      "note": "pull someone's leg = からかう (足を引っ張るではない)。",
+      "tip": "I'm → アイム、弱化形でアム /əm/ にも"
+    },
+    {
+      "id": "daily-044",
+      "jp": "本気で言ってる？",
+      "en": "Are you serious?",
+      "alt": [
+        "No way!",
+        "You're kidding me."
+      ],
+      "function": "reaction",
+      "note": "驚き/疑い。トーンで意味が変わる。"
+    },
+    {
+      "id": "daily-045",
+      "jp": "それあるある。",
+      "en": "I know the feeling.",
+      "alt": [
+        "Same here.",
+        "I can relate."
+      ],
+      "function": "agree",
+      "note": "共感の鉄板。"
+    },
+    {
+      "id": "daily-046",
+      "jp": "なんでもいいよ。",
+      "en": "Whatever works.",
+      "alt": [
+        "I'm easy.",
+        "Up to you."
+      ],
+      "function": "agree",
+      "note": "選択を相手に委ねる時。"
+    },
+    {
+      "id": "daily-047",
+      "jp": "気分転換が必要だな。",
+      "en": "I need a change of pace.",
+      "alt": [
+        "I need a break.",
+        "I need to switch things up."
+      ],
+      "function": "opinion",
+      "note": "change of pace = 気分転換。"
+    },
+    {
+      "id": "daily-048",
+      "jp": "ずっとそうしたかったんだ。",
+      "en": "I've been wanting to do that.",
+      "alt": [
+        "I've always wanted to do that."
+      ],
+      "function": "experience",
+      "note": "have been wanting = ずっと〜したかった (継続的願望)。",
+      "tip": "I've → アイヴ → アヴ /əv/ に弱化"
+    },
+    {
+      "id": "daily-049",
+      "jp": "やってみる価値はあるね。",
+      "en": "It's worth a shot.",
+      "alt": [
+        "It's worth trying.",
+        "Why not give it a try?"
+      ],
+      "function": "suggest",
+      "note": "worth a shot = 試す価値あり。会話定型。",
+      "tip": "it's → イッツ。次の単語と連結しやすい"
+    },
+    {
+      "id": "daily-050",
+      "jp": "じゃ、決まりだね。",
+      "en": "It's settled, then.",
+      "alt": [
+        "Deal.",
+        "Sounds like a plan."
+      ],
+      "function": "agree",
+      "note": "話し合いをまとめる時。",
+      "tip": "it's → イッツ。次の単語と連結しやすい"
+    }
   ]
 }

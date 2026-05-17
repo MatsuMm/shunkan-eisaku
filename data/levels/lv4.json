@@ -62,6 +62,26 @@
     { "id": "lv4-057", "jp": "話を本筋に戻そう。", "en": "Let's get back on track.", "alt": [], "function": "advanced", "note": "get back on track = 軌道に戻す。" },
     { "id": "lv4-058", "jp": "そこは保留にしておこう。", "en": "Let's put that on hold for now.", "alt": [], "function": "advanced", "note": "put on hold = 保留にする。" },
     { "id": "lv4-059", "jp": "次のステップに移ろう。", "en": "Let's move on to the next step.", "alt": [], "function": "advanced", "note": "move on to = 次へ進む。" },
-    { "id": "lv4-060", "jp": "今日はこのへんにしよう。", "en": "Let's call it a day.", "alt": [], "function": "advanced", "note": "call it a day = 今日は終わりにする。" }
+    { "id": "lv4-060", "jp": "今日はこのへんにしよう。", "en": "Let's call it a day.", "alt": [], "function": "advanced", "note": "call it a day = 今日は終わりにする。" },
+    { "id": "lv4-061", "jp": "差し障りがなければですが、", "en": "If it's not too much trouble,", "alt": [], "function": "advanced", "note": "丁寧な依頼の前置き。" },
+    { "id": "lv4-062", "jp": "私の理解が正しければ、", "en": "If I understand correctly,", "alt": [], "function": "advanced", "note": "認識確認の前置き。" },
+    { "id": "lv4-063", "jp": "言い換えると、こういうことですね。", "en": "In other words, this is what you mean.", "alt": [], "function": "advanced", "note": "in other words = 言い換えると。" },
+    { "id": "lv4-064", "jp": "一概には言えませんが、", "en": "It's hard to generalize, but...", "alt": [], "function": "advanced", "note": "generalize = 一般化する。" },
+    { "id": "lv4-065", "jp": "あえて言うなら、", "en": "If I had to put it bluntly,", "alt": [], "function": "advanced", "note": "bluntly = 率直に。" },
+    { "id": "lv4-066", "jp": "そこは見解の相違ですね。", "en": "I think we'll have to agree to disagree.", "alt": [], "function": "advanced", "note": "agree to disagree = 見解の相違を認める。" },
+    { "id": "lv4-067", "jp": "その懸念はもっともです。", "en": "That's a valid concern.", "alt": [], "function": "advanced", "note": "valid = 妥当な。" },
+    { "id": "lv4-068", "jp": "誤解を恐れずに言えば、", "en": "At the risk of being misunderstood,", "alt": [], "function": "advanced", "note": "at the risk of = 〜を承知で。" },
+    { "id": "lv4-069", "jp": "その点は留意しておきます。", "en": "I'll bear that in mind.", "alt": [], "function": "advanced", "note": "bear in mind = 留意する。" },
+    { "id": "lv4-070", "jp": "状況を見極めたいです。", "en": "I'd like to assess the situation first.", "alt": [], "function": "advanced", "note": "assess = 見極める。" },
+    { "id": "lv4-071", "jp": "それは諸刃の剣ですね。", "en": "That's a double-edged sword.", "alt": [], "function": "advanced", "note": "double-edged sword = 一長一短。" },
+    { "id": "lv4-072", "jp": "長期的視点で考えましょう。", "en": "Let's think about this in the long term.", "alt": [], "function": "advanced", "note": "in the long term = 長期的に。" },
+    { "id": "lv4-073", "jp": "そこは慎重を期したい。", "en": "I'd rather err on the side of caution.", "alt": [], "function": "advanced", "note": "err on the side of caution = 慎重を期す。" },
+    { "id": "lv4-074", "jp": "実現可能性を検証すべきです。", "en": "We should test how feasible this is.", "alt": [], "function": "advanced", "note": "feasible = 実現可能。" },
+    { "id": "lv4-075", "jp": "それは本末転倒です。", "en": "That's putting the cart before the horse.", "alt": [], "function": "advanced", "note": "cart before the horse = 本末転倒。" },
+    { "id": "lv4-076", "jp": "前提を疑ってみましょう。", "en": "Let's challenge our assumptions.", "alt": [], "function": "advanced", "note": "challenge assumptions = 前提を問い直す。" },
+    { "id": "lv4-077", "jp": "落とし所を探りましょう。", "en": "Let's work toward a compromise.", "alt": [], "function": "advanced", "note": "work toward = 〜を目指す。" },
+    { "id": "lv4-078", "jp": "それは時期尚早かと。", "en": "I'd say that's premature.", "alt": [], "function": "advanced", "note": "premature = 時期尚早。" },
+    { "id": "lv4-079", "jp": "おっしゃる通りかもしれません。", "en": "You may well be right.", "alt": [], "function": "advanced", "note": "may well = 〜かもしれない(可能性高め)。" },
+    { "id": "lv4-080", "jp": "建設的なご意見に感謝します。", "en": "I appreciate your constructive input.", "alt": [], "function": "advanced", "note": "constructive input = 建設的な意見。" }
   ]
 }

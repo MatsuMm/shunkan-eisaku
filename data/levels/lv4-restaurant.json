@@ -1,0 +1,25 @@
+{
+  "scene": "restaurant",
+  "label": "飲食店",
+  "description": "Lv4 × 飲食店: 丁寧な要望・苦情・特別対応の交渉。",
+  "problems": [
+    { "id": "lv4r-001", "jp": "窓際の静かな席にしていただけますか？", "en": "Could we have a quiet table by the window?", "alt": [], "function": "restaurant", "note": "丁寧な席指定。" },
+    { "id": "lv4r-002", "jp": "アレルギーがあるので確認させてください。", "en": "I have an allergy, so I need to double-check.", "alt": [], "function": "restaurant", "note": "double-check = 念のため確認。" },
+    { "id": "lv4r-003", "jp": "この料理に乳製品は含まれますか？", "en": "Does this dish contain any dairy?", "alt": [], "function": "restaurant", "note": "contain = 含む。" },
+    { "id": "lv4r-004", "jp": "ソースは別添えにできますか？", "en": "Could I have the sauce on the side?", "alt": [], "function": "restaurant", "note": "on the side = 別添え。" },
+    { "id": "lv4r-005", "jp": "少し火を通しすぎているようです。", "en": "I'm afraid this is a little overcooked.", "alt": [], "function": "restaurant", "note": "I'm afraid = 残念ながら(やわらげ)。" },
+    { "id": "lv4r-006", "jp": "これは注文したものと違うようです。", "en": "I believe this isn't what I ordered.", "alt": [], "function": "restaurant", "note": "I believe = やんわり主張。" },
+    { "id": "lv4r-007", "jp": "作り直していただけますか？", "en": "Would you mind remaking it?", "alt": [], "function": "restaurant", "note": "Would you mind + 動名詞。" },
+    { "id": "lv4r-008", "jp": "お会計に誤りがあるようです。", "en": "There seems to be a mistake on the bill.", "alt": [], "function": "restaurant", "note": "苦情のやわらげ。" },
+    { "id": "lv4r-009", "jp": "サービスにとても満足しました。", "en": "We were very pleased with the service.", "alt": [], "function": "restaurant", "note": "be pleased with = 満足。" },
+    { "id": "lv4r-010", "jp": "シェフにお礼を伝えてください。", "en": "Please pass my compliments to the chef.", "alt": [], "function": "restaurant", "note": "compliments to the chef = 定型の賛辞。" },
+    { "id": "lv4r-011", "jp": "記念日なので何か特別なことはできますか？", "en": "It's a special occasion. Could you do something special?", "alt": [], "function": "restaurant", "note": "special occasion = 特別な日。" },
+    { "id": "lv4r-012", "jp": "予算は1人50ドルくらいです。", "en": "Our budget is around fifty dollars per person.", "alt": [], "function": "restaurant", "note": "per person = 1人あたり。" },
+    { "id": "lv4r-013", "jp": "おすすめのワインはありますか？", "en": "Could you recommend a wine to pair with this?", "alt": [], "function": "restaurant", "note": "pair with = 〜に合わせる。" },
+    { "id": "lv4r-014", "jp": "少々お時間いただけますか、まだ決めかねています。", "en": "Could you give us a few more minutes? We're still deciding.", "alt": [], "function": "restaurant", "note": "still deciding = 検討中。" },
+    { "id": "lv4r-015", "jp": "他のお客様の迷惑にならないようにします。", "en": "We'll keep it down so we don't disturb others.", "alt": [], "function": "restaurant", "note": "keep it down = 静かにする。" },
+    { "id": "lv4r-016", "jp": "持ち帰り用に包んでいただけますか？", "en": "Could you box this up to take away?", "alt": [], "function": "restaurant", "note": "box up = 詰める。" },
+    { "id": "lv4r-017", "jp": "次回また伺います、ありがとうございました。", "en": "We'll definitely be back. Thank you.", "alt": [], "function": "restaurant", "note": "definitely = きっと。" },
+    { "id": "lv4r-018", "jp": "気を悪くされたなら申し訳ありません。", "en": "I apologize if I caused any offense.", "alt": [], "function": "restaurant", "note": "cause offense = 不快にさせる。" }
+  ]
+}

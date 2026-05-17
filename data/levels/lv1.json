@@ -62,6 +62,26 @@
     { "id": "lv1-057", "jp": "おやすみなさい。", "en": "Good night.", "alt": [], "function": "basic", "note": "就寝の挨拶。" },
     { "id": "lv1-058", "jp": "良い一日を。", "en": "Have a good day.", "alt": ["Have a nice day."], "function": "basic", "note": "別れ際の決まり文句。" },
     { "id": "lv1-059", "jp": "楽しんでね。", "en": "Have fun.", "alt": ["Enjoy."], "function": "basic", "note": "出かける人へ。" },
-    { "id": "lv1-060", "jp": "問題ないよ。", "en": "No problem.", "alt": ["That's fine."], "function": "basic", "note": "感謝・謝罪への返し。" }
+    { "id": "lv1-060", "jp": "問題ないよ。", "en": "No problem.", "alt": ["That's fine."], "function": "basic", "note": "感謝・謝罪への返し。" },
+    { "id": "lv1-061", "jp": "いくつですか？（年齢）", "en": "How old are you?", "alt": [], "function": "basic", "note": "年齢を聞く。" },
+    { "id": "lv1-062", "jp": "私は30歳です。", "en": "I'm thirty years old.", "alt": ["I'm thirty."], "function": "basic", "note": "年齢の言い方。" },
+    { "id": "lv1-063", "jp": "家族は何人ですか？", "en": "How many people are in your family?", "alt": [], "function": "basic", "note": "how many = いくつ。" },
+    { "id": "lv1-064", "jp": "兄弟はいますか？", "en": "Do you have any brothers or sisters?", "alt": [], "function": "basic", "note": "any = (疑問で)いくつか。" },
+    { "id": "lv1-065", "jp": "ペットを飼っています。", "en": "I have a pet.", "alt": [], "function": "basic", "note": "have = 飼う。" },
+    { "id": "lv1-066", "jp": "趣味は何ですか？", "en": "What are your hobbies?", "alt": [], "function": "basic", "note": "hobbies は複数で。" },
+    { "id": "lv1-067", "jp": "音楽が好きです。", "en": "I like music.", "alt": [], "function": "basic", "note": "like + 名詞。" },
+    { "id": "lv1-068", "jp": "スポーツをしますか？", "en": "Do you play sports?", "alt": [], "function": "basic", "note": "play sports。" },
+    { "id": "lv1-069", "jp": "どんな映画が好き？", "en": "What movies do you like?", "alt": [], "function": "basic", "note": "what + 名詞 の疑問。" },
+    { "id": "lv1-070", "jp": "今日は何曜日？", "en": "What day is it today?", "alt": [], "function": "basic", "note": "曜日を聞く。" },
+    { "id": "lv1-071", "jp": "今日は月曜です。", "en": "It's Monday.", "alt": [], "function": "basic", "note": "曜日は it が主語。" },
+    { "id": "lv1-072", "jp": "誕生日はいつ？", "en": "When is your birthday?", "alt": [], "function": "basic", "note": "when = いつ。" },
+    { "id": "lv1-073", "jp": "天気はどう？", "en": "How's the weather?", "alt": [], "function": "basic", "note": "天気を聞く。" },
+    { "id": "lv1-074", "jp": "雨が降っています。", "en": "It's raining.", "alt": [], "function": "basic", "note": "天気の現在進行形。" },
+    { "id": "lv1-075", "jp": "晴れています。", "en": "It's sunny.", "alt": [], "function": "basic", "note": "It's + 天気。" },
+    { "id": "lv1-076", "jp": "傘を持ってますか？", "en": "Do you have an umbrella?", "alt": [], "function": "basic", "note": "an umbrella。" },
+    { "id": "lv1-077", "jp": "ここは寒いです。", "en": "It's cold here.", "alt": [], "function": "basic", "note": "場所 + 状態。" },
+    { "id": "lv1-078", "jp": "もう帰りましょう。", "en": "Let's go home now.", "alt": [], "function": "basic", "note": "Let's + 原形。" },
+    { "id": "lv1-079", "jp": "楽しかったですか？", "en": "Did you have fun?", "alt": [], "function": "basic", "note": "Did you 〜? の過去疑問。" },
+    { "id": "lv1-080", "jp": "とても楽しかったです。", "en": "Yes, it was a lot of fun.", "alt": [], "function": "basic", "note": "a lot of fun = すごく楽しい。" }
   ]
 }

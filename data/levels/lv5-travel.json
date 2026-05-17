@@ -1,0 +1,25 @@
+{
+  "scene": "travel",
+  "label": "旅行",
+  "description": "Lv5 × 旅行: 慣用表現と含みのある言い回しで余裕の旅会話。",
+  "problems": [
+    { "id": "lv5t-001", "jp": "予定はあくまで目安です。", "en": "The itinerary is just a rough guide.", "alt": [], "function": "travel", "note": "rough guide = 大まかな目安。" },
+    { "id": "lv5t-002", "jp": "行き当たりばったりで行こう。", "en": "Let's just play it by ear.", "alt": [], "function": "travel", "note": "play it by ear = 臨機応変。" },
+    { "id": "lv5t-003", "jp": "せっかくここまで来たんだから。", "en": "We've come this far, so we might as well.", "alt": [], "function": "travel", "note": "might as well = どうせなら。" },
+    { "id": "lv5t-004", "jp": "それは観光地値段だね。", "en": "That's a tourist trap price.", "alt": [], "function": "travel", "note": "tourist trap = 観光客向けのぼったくり。" },
+    { "id": "lv5t-005", "jp": "現地の人に聞くのが一番だ。", "en": "When in doubt, ask a local.", "alt": [], "function": "travel", "note": "when in doubt = 迷ったら。" },
+    { "id": "lv5t-006", "jp": "雨でも降られない限り決行だ。", "en": "We'll go ahead unless it pours.", "alt": [], "function": "travel", "note": "unless = 〜しない限り。pour = 土砂降り。" },
+    { "id": "lv5t-007", "jp": "ガイドブックは話半分でいい。", "en": "Take the guidebook with a grain of salt.", "alt": [], "function": "travel", "note": "grain of salt = 鵜呑みにしない。" },
+    { "id": "lv5t-008", "jp": "それは旅の醍醐味だね。", "en": "That's half the fun of traveling.", "alt": [], "function": "travel", "note": "half the fun = 醍醐味。" },
+    { "id": "lv5t-009", "jp": "アクシデントも旅のうちさ。", "en": "Mishaps are all part of the adventure.", "alt": [], "function": "travel", "note": "part of = 〜のうち。" },
+    { "id": "lv5t-010", "jp": "下調べしておいて正解だった。", "en": "It paid off to do our homework.", "alt": [], "function": "travel", "note": "do one's homework = 下調べ。pay off = 報われる。" },
+    { "id": "lv5t-011", "jp": "現地の流儀に従おう。", "en": "When in Rome, do as the Romans do.", "alt": [], "function": "travel", "note": "ことわざ=郷に入れば郷に従え。" },
+    { "id": "lv5t-012", "jp": "それは骨折り損になりかねない。", "en": "That could turn into a wild goose chase.", "alt": [], "function": "travel", "note": "wild goose chase = 無駄足。" },
+    { "id": "lv5t-013", "jp": "天気だけは読めないね。", "en": "The weather is anyone's guess.", "alt": [], "function": "travel", "note": "anyone's guess = 誰にも分からない。" },
+    { "id": "lv5t-014", "jp": "予算はあってないようなものだ。", "en": "The budget went out the window.", "alt": [], "function": "travel", "note": "out the window = 吹き飛んだ。" },
+    { "id": "lv5t-015", "jp": "それは結果オーライだったね。", "en": "It worked out in the end, all things considered.", "alt": [], "function": "travel", "note": "all things considered = 諸々考えれば。" },
+    { "id": "lv5t-016", "jp": "もう腹をくくるしかない。", "en": "We just have to roll with it now.", "alt": [], "function": "travel", "note": "roll with it = 流れに任せる。" },
+    { "id": "lv5t-017", "jp": "ここは穴場だね。", "en": "This place is a hidden gem.", "alt": [], "function": "travel", "note": "hidden gem = 穴場。" },
+    { "id": "lv5t-018", "jp": "一生ものの思い出になった。", "en": "That was a memory to last a lifetime.", "alt": [], "function": "travel", "note": "to last a lifetime = 一生もの。" }
+  ]
+}

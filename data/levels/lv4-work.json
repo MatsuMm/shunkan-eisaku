@@ -1,0 +1,25 @@
+{
+  "scene": "work",
+  "label": "仕事",
+  "description": "Lv4 × 仕事: 婉曲・交渉・配慮を効かせたビジネス上級。",
+  "problems": [
+    { "id": "lv4w-001", "jp": "結論から申し上げますと、", "en": "To get straight to the point,", "alt": ["Long story short,"], "function": "work", "note": "要点先出し。" },
+    { "id": "lv4w-002", "jp": "差し支えなければ理由を伺えますか？", "en": "If you don't mind my asking, what's the reason?", "alt": [], "function": "work", "note": "婉曲な質問。" },
+    { "id": "lv4w-003", "jp": "そう受け取られたなら本意ではありません。", "en": "If it came across that way, that wasn't my intention.", "alt": [], "function": "work", "note": "come across = (印象として)伝わる。" },
+    { "id": "lv4w-004", "jp": "認識をすり合わせさせてください。", "en": "Let me make sure we're aligned.", "alt": [], "function": "work", "note": "aligned = 認識一致。" },
+    { "id": "lv4w-005", "jp": "現実的なところで落としどころを探りましょう。", "en": "Let's find a realistic middle ground.", "alt": [], "function": "work", "note": "middle ground = 妥協点。" },
+    { "id": "lv4w-006", "jp": "そこは譲歩の余地があります。", "en": "There's some room for compromise there.", "alt": [], "function": "work", "note": "room for = 〜の余地。" },
+    { "id": "lv4w-007", "jp": "優先順位を再考すべきかもしれません。", "en": "We may need to reconsider our priorities.", "alt": [], "function": "work", "note": "reconsider = 再考。" },
+    { "id": "lv4w-008", "jp": "懸念が一点あります。", "en": "I do have one concern.", "alt": [], "function": "work", "note": "強調の do。" },
+    { "id": "lv4w-009", "jp": "それは想定の範囲内です。", "en": "That's within our expectations.", "alt": [], "function": "work", "note": "within expectations。" },
+    { "id": "lv4w-010", "jp": "最悪のケースに備えておきましょう。", "en": "Let's prepare for the worst-case scenario.", "alt": [], "function": "work", "note": "worst-case scenario。" },
+    { "id": "lv4w-011", "jp": "前向きに検討させてください。", "en": "Let me give it serious thought.", "alt": ["I'll consider it positively."], "function": "work", "note": "serious thought = 真剣に検討。" },
+    { "id": "lv4w-012", "jp": "持ち帰って確認します。", "en": "Let me take this back and check.", "alt": [], "function": "work", "note": "take back = 持ち帰る。" },
+    { "id": "lv4w-013", "jp": "その点については保留にさせてください。", "en": "I'd like to put that on hold for now.", "alt": [], "function": "work", "note": "put on hold = 保留。" },
+    { "id": "lv4w-014", "jp": "認識違いがあったようです。", "en": "It seems there was a misalignment.", "alt": [], "function": "work", "note": "misalignment = 認識ズレ。" },
+    { "id": "lv4w-015", "jp": "建設的な議論にしましょう。", "en": "Let's keep this constructive.", "alt": [], "function": "work", "note": "constructive = 建設的。" },
+    { "id": "lv4w-016", "jp": "本筋に話を戻しましょう。", "en": "Let's get back on track.", "alt": [], "function": "work", "note": "back on track。" },
+    { "id": "lv4w-017", "jp": "ご期待に沿えるよう尽力します。", "en": "I'll do my best to meet your expectations.", "alt": [], "function": "work", "note": "meet expectations。" },
+    { "id": "lv4w-018", "jp": "今日はこのあたりで切り上げましょう。", "en": "Let's call it a day for now.", "alt": [], "function": "work", "note": "call it a day = 切り上げる。" }
+  ]
+}

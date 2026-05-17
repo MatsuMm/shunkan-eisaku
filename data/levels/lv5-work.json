@@ -1,0 +1,25 @@
+{
+  "scene": "work",
+  "label": "仕事",
+  "description": "Lv5 × 仕事: イディオム・含意・ネイティブ感のビジネス最上級。",
+  "problems": [
+    { "id": "lv5w-001", "jp": "それは責任の押し付け合いだ。", "en": "We're just passing the buck here.", "alt": [], "function": "work", "note": "pass the buck = 責任転嫁。" },
+    { "id": "lv5w-002", "jp": "とりあえずやってみて様子を見よう。", "en": "Let's run it up the flagpole and see.", "alt": [], "function": "work", "note": "run up the flagpole = 試しに提案する。" },
+    { "id": "lv5w-003", "jp": "それは本質からずれている。", "en": "That's missing the forest for the trees.", "alt": [], "function": "work", "note": "miss the forest for the trees = 木を見て森を見ず。" },
+    { "id": "lv5w-004", "jp": "認識を合わせておこう。", "en": "Let's make sure we're singing from the same hymn sheet.", "alt": ["Let's get on the same page."], "function": "work", "note": "イディオム=認識統一。" },
+    { "id": "lv5w-005", "jp": "それは机上の空論だ。", "en": "That works on paper, but not in practice.", "alt": [], "function": "work", "note": "on paper = 理屈上は。" },
+    { "id": "lv5w-006", "jp": "ボールはそちらにあります。", "en": "The ball's in your court now.", "alt": [], "function": "work", "note": "ball in your court = 次はそちらの番。" },
+    { "id": "lv5w-007", "jp": "それは一長一短だ。", "en": "It's a double-edged sword.", "alt": [], "function": "work", "note": "double-edged sword = 諸刃の剣。" },
+    { "id": "lv5w-008", "jp": "そこは見切り発車だね。", "en": "We're jumping the gun on this.", "alt": [], "function": "work", "note": "jump the gun = 早まる。" },
+    { "id": "lv5w-009", "jp": "落としどころを探りましょう。", "en": "Let's try to meet in the middle.", "alt": [], "function": "work", "note": "meet in the middle = 歩み寄る。" },
+    { "id": "lv5w-010", "jp": "それは一旦棚上げにしよう。", "en": "Let's put that on the back burner for now.", "alt": [], "function": "work", "note": "on the back burner = 後回し。" },
+    { "id": "lv5w-011", "jp": "数字が物語っている。", "en": "The numbers speak for themselves.", "alt": [], "function": "work", "note": "speak for themselves = 自明。" },
+    { "id": "lv5w-012", "jp": "それは想定外の事態だ。", "en": "That threw a wrench in the works.", "alt": [], "function": "work", "note": "throw a wrench = 邪魔・狂わせる。" },
+    { "id": "lv5w-013", "jp": "土壇場で覆された。", "en": "It fell through at the eleventh hour.", "alt": [], "function": "work", "note": "eleventh hour = 土壇場。fall through = 流れる。" },
+    { "id": "lv5w-014", "jp": "それは骨折り損だった。", "en": "It was a wild goose chase.", "alt": [], "function": "work", "note": "wild goose chase = 無駄骨。" },
+    { "id": "lv5w-015", "jp": "彼は的を射た指摘をした。", "en": "He hit the nail on the head.", "alt": [], "function": "work", "note": "hit the nail on the head = 図星。" },
+    { "id": "lv5w-016", "jp": "ここが正念場だ。", "en": "This is where the rubber meets the road.", "alt": [], "function": "work", "note": "rubber meets the road = 実行が問われる局面。" },
+    { "id": "lv5w-017", "jp": "それは責任の範囲外だ。", "en": "That's above my pay grade.", "alt": [], "function": "work", "note": "above my pay grade = 自分の権限外。" },
+    { "id": "lv5w-018", "jp": "結局は持ちつ持たれつだ。", "en": "At the end of the day, you scratch my back and I'll scratch yours.", "alt": [], "function": "work", "note": "scratch each other's back = 互恵。" }
+  ]
+}

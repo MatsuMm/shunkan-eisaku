@@ -62,6 +62,26 @@
     { "id": "lv5-057", "jp": "今は深追いしないでおこう。", "en": "Let's not push it for now.", "alt": [], "function": "nuance", "note": "push it = 無理に進める。" },
     { "id": "lv5-058", "jp": "それは言葉のあやだよ。", "en": "It was just a figure of speech.", "alt": [], "function": "nuance", "note": "figure of speech = 言葉のあや・比喩。" },
     { "id": "lv5-059", "jp": "腹をくくった。", "en": "I've made my peace with it.", "alt": ["I've come to terms with it."], "function": "nuance", "note": "make one's peace with = 受け入れる。" },
-    { "id": "lv5-060", "jp": "なるようにしかならない。", "en": "What will be, will be.", "alt": ["Que sera, sera."], "function": "nuance", "note": "成り行きに任せる定型。" }
+    { "id": "lv5-060", "jp": "なるようにしかならない。", "en": "What will be, will be.", "alt": ["Que sera, sera."], "function": "nuance", "note": "成り行きに任せる定型。" },
+    { "id": "lv5-061", "jp": "それは時間の無駄だった。", "en": "That was a wild goose chase.", "alt": [], "function": "nuance", "note": "wild goose chase = 無駄骨。" },
+    { "id": "lv5-062", "jp": "彼は調子に乗りすぎだ。", "en": "He's getting too big for his boots.", "alt": [], "function": "nuance", "note": "too big for one's boots = 思い上がる。" },
+    { "id": "lv5-063", "jp": "それは藪蛇だったね。", "en": "That backfired.", "alt": ["You opened a can of worms."], "function": "nuance", "note": "backfire = 裏目。can of worms = 厄介の種。" },
+    { "id": "lv5-064", "jp": "今さら言っても始まらない。", "en": "There's no use crying over spilled milk.", "alt": [], "function": "nuance", "note": "ことわざ=覆水盆に返らず。" },
+    { "id": "lv5-065", "jp": "彼は口先だけだ。", "en": "He's all talk and no action.", "alt": [], "function": "nuance", "note": "all talk = 口先だけ。" },
+    { "id": "lv5-066", "jp": "それは詭弁だよ。", "en": "That's just splitting hairs.", "alt": [], "function": "nuance", "note": "split hairs = 細かい屁理屈。" },
+    { "id": "lv5-067", "jp": "図星を突かれたね。", "en": "That struck a chord.", "alt": ["That hit a nerve."], "function": "nuance", "note": "strike a chord = 心に響く/痛いところ。" },
+    { "id": "lv5-068", "jp": "嫌な予感がする。", "en": "I have a bad feeling about this.", "alt": [], "function": "nuance", "note": "have a feeling = 予感がする。" },
+    { "id": "lv5-069", "jp": "腑に落ちないな。", "en": "Something doesn't add up.", "alt": [], "function": "nuance", "note": "doesn't add up = 辻褄が合わない。" },
+    { "id": "lv5-070", "jp": "彼は本性を現したね。", "en": "He showed his true colors.", "alt": [], "function": "nuance", "note": "true colors = 本性。" },
+    { "id": "lv5-071", "jp": "うわべだけ取り繕っても無駄だ。", "en": "Putting on a brave face won't cut it.", "alt": [], "function": "nuance", "note": "put on a brave face = 平静を装う。cut it = 通用する。" },
+    { "id": "lv5-072", "jp": "それは飛躍しすぎだ。", "en": "That's quite a leap.", "alt": [], "function": "nuance", "note": "a leap = 論理の飛躍。" },
+    { "id": "lv5-073", "jp": "そこは大目に見るよ。", "en": "I'll let it slide this once.", "alt": [], "function": "nuance", "note": "let it slide = 見逃す。" },
+    { "id": "lv5-074", "jp": "彼とは肌が合わない。", "en": "He and I just don't click.", "alt": [], "function": "nuance", "note": "click = 馬が合う。" },
+    { "id": "lv5-075", "jp": "それは負け惜しみだよ。", "en": "That's just sour grapes.", "alt": [], "function": "nuance", "note": "sour grapes = 負け惜しみ。" },
+    { "id": "lv5-076", "jp": "話を盛りすぎだろ。", "en": "You're laying it on a bit thick.", "alt": [], "function": "nuance", "note": "lay it on thick = 大げさに言う。" },
+    { "id": "lv5-077", "jp": "それは結果論にすぎない。", "en": "That's just hindsight talking.", "alt": [], "function": "nuance", "note": "hindsight = 後知恵。" },
+    { "id": "lv5-078", "jp": "一筋縄ではいかないね。", "en": "This is easier said than done.", "alt": [], "function": "nuance", "note": "easier said than done = 言うは易し。" },
+    { "id": "lv5-079", "jp": "肩の荷が下りた。", "en": "That's a weight off my shoulders.", "alt": [], "function": "nuance", "note": "weight off shoulders = 肩の荷。" },
+    { "id": "lv5-080", "jp": "終わりよければすべてよし。", "en": "All's well that ends well.", "alt": [], "function": "nuance", "note": "ことわざの定型。" }
   ]
 }

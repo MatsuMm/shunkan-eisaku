@@ -1,0 +1,25 @@
+{
+  "scene": "travel",
+  "label": "旅行",
+  "description": "Lv4 × 旅行: トラブル交渉・丁寧な要求・込み入った状況。",
+  "problems": [
+    { "id": "lv4t-001", "jp": "搭乗予定だった便に乗り遅れました。", "en": "I missed the flight I was supposed to be on.", "alt": [], "function": "travel", "note": "be supposed to = 〜のはずだった。" },
+    { "id": "lv4t-002", "jp": "次の便に振り替えてもらえますか？", "en": "Could you rebook me on the next flight?", "alt": [], "function": "travel", "note": "rebook = 予約変更。" },
+    { "id": "lv4t-003", "jp": "追加料金はかかりますか？", "en": "Will there be an additional charge?", "alt": [], "function": "travel", "note": "additional charge = 追加料金。" },
+    { "id": "lv4t-004", "jp": "荷物が破損していました。", "en": "My luggage was damaged.", "alt": [], "function": "travel", "note": "受動態の報告。" },
+    { "id": "lv4t-005", "jp": "補償について伺いたいのですが。", "en": "I'd like to ask about compensation.", "alt": [], "function": "travel", "note": "compensation = 補償。" },
+    { "id": "lv4t-006", "jp": "予約した部屋と違います。", "en": "This isn't the room I booked.", "alt": [], "function": "travel", "note": "関係詞 the room I booked。" },
+    { "id": "lv4t-007", "jp": "アップグレードは可能ですか？", "en": "Would an upgrade be possible?", "alt": [], "function": "travel", "note": "Would ... be possible? = 丁寧。" },
+    { "id": "lv4t-008", "jp": "請求に誤りがあるようです。", "en": "There seems to be an error on the bill.", "alt": [], "function": "travel", "note": "seems to be = 〜のようだ。" },
+    { "id": "lv4t-009", "jp": "もう少し詳しく説明していただけますか？", "en": "Could you walk me through that in more detail?", "alt": [], "function": "travel", "note": "walk through = 順を追って説明。" },
+    { "id": "lv4t-010", "jp": "やむを得ない事情で予定が変わりました。", "en": "My plans changed due to circumstances beyond my control.", "alt": [], "function": "travel", "note": "beyond one's control = 不可抗力。" },
+    { "id": "lv4t-011", "jp": "キャンセル料はどうなりますか？", "en": "What's the cancellation policy?", "alt": [], "function": "travel", "note": "policy = 規定。" },
+    { "id": "lv4t-012", "jp": "返金を希望します。", "en": "I'd like to request a refund.", "alt": [], "function": "travel", "note": "request a refund。" },
+    { "id": "lv4t-013", "jp": "代替案を提案してもらえますか？", "en": "Could you suggest an alternative?", "alt": [], "function": "travel", "note": "alternative = 代替案。" },
+    { "id": "lv4t-014", "jp": "対応に感謝します。", "en": "I appreciate you handling this.", "alt": [], "function": "travel", "note": "appreciate + 動名詞。" },
+    { "id": "lv4t-015", "jp": "念のため書面でいただけますか？", "en": "Could I get that in writing, just to be safe?", "alt": [], "function": "travel", "note": "in writing = 書面で。" },
+    { "id": "lv4t-016", "jp": "差し支えなければ責任者の方と話せますか？", "en": "If possible, could I speak with a manager?", "alt": [], "function": "travel", "note": "婉曲なエスカレーション。" },
+    { "id": "lv4t-017", "jp": "こちらの手違いでした、失礼しました。", "en": "That was my mistake. My apologies.", "alt": [], "function": "travel", "note": "丁寧な謝罪。" },
+    { "id": "lv4t-018", "jp": "ご配慮いただき助かりました。", "en": "Thank you for being so accommodating.", "alt": [], "function": "travel", "note": "accommodating = 融通が利く。" }
+  ]
+}

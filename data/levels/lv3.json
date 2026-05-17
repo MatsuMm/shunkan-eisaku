@@ -62,6 +62,26 @@
     { "id": "lv3-057", "jp": "優先順位をつけよう。", "en": "Let's prioritize.", "alt": [], "function": "standard", "note": "prioritize = 優先順位をつける。" },
     { "id": "lv3-058", "jp": "一旦休憩しよう。", "en": "Let's take a break for now.", "alt": [], "function": "standard", "note": "for now = 一旦。" },
     { "id": "lv3-059", "jp": "話を戻すと、", "en": "Getting back to the point,", "alt": ["Anyway, back to what I was saying,"], "function": "standard", "note": "話題を戻す。" },
-    { "id": "lv3-060", "jp": "そんな感じでいこう。", "en": "Let's go with that.", "alt": [], "function": "standard", "note": "go with = それで進める。" }
+    { "id": "lv3-060", "jp": "そんな感じでいこう。", "en": "Let's go with that.", "alt": [], "function": "standard", "note": "go with = それで進める。" },
+    { "id": "lv3-061", "jp": "それ、一理あるね。", "en": "You've got a point there.", "alt": [], "function": "standard", "note": "have a point = 一理ある。" },
+    { "id": "lv3-062", "jp": "どっちもアリだと思う。", "en": "I think both could work.", "alt": [], "function": "standard", "note": "could work = うまくいきうる。" },
+    { "id": "lv3-063", "jp": "強いて言えばこっちかな。", "en": "If I had to choose, I'd say this one.", "alt": [], "function": "standard", "note": "if I had to choose = 強いて言えば。" },
+    { "id": "lv3-064", "jp": "それは予想通りだった。", "en": "That was about what I expected.", "alt": [], "function": "standard", "note": "about what I expected = だいたい予想通り。" },
+    { "id": "lv3-065", "jp": "思ったほど悪くなかった。", "en": "It wasn't as bad as I thought.", "alt": [], "function": "standard", "note": "not as ... as I thought。" },
+    { "id": "lv3-066", "jp": "そう言われると自信なくなる。", "en": "Now I'm not so sure.", "alt": [], "function": "standard", "note": "not so sure = 自信が揺らぐ。" },
+    { "id": "lv3-067", "jp": "もう少し様子を見よう。", "en": "Let's wait and see for a bit.", "alt": [], "function": "standard", "note": "wait and see = 様子見。" },
+    { "id": "lv3-068", "jp": "そろそろ決めどきだ。", "en": "It's about time we decided.", "alt": [], "function": "standard", "note": "it's about time + 過去形。" },
+    { "id": "lv3-069", "jp": "それは後で響いてくるよ。", "en": "That'll come back to bite you.", "alt": [], "function": "standard", "note": "come back to bite = 後で痛い目。" },
+    { "id": "lv3-070", "jp": "今のうちにやっておこう。", "en": "Let's get it done while we can.", "alt": [], "function": "standard", "note": "while we can = 今のうちに。" },
+    { "id": "lv3-071", "jp": "それは想定してなかった。", "en": "I didn't see that coming.", "alt": [], "function": "standard", "note": "see it coming = 予期する。" },
+    { "id": "lv3-072", "jp": "まあ、そういうこともあるさ。", "en": "Well, these things happen.", "alt": [], "function": "standard", "note": "these things happen = よくあること。" },
+    { "id": "lv3-073", "jp": "切り替えていこう。", "en": "Let's move on.", "alt": [], "function": "standard", "note": "move on = 気持ちを切り替える。" },
+    { "id": "lv3-074", "jp": "とりあえず一段落だね。", "en": "That's one thing off the list.", "alt": [], "function": "standard", "note": "off the list = 片付いた。" },
+    { "id": "lv3-075", "jp": "それ、助かるよ。", "en": "That would really help.", "alt": [], "function": "standard", "note": "would = 仮定の感謝。" },
+    { "id": "lv3-076", "jp": "無理しないでね。", "en": "Don't push yourself too hard.", "alt": [], "function": "standard", "note": "push oneself = 無理する。" },
+    { "id": "lv3-077", "jp": "そこは任せて。", "en": "Leave that to me.", "alt": [], "function": "standard", "note": "leave it to me = 任せて。" },
+    { "id": "lv3-078", "jp": "恩に着るよ。", "en": "I owe you one.", "alt": [], "function": "standard", "note": "owe you one = 借りができた。" },
+    { "id": "lv3-079", "jp": "お互いさまだよ。", "en": "Don't mention it, we're even.", "alt": [], "function": "standard", "note": "we're even = おあいこ。" },
+    { "id": "lv3-080", "jp": "また何かあったら言って。", "en": "Let me know if you need anything else.", "alt": [], "function": "standard", "note": "if you need anything = 何かあれば。" }
   ]
 }

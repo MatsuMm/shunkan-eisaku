@@ -1,0 +1,25 @@
+{
+  "scene": "restaurant",
+  "label": "飲食店",
+  "description": "Lv5 × 飲食店: 洒落た言い回し・含みのある会話で余裕の食事。",
+  "problems": [
+    { "id": "lv5r-001", "jp": "ここは私が出すよ。", "en": "This one's on me.", "alt": ["It's my treat."], "function": "restaurant", "note": "on me = 私のおごり。" },
+    { "id": "lv5r-002", "jp": "じゃあ次回はあなたね。", "en": "You can get the next one, then.", "alt": [], "function": "restaurant", "note": "get the next one = 次は奢る。" },
+    { "id": "lv5r-003", "jp": "割り勘にしよう。", "en": "Let's just split it down the middle.", "alt": ["Let's go Dutch."], "function": "restaurant", "note": "go Dutch = 割り勘。" },
+    { "id": "lv5r-004", "jp": "目移りしちゃうな。", "en": "I'm spoiled for choice here.", "alt": [], "function": "restaurant", "note": "spoiled for choice = 選択肢が多すぎる。" },
+    { "id": "lv5r-005", "jp": "見た目ほど量はないね。", "en": "It's not as filling as it looks.", "alt": [], "function": "restaurant", "note": "filling = 腹にたまる。" },
+    { "id": "lv5r-006", "jp": "評判に違わぬ味だ。", "en": "It lives up to the hype.", "alt": [], "function": "restaurant", "note": "live up to the hype = 評判通り。" },
+    { "id": "lv5r-007", "jp": "正直、期待外れだった。", "en": "Honestly, it didn't quite live up to expectations.", "alt": [], "function": "restaurant", "note": "live up to = 期待に応える。" },
+    { "id": "lv5r-008", "jp": "値段の割にはいいね。", "en": "It's good bang for your buck.", "alt": [], "function": "restaurant", "note": "bang for your buck = 値段の割に価値がある。" },
+    { "id": "lv5r-009", "jp": "ちょっと観光地価格だね。", "en": "It's a bit of a tourist-trap price.", "alt": [], "function": "restaurant", "note": "tourist trap = 観光客価格。" },
+    { "id": "lv5r-010", "jp": "もう入らないよ、満腹だ。", "en": "I couldn't eat another bite.", "alt": [], "function": "restaurant", "note": "couldn't eat another bite = もう一口も無理。" },
+    { "id": "lv5r-011", "jp": "別腹だから。", "en": "There's always room for dessert.", "alt": [], "function": "restaurant", "note": "room for dessert = デザートは別腹。" },
+    { "id": "lv5r-012", "jp": "雰囲気だけで来た価値ある。", "en": "The ambiance alone is worth the trip.", "alt": [], "function": "restaurant", "note": "ambiance = 雰囲気。worth the trip = 来る価値あり。" },
+    { "id": "lv5r-013", "jp": "また来たくなる店だね。", "en": "This is the kind of place you'd come back to.", "alt": [], "function": "restaurant", "note": "the kind of place 関係詞。" },
+    { "id": "lv5r-014", "jp": "舌が肥えてきたな。", "en": "We're getting picky, aren't we?", "alt": [], "function": "restaurant", "note": "picky = 好みがうるさい。付加疑問。" },
+    { "id": "lv5r-015", "jp": "そろそろお開きにしようか。", "en": "Shall we call it a night?", "alt": [], "function": "restaurant", "note": "call it a night = お開き。" },
+    { "id": "lv5r-016", "jp": "気を悪くしないでほしいんだけど、", "en": "No offense, but...", "alt": [], "function": "restaurant", "note": "言いにくいことの前置き。" },
+    { "id": "lv5r-017", "jp": "ごちそうさま、また誘ってよ。", "en": "Thanks for having me. Let's do this again.", "alt": [], "function": "restaurant", "note": "thanks for having me = 招待への礼。" },
+    { "id": "lv5r-018", "jp": "今日は奮発したね。", "en": "We really splurged today.", "alt": [], "function": "restaurant", "note": "splurge = 奮発する。" }
+  ]
+}

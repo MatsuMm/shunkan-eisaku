@@ -62,6 +62,26 @@
     { "id": "lv2-057", "jp": "ちょっと聞いてもいい？", "en": "Can I ask you something?", "alt": [], "function": "daily", "note": "本題前のクッション。" },
     { "id": "lv2-058", "jp": "それどういう意味？", "en": "What do you mean by that?", "alt": [], "function": "daily", "note": "by that = それで(の意味)。" },
     { "id": "lv2-059", "jp": "もう一回言ってくれる？", "en": "Can you say that again?", "alt": [], "function": "daily", "note": "聞き返しの基本。" },
-    { "id": "lv2-060", "jp": "なるほど、わかった。", "en": "Oh, I get it now.", "alt": ["Now I understand."], "function": "daily", "note": "get it = 理解する。" }
+    { "id": "lv2-060", "jp": "なるほど、わかった。", "en": "Oh, I get it now.", "alt": ["Now I understand."], "function": "daily", "note": "get it = 理解する。" },
+    { "id": "lv2-061", "jp": "最近どう過ごしてる？", "en": "What have you been up to lately?", "alt": [], "function": "daily", "note": "be up to = 〜して過ごす。" },
+    { "id": "lv2-062", "jp": "相変わらず忙しいよ。", "en": "Same as always, pretty busy.", "alt": [], "function": "daily", "note": "same as always = 相変わらず。" },
+    { "id": "lv2-063", "jp": "新しい趣味を始めたんだ。", "en": "I picked up a new hobby.", "alt": [], "function": "daily", "note": "pick up = (趣味を)始める。" },
+    { "id": "lv2-064", "jp": "最近ジムに通ってる。", "en": "I've been going to the gym lately.", "alt": [], "function": "daily", "note": "have been -ing = 最近ずっと。" },
+    { "id": "lv2-065", "jp": "ちょっと太っちゃった。", "en": "I've gained a little weight.", "alt": [], "function": "daily", "note": "gain weight = 太る。" },
+    { "id": "lv2-066", "jp": "そろそろ何か食べようか。", "en": "Should we get something to eat?", "alt": [], "function": "daily", "note": "Should we 〜? = 〜しようか。" },
+    { "id": "lv2-067", "jp": "何が食べたい？", "en": "What do you feel like eating?", "alt": [], "function": "daily", "note": "feel like -ing = 〜したい気分。" },
+    { "id": "lv2-068", "jp": "なんでもいいよ。", "en": "Anything is fine with me.", "alt": [], "function": "daily", "note": "fine with me = 私はOK。" },
+    { "id": "lv2-069", "jp": "ここから近い？", "en": "Is it close to here?", "alt": [], "function": "daily", "note": "close to = 近い。" },
+    { "id": "lv2-070", "jp": "歩いて10分くらい。", "en": "It's about a ten-minute walk.", "alt": [], "function": "daily", "note": "a ten-minute walk = 徒歩10分。" },
+    { "id": "lv2-071", "jp": "今日は奢るよ。", "en": "It's on me today.", "alt": [], "function": "daily", "note": "on me = おごり。" },
+    { "id": "lv2-072", "jp": "悪いね、ありがとう。", "en": "You sure? Thanks a lot.", "alt": [], "function": "daily", "note": "You sure? = いいの?。" },
+    { "id": "lv2-073", "jp": "今度は私が出すね。", "en": "I'll get it next time.", "alt": [], "function": "daily", "note": "get it = 支払う。" },
+    { "id": "lv2-074", "jp": "明日って空いてる？", "en": "Are you free tomorrow?", "alt": [], "function": "daily", "note": "be free = 空いている。" },
+    { "id": "lv2-075", "jp": "午後なら大丈夫。", "en": "I'm okay in the afternoon.", "alt": [], "function": "daily", "note": "in the afternoon。" },
+    { "id": "lv2-076", "jp": "予定確認して連絡するね。", "en": "I'll check my schedule and let you know.", "alt": [], "function": "daily", "note": "let you know = 知らせる。" },
+    { "id": "lv2-077", "jp": "ドタキャンしてごめん。", "en": "Sorry for canceling last minute.", "alt": [], "function": "daily", "note": "last minute = 直前。" },
+    { "id": "lv2-078", "jp": "気にしないで、また今度。", "en": "No worries, some other time.", "alt": [], "function": "daily", "note": "some other time = また今度。" },
+    { "id": "lv2-079", "jp": "久しぶりに会えてよかった。", "en": "It was great to see you again.", "alt": [], "function": "daily", "note": "see you again = 再会。" },
+    { "id": "lv2-080", "jp": "気をつけて帰ってね。", "en": "Get home safe, okay?", "alt": [], "function": "daily", "note": "get home safe = 無事に帰る。" }
   ]
 }

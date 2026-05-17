@@ -82,6 +82,26 @@
     { "id": "lv2-077", "jp": "ドタキャンしてごめん。", "en": "Sorry for canceling last minute.", "alt": [], "function": "daily", "note": "last minute = 直前。" },
     { "id": "lv2-078", "jp": "気にしないで、また今度。", "en": "No worries, some other time.", "alt": [], "function": "daily", "note": "some other time = また今度。" },
     { "id": "lv2-079", "jp": "久しぶりに会えてよかった。", "en": "It was great to see you again.", "alt": [], "function": "daily", "note": "see you again = 再会。" },
-    { "id": "lv2-080", "jp": "気をつけて帰ってね。", "en": "Get home safe, okay?", "alt": [], "function": "daily", "note": "get home safe = 無事に帰る。" }
+    { "id": "lv2-080", "jp": "気をつけて帰ってね。", "en": "Get home safe, okay?", "alt": [], "function": "daily", "note": "get home safe = 無事に帰る。" },
+    { "id": "lv2-081", "jp": "最近どんな本読んでる？", "en": "What have you been reading lately?", "alt": [], "function": "daily", "note": "have been -ing = 最近ずっと。" },
+    { "id": "lv2-082", "jp": "あんまり読む時間がなくて。", "en": "I haven't had much time to read.", "alt": [], "function": "daily", "note": "haven't had time to 〜。" },
+    { "id": "lv2-083", "jp": "週末は何か予定ある？", "en": "Do you have anything planned for the weekend?", "alt": [], "function": "daily", "note": "have ... planned = 予定がある。" },
+    { "id": "lv2-084", "jp": "特にないけど、何か考えてる？", "en": "Nothing yet. Did you have something in mind?", "alt": [], "function": "daily", "note": "have in mind = 考えている。" },
+    { "id": "lv2-085", "jp": "天気がよければ出かけよう。", "en": "Let's go out if the weather's nice.", "alt": [], "function": "daily", "note": "if the weather's nice = 天気がよければ。" },
+    { "id": "lv2-086", "jp": "ちょっと予定が変わった。", "en": "My plans changed a little.", "alt": [], "function": "daily", "note": "plans changed。" },
+    { "id": "lv2-087", "jp": "代わりに別の日でもいい？", "en": "Can we do another day instead?", "alt": [], "function": "daily", "note": "instead = 代わりに。" },
+    { "id": "lv2-088", "jp": "全然いいよ、合わせるよ。", "en": "Sure, I'll work around your schedule.", "alt": [], "function": "daily", "note": "work around = 都合に合わせる。" },
+    { "id": "lv2-089", "jp": "それまでに準備しておくね。", "en": "I'll get ready before then.", "alt": [], "function": "daily", "note": "get ready = 準備する。" },
+    { "id": "lv2-090", "jp": "何か持っていくものある？", "en": "Should I bring anything?", "alt": [], "function": "daily", "note": "Should I 〜? = 〜しようか。" },
+    { "id": "lv2-091", "jp": "手ぶらで来て大丈夫。", "en": "You don't need to bring anything.", "alt": [], "function": "daily", "note": "don't need to = 〜しなくていい。" },
+    { "id": "lv2-092", "jp": "現地で集合でいい？", "en": "Should we just meet there?", "alt": [], "function": "daily", "note": "meet there = 現地集合。" },
+    { "id": "lv2-093", "jp": "着いたら連絡するね。", "en": "I'll text you when I get there.", "alt": [], "function": "daily", "note": "when I get there = 着いたら。" },
+    { "id": "lv2-094", "jp": "もう少しで着くから待ってて。", "en": "Almost there, hang tight.", "alt": [], "function": "daily", "note": "hang tight = ちょっと待って。" },
+    { "id": "lv2-095", "jp": "渋滞にはまっちゃった。", "en": "I got stuck in traffic.", "alt": [], "function": "daily", "note": "stuck in traffic = 渋滞にはまる。" },
+    { "id": "lv2-096", "jp": "焦らなくていいよ、待ってる。", "en": "No rush, I'll wait.", "alt": [], "function": "daily", "note": "no rush = 急がなくていい。" },
+    { "id": "lv2-097", "jp": "今日は来てくれてありがとう。", "en": "Thanks for coming out today.", "alt": [], "function": "daily", "note": "come out = 出てくる。" },
+    { "id": "lv2-098", "jp": "また近いうちに会おうよ。", "en": "Let's get together again soon.", "alt": [], "function": "daily", "note": "get together = 集まる。" },
+    { "id": "lv2-099", "jp": "連絡取り合おうね。", "en": "Let's keep in touch.", "alt": [], "function": "daily", "note": "keep in touch = 連絡を取り合う。" },
+    { "id": "lv2-100", "jp": "今日は本当に楽しかった。", "en": "I really enjoyed today.", "alt": [], "function": "daily", "note": "enjoy + 名詞。" }
   ]
 }

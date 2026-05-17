@@ -82,6 +82,26 @@
     { "id": "lv4-077", "jp": "落とし所を探りましょう。", "en": "Let's work toward a compromise.", "alt": [], "function": "advanced", "note": "work toward = 〜を目指す。" },
     { "id": "lv4-078", "jp": "それは時期尚早かと。", "en": "I'd say that's premature.", "alt": [], "function": "advanced", "note": "premature = 時期尚早。" },
     { "id": "lv4-079", "jp": "おっしゃる通りかもしれません。", "en": "You may well be right.", "alt": [], "function": "advanced", "note": "may well = 〜かもしれない(可能性高め)。" },
-    { "id": "lv4-080", "jp": "建設的なご意見に感謝します。", "en": "I appreciate your constructive input.", "alt": [], "function": "advanced", "note": "constructive input = 建設的な意見。" }
+    { "id": "lv4-080", "jp": "建設的なご意見に感謝します。", "en": "I appreciate your constructive input.", "alt": [], "function": "advanced", "note": "constructive input = 建設的な意見。" },
+    { "id": "lv4-081", "jp": "念のため確認ですが、", "en": "Just for clarification,", "alt": [], "function": "advanced", "note": "for clarification = 確認のため。" },
+    { "id": "lv4-082", "jp": "認識に齟齬がないか確認したいです。", "en": "I want to make sure there's no disconnect.", "alt": [], "function": "advanced", "note": "disconnect = 認識の食い違い。" },
+    { "id": "lv4-083", "jp": "誤解を解いておきたいのですが、", "en": "I'd like to clear up a misunderstanding.", "alt": [], "function": "advanced", "note": "clear up = 解消する。" },
+    { "id": "lv4-084", "jp": "私の見立てでは、", "en": "From where I stand,", "alt": [], "function": "advanced", "note": "from where I stand = 私の見方では。" },
+    { "id": "lv4-085", "jp": "可能性としては考えられます。", "en": "It's certainly within the realm of possibility.", "alt": [], "function": "advanced", "note": "realm of possibility = 可能性の範囲。" },
+    { "id": "lv4-086", "jp": "それは慎重に扱うべき問題です。", "en": "That's a sensitive issue we should handle carefully.", "alt": [], "function": "advanced", "note": "sensitive issue = デリケートな問題。" },
+    { "id": "lv4-087", "jp": "両者の利害が一致しません。", "en": "Our interests aren't quite aligned.", "alt": [], "function": "advanced", "note": "interests aligned = 利害一致。" },
+    { "id": "lv4-088", "jp": "落としどころを模索しましょう。", "en": "Let's explore a workable compromise.", "alt": [], "function": "advanced", "note": "workable = 実現可能な。" },
+    { "id": "lv4-089", "jp": "そこは一旦持ち帰らせてください。", "en": "Let me take that back and revisit it.", "alt": [], "function": "advanced", "note": "revisit = 再検討する。" },
+    { "id": "lv4-090", "jp": "決定は急がないほうが賢明です。", "en": "It would be wise not to rush the decision.", "alt": [], "function": "advanced", "note": "it would be wise to 〜。" },
+    { "id": "lv4-091", "jp": "前提条件を整理しましょう。", "en": "Let's lay out the assumptions first.", "alt": [], "function": "advanced", "note": "lay out = 整理して示す。" },
+    { "id": "lv4-092", "jp": "因果関係が不明確です。", "en": "The cause and effect isn't clear.", "alt": [], "function": "advanced", "note": "cause and effect = 因果関係。" },
+    { "id": "lv4-093", "jp": "それは相関であって因果ではない。", "en": "That's correlation, not causation.", "alt": [], "function": "advanced", "note": "correlation/causation = 相関/因果。" },
+    { "id": "lv4-094", "jp": "数字の裏付けが欲しいです。", "en": "I'd like some numbers to back that up.", "alt": [], "function": "advanced", "note": "back up = 裏付ける。" },
+    { "id": "lv4-095", "jp": "実現可能性を精査すべきです。", "en": "We need to scrutinize the feasibility.", "alt": [], "function": "advanced", "note": "scrutinize = 精査する。" },
+    { "id": "lv4-096", "jp": "リスクとリターンを天秤にかけよう。", "en": "Let's weigh the risks against the rewards.", "alt": [], "function": "advanced", "note": "weigh A against B = 天秤にかける。" },
+    { "id": "lv4-097", "jp": "それは費用対効果が低い。", "en": "That's not very cost-effective.", "alt": [], "function": "advanced", "note": "cost-effective = 費用対効果が高い。" },
+    { "id": "lv4-098", "jp": "段階的に進めるべきです。", "en": "We should take a phased approach.", "alt": [], "function": "advanced", "note": "phased approach = 段階的アプローチ。" },
+    { "id": "lv4-099", "jp": "撤退ラインを決めておきましょう。", "en": "Let's set a point of no return in advance.", "alt": [], "function": "advanced", "note": "point of no return = 撤退限界点。" },
+    { "id": "lv4-100", "jp": "総合的に判断しましょう。", "en": "Let's make a call based on the whole picture.", "alt": [], "function": "advanced", "note": "the whole picture = 全体像。" }
   ]
 }

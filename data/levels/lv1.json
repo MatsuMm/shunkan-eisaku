@@ -82,6 +82,26 @@
     { "id": "lv1-077", "jp": "ここは寒いです。", "en": "It's cold here.", "alt": [], "function": "basic", "note": "場所 + 状態。" },
     { "id": "lv1-078", "jp": "もう帰りましょう。", "en": "Let's go home now.", "alt": [], "function": "basic", "note": "Let's + 原形。" },
     { "id": "lv1-079", "jp": "楽しかったですか？", "en": "Did you have fun?", "alt": [], "function": "basic", "note": "Did you 〜? の過去疑問。" },
-    { "id": "lv1-080", "jp": "とても楽しかったです。", "en": "Yes, it was a lot of fun.", "alt": [], "function": "basic", "note": "a lot of fun = すごく楽しい。" }
+    { "id": "lv1-080", "jp": "とても楽しかったです。", "en": "Yes, it was a lot of fun.", "alt": [], "function": "basic", "note": "a lot of fun = すごく楽しい。" },
+    { "id": "lv1-081", "jp": "何の仕事をしてますか？", "en": "What do you do?", "alt": ["What's your job?"], "function": "basic", "note": "What do you do? = 職業を聞く定番。" },
+    { "id": "lv1-082", "jp": "会社員です。", "en": "I work for a company.", "alt": ["I'm an office worker."], "function": "basic", "note": "work for = 〜に勤める。" },
+    { "id": "lv1-083", "jp": "どこで働いてますか？", "en": "Where do you work?", "alt": [], "function": "basic", "note": "場所を聞く。" },
+    { "id": "lv1-084", "jp": "電車で通勤しています。", "en": "I go to work by train.", "alt": [], "function": "basic", "note": "by train = 電車で。" },
+    { "id": "lv1-085", "jp": "どのくらいかかりますか？", "en": "How long does it take?", "alt": [], "function": "basic", "note": "所要時間を聞く。" },
+    { "id": "lv1-086", "jp": "1時間くらいです。", "en": "About an hour.", "alt": [], "function": "basic", "note": "about = およそ。" },
+    { "id": "lv1-087", "jp": "今日は忙しいですか？", "en": "Are you busy today?", "alt": [], "function": "basic", "note": "be busy。" },
+    { "id": "lv1-088", "jp": "少し時間がありますか？", "en": "Do you have some time?", "alt": [], "function": "basic", "note": "some time = 少し時間。" },
+    { "id": "lv1-089", "jp": "それは何時ですか？", "en": "What time is it at?", "alt": [], "function": "basic", "note": "イベントの時刻。" },
+    { "id": "lv1-090", "jp": "どこで会いますか？", "en": "Where should we meet?", "alt": [], "function": "basic", "note": "should we = 〜しようか。" },
+    { "id": "lv1-091", "jp": "ここで待っています。", "en": "I'll wait here.", "alt": [], "function": "basic", "note": "wait here。" },
+    { "id": "lv1-092", "jp": "遅れてごめんなさい。", "en": "Sorry I'm late.", "alt": [], "function": "basic", "note": "遅刻の謝罪。" },
+    { "id": "lv1-093", "jp": "大丈夫、気にしないで。", "en": "It's okay, don't worry.", "alt": [], "function": "basic", "note": "謝罪への返し。" },
+    { "id": "lv1-094", "jp": "何か飲みますか？", "en": "Would you like something to drink?", "alt": [], "function": "basic", "note": "Would you like 〜? = 丁寧な勧め。" },
+    { "id": "lv1-095", "jp": "水でいいです。", "en": "Water is fine.", "alt": [], "function": "basic", "note": "X is fine = Xでいい。" },
+    { "id": "lv1-096", "jp": "手伝ってくれてありがとう。", "en": "Thanks for helping me.", "alt": [], "function": "basic", "note": "Thanks for + 動名詞。" },
+    { "id": "lv1-097", "jp": "どういたしまして、いつでもどうぞ。", "en": "You're welcome, anytime.", "alt": [], "function": "basic", "note": "anytime = いつでも。" },
+    { "id": "lv1-098", "jp": "今日は来てくれてありがとう。", "en": "Thanks for coming today.", "alt": [], "function": "basic", "note": "Thanks for coming。" },
+    { "id": "lv1-099", "jp": "気をつけてね、また会いましょう。", "en": "Take care, see you again.", "alt": [], "function": "basic", "note": "別れの定番。" },
+    { "id": "lv1-100", "jp": "今日はありがとう、楽しかった。", "en": "Thank you for today. I had a great time.", "alt": [], "function": "basic", "note": "had a great time = 楽しかった。" }
   ]
 }

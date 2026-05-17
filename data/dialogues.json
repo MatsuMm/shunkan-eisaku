@@ -672,6 +672,234 @@
           "jp": "それすごく嬉しい。分かってくれてありがとう。"
         }
       ]
+    },
+    {
+      "id": "dlg-18",
+      "scene": "work",
+      "level": 2,
+      "title": "電話を受ける (基本)",
+      "turns": [
+        {
+          "sp": "A",
+          "en": "Hello, this is Mark from sales.",
+          "jp": "もしもし、営業のマークです。"
+        },
+        {
+          "sp": "YOU",
+          "en": "Hi Mark, what can I do for you?",
+          "jp": "こんにちはマーク、どうされましたか？"
+        },
+        {
+          "sp": "A",
+          "en": "Is the report ready yet?",
+          "jp": "レポートはもうできていますか？"
+        },
+        {
+          "sp": "YOU",
+          "en": "Almost. I'll send it by the end of the day.",
+          "jp": "もうすぐです。今日中に送ります。"
+        },
+        {
+          "sp": "A",
+          "en": "Great. Thanks for the update.",
+          "jp": "了解、教えてくれてありがとう。"
+        },
+        {
+          "sp": "YOU",
+          "en": "No problem. Talk to you later.",
+          "jp": "とんでもない。ではまた後で。"
+        }
+      ]
+    },
+    {
+      "id": "dlg-19",
+      "scene": "travel",
+      "level": 2,
+      "title": "コンビニで買い物",
+      "turns": [
+        {
+          "sp": "YOU",
+          "en": "Excuse me, do you have batteries?",
+          "jp": "すみません、電池はありますか？"
+        },
+        {
+          "sp": "A",
+          "en": "Yes, they're on aisle three.",
+          "jp": "はい、3番の通路にあります。"
+        },
+        {
+          "sp": "YOU",
+          "en": "Thanks. Can I pay by card?",
+          "jp": "ありがとう。カードで払えますか？"
+        },
+        {
+          "sp": "A",
+          "en": "Sure. Tap or insert here.",
+          "jp": "もちろん。ここにタッチか差し込みを。"
+        },
+        {
+          "sp": "YOU",
+          "en": "Could I get a receipt?",
+          "jp": "レシートをもらえますか？"
+        },
+        {
+          "sp": "A",
+          "en": "Here you go. Have a nice day.",
+          "jp": "どうぞ。良い一日を。"
+        }
+      ]
+    },
+    {
+      "id": "dlg-20",
+      "scene": "work",
+      "level": 4,
+      "title": "フィードバック面談",
+      "turns": [
+        {
+          "sp": "A",
+          "en": "Overall your work is solid, but there's room to grow.",
+          "jp": "全体的に堅実だが、伸びしろもある。"
+        },
+        {
+          "sp": "YOU",
+          "en": "I appreciate the honest feedback. Where specifically?",
+          "jp": "率直なご意見に感謝します。具体的にはどこですか？"
+        },
+        {
+          "sp": "A",
+          "en": "Your communication could be more proactive.",
+          "jp": "コミュニケーションをもっと能動的にできる。"
+        },
+        {
+          "sp": "YOU",
+          "en": "That's a fair point. I'll work on flagging issues earlier.",
+          "jp": "もっともです。問題を早めに共有するよう努めます。"
+        },
+        {
+          "sp": "A",
+          "en": "That's exactly what I'm looking for.",
+          "jp": "まさにそれを求めている。"
+        },
+        {
+          "sp": "YOU",
+          "en": "Thank you. I'll take this on board.",
+          "jp": "ありがとうございます。肝に銘じます。"
+        }
+      ]
+    },
+    {
+      "id": "dlg-21",
+      "scene": "trouble",
+      "level": 4,
+      "title": "納期遅延の説明",
+      "turns": [
+        {
+          "sp": "A",
+          "en": "We were expecting this last week. What happened?",
+          "jp": "先週には来る予定でした。何があったんですか？"
+        },
+        {
+          "sp": "YOU",
+          "en": "I sincerely apologize. We hit an unexpected snag.",
+          "jp": "誠に申し訳ありません。予期せぬ問題が発生しました。"
+        },
+        {
+          "sp": "A",
+          "en": "That's not very reassuring.",
+          "jp": "それでは安心できませんね。"
+        },
+        {
+          "sp": "YOU",
+          "en": "Understood. Here's our concrete recovery plan.",
+          "jp": "承知しています。具体的な挽回策をお示しします。"
+        },
+        {
+          "sp": "A",
+          "en": "Alright, let's hear it.",
+          "jp": "わかりました、聞かせてください。"
+        },
+        {
+          "sp": "YOU",
+          "en": "We'll deliver in three days and add a safeguard.",
+          "jp": "3日で納品し、再発防止策も加えます。"
+        }
+      ]
+    },
+    {
+      "id": "dlg-22",
+      "scene": "daily",
+      "level": 5,
+      "title": "微妙な相談",
+      "turns": [
+        {
+          "sp": "A",
+          "en": "Can I run something by you? It's a bit delicate.",
+          "jp": "ちょっと相談していい？少しデリケートなんだ。"
+        },
+        {
+          "sp": "YOU",
+          "en": "Of course. This stays between us.",
+          "jp": "もちろん。ここだけの話にするよ。"
+        },
+        {
+          "sp": "A",
+          "en": "I'm thinking of leaving, but I don't want to burn bridges.",
+          "jp": "辞めようかと思ってる、でも角は立てたくない。"
+        },
+        {
+          "sp": "YOU",
+          "en": "Smart. Leave on good terms and keep your options open.",
+          "jp": "賢明だ。円満に去って選択肢は残しておけ。"
+        },
+        {
+          "sp": "A",
+          "en": "Yeah, I don't want to jump the gun.",
+          "jp": "うん、早まりたくはない。"
+        },
+        {
+          "sp": "YOU",
+          "en": "Sleep on it. No need to decide overnight.",
+          "jp": "一晩寝かせなよ。すぐ決める必要はない。"
+        }
+      ]
+    },
+    {
+      "id": "dlg-23",
+      "scene": "emotion",
+      "level": 5,
+      "title": "励ましと本音",
+      "turns": [
+        {
+          "sp": "A",
+          "en": "Honestly, I'm starting to doubt myself.",
+          "jp": "正直、自信がなくなってきた。"
+        },
+        {
+          "sp": "YOU",
+          "en": "Don't sell yourself short. You've come a long way.",
+          "jp": "自分を過小評価するな。よくここまで来た。"
+        },
+        {
+          "sp": "A",
+          "en": "It just feels like I'm spinning my wheels.",
+          "jp": "ただ空回りしてる気がして。"
+        },
+        {
+          "sp": "YOU",
+          "en": "Everyone hits a rough patch. It'll pass.",
+          "jp": "誰にでも停滞期はある。いつか抜ける。"
+        },
+        {
+          "sp": "A",
+          "en": "Thanks. I needed to hear that.",
+          "jp": "ありがとう。その言葉が必要だった。"
+        },
+        {
+          "sp": "YOU",
+          "en": "Anytime. I've got your back.",
+          "jp": "いつでも。味方だからな。"
+        }
+      ]
     }
   ]
 }

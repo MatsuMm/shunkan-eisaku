@@ -273,6 +273,74 @@
         "The location"
       ],
       "answer": 0
+    },
+    {
+      "id": "rd-17",
+      "kind": "email",
+      "level": 2,
+      "scene": "work",
+      "title": "短い業務連絡 (基本)",
+      "en": "Hi all, the printer on the second floor is broken. Please use the one on the first floor for now. It will be fixed by Friday. Thanks.",
+      "jp": "皆さんへ、2階のプリンターが故障しています。当面1階のものを使ってください。金曜までに直ります。よろしく。",
+      "q": "Which printer should people use now?",
+      "choices": [
+        "The first floor one",
+        "The second floor one",
+        "None",
+        "A new one"
+      ],
+      "answer": 0
+    },
+    {
+      "id": "rd-18",
+      "kind": "notice",
+      "level": 2,
+      "scene": "travel",
+      "title": "バスの案内 (基本)",
+      "en": "The airport bus leaves every thirty minutes from gate B. The next bus is at 10:15. The ride takes about forty minutes.",
+      "jp": "空港バスはBゲートから30分ごとに出ます。次は10:15です。乗車は約40分です。",
+      "q": "How often does the bus leave?",
+      "choices": [
+        "Every 30 minutes",
+        "Every 15 minutes",
+        "Every 40 minutes",
+        "Once a day"
+      ],
+      "answer": 0
+    },
+    {
+      "id": "rd-19",
+      "kind": "article",
+      "level": 4,
+      "scene": "general",
+      "title": "コラム: 決断疲れ",
+      "en": "Every choice we make, however small, draws from a finite well of mental energy. By evening, the quality of our decisions quietly degrades, not because the problems get harder, but because the decider gets tired. This is why many high performers automate trivial choices, reserving their sharpest judgment for what truly matters.",
+      "jp": "どんな小さな選択も、有限の精神エネルギーの井戸から汲み上げる。夕方には判断の質が静かに低下する。問題が難しくなるからではなく、決める側が疲れるからだ。だから多くの成功者は些細な選択を自動化し、最も重要なことに最も鋭い判断を残す。",
+      "q": "Why do decisions get worse by evening?",
+      "choices": [
+        "The decider gets tired",
+        "Problems get harder",
+        "There are more people",
+        "It gets dark"
+      ],
+      "answer": 0
+    },
+    {
+      "id": "rd-20",
+      "kind": "email",
+      "level": 5,
+      "scene": "work",
+      "title": "含みのある社内メール",
+      "en": "Hi team, I won't sugarcoat it: the numbers fell short again this quarter. That said, this isn't about pointing fingers. What I need from each of you is an honest look at what's within our control and a willingness to change course where it counts. Let's regroup Monday with ideas, not excuses.",
+      "jp": "チームへ、率直に言う。今四半期も数字は届かなかった。とはいえ、これは犯人探しではない。各自に求めるのは、自分たちの制御下にあるものを正直に見つめ、肝心なところで方針を変える意志だ。月曜は言い訳ではなくアイデアを持って集まろう。",
+      "q": "What does the sender want on Monday?",
+      "choices": [
+        "Ideas, not excuses",
+        "A list of people to blame",
+        "Resignations",
+        "Nothing"
+      ],
+      "answer": 0
     }
   ]
 }

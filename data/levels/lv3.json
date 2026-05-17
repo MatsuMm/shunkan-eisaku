@@ -82,6 +82,26 @@
     { "id": "lv3-077", "jp": "そこは任せて。", "en": "Leave that to me.", "alt": [], "function": "standard", "note": "leave it to me = 任せて。" },
     { "id": "lv3-078", "jp": "恩に着るよ。", "en": "I owe you one.", "alt": [], "function": "standard", "note": "owe you one = 借りができた。" },
     { "id": "lv3-079", "jp": "お互いさまだよ。", "en": "Don't mention it, we're even.", "alt": [], "function": "standard", "note": "we're even = おあいこ。" },
-    { "id": "lv3-080", "jp": "また何かあったら言って。", "en": "Let me know if you need anything else.", "alt": [], "function": "standard", "note": "if you need anything = 何かあれば。" }
+    { "id": "lv3-080", "jp": "また何かあったら言って。", "en": "Let me know if you need anything else.", "alt": [], "function": "standard", "note": "if you need anything = 何かあれば。" },
+    { "id": "lv3-081", "jp": "それ、考えとくよ。", "en": "I'll think it over.", "alt": [], "function": "standard", "note": "think over = よく考える。" },
+    { "id": "lv3-082", "jp": "今のところ何とも言えない。", "en": "I can't say for sure yet.", "alt": [], "function": "standard", "note": "for sure = 確かに。" },
+    { "id": "lv3-083", "jp": "もう少し情報が必要だ。", "en": "I need a bit more to go on.", "alt": [], "function": "standard", "note": "to go on = 判断材料。" },
+    { "id": "lv3-084", "jp": "それなら話は別だ。", "en": "That changes things.", "alt": [], "function": "standard", "note": "changes things = 状況が変わる。" },
+    { "id": "lv3-085", "jp": "見方を変えればいける。", "en": "If you look at it differently, it works.", "alt": [], "function": "standard", "note": "look at it differently = 見方を変える。" },
+    { "id": "lv3-086", "jp": "そこは妥協できる。", "en": "I can live with that.", "alt": [], "function": "standard", "note": "live with = 受け入れられる。" },
+    { "id": "lv3-087", "jp": "それは譲れないな。", "en": "That's a deal-breaker for me.", "alt": [], "function": "standard", "note": "deal-breaker = 決定的な障害。" },
+    { "id": "lv3-088", "jp": "落ち着いて考えよう。", "en": "Let's take a step back.", "alt": [], "function": "standard", "note": "take a step back = 一歩引いて考える。" },
+    { "id": "lv3-089", "jp": "それは言い過ぎかも。", "en": "That might be going too far.", "alt": [], "function": "standard", "note": "go too far = 行き過ぎ。" },
+    { "id": "lv3-090", "jp": "まあ、そんなところだね。", "en": "Yeah, something like that.", "alt": [], "function": "standard", "note": "something like that = そんな感じ。" },
+    { "id": "lv3-091", "jp": "結局それが一番だね。", "en": "That's probably the best bet.", "alt": [], "function": "standard", "note": "best bet = 一番の選択。" },
+    { "id": "lv3-092", "jp": "それで手を打とう。", "en": "Let's settle for that.", "alt": [], "function": "standard", "note": "settle for = 妥協して決める。" },
+    { "id": "lv3-093", "jp": "今は深く考えないでおこう。", "en": "Let's not overthink it for now.", "alt": [], "function": "standard", "note": "overthink = 考えすぎる。" },
+    { "id": "lv3-094", "jp": "やってみてから考えよう。", "en": "Let's try it first and see.", "alt": [], "function": "standard", "note": "try first = まずやってみる。" },
+    { "id": "lv3-095", "jp": "それは予想がつかない。", "en": "That's hard to predict.", "alt": [], "function": "standard", "note": "hard to predict = 読めない。" },
+    { "id": "lv3-096", "jp": "どっちに転んでも大丈夫。", "en": "We'll be fine either way.", "alt": [], "function": "standard", "note": "either way = どっちでも。" },
+    { "id": "lv3-097", "jp": "それなりにうまくいった。", "en": "It went reasonably well.", "alt": [], "function": "standard", "note": "reasonably = まあまあ。" },
+    { "id": "lv3-098", "jp": "課題はまだ残ってる。", "en": "There's still room for improvement.", "alt": [], "function": "standard", "note": "room for improvement = 改善の余地。" },
+    { "id": "lv3-099", "jp": "次に活かそう。", "en": "Let's learn from it.", "alt": [], "function": "standard", "note": "learn from = 〜から学ぶ。" },
+    { "id": "lv3-100", "jp": "今日はよくやったね。", "en": "We did a good job today.", "alt": [], "function": "standard", "note": "do a good job = よくやる。" }
   ]
 }

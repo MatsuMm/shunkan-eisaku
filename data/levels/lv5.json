@@ -82,6 +82,26 @@
     { "id": "lv5-077", "jp": "それは結果論にすぎない。", "en": "That's just hindsight talking.", "alt": [], "function": "nuance", "note": "hindsight = 後知恵。" },
     { "id": "lv5-078", "jp": "一筋縄ではいかないね。", "en": "This is easier said than done.", "alt": [], "function": "nuance", "note": "easier said than done = 言うは易し。" },
     { "id": "lv5-079", "jp": "肩の荷が下りた。", "en": "That's a weight off my shoulders.", "alt": [], "function": "nuance", "note": "weight off shoulders = 肩の荷。" },
-    { "id": "lv5-080", "jp": "終わりよければすべてよし。", "en": "All's well that ends well.", "alt": [], "function": "nuance", "note": "ことわざの定型。" }
+    { "id": "lv5-080", "jp": "終わりよければすべてよし。", "en": "All's well that ends well.", "alt": [], "function": "nuance", "note": "ことわざの定型。" },
+    { "id": "lv5-081", "jp": "それは余計なお世話だ。", "en": "That's none of your business.", "alt": ["Mind your own business."], "function": "nuance", "note": "none of your business = 大きなお世話。" },
+    { "id": "lv5-082", "jp": "口を挟むつもりはないけど、", "en": "Not to step on any toes, but...", "alt": [], "function": "nuance", "note": "step on toes = 領分を侵す。" },
+    { "id": "lv5-083", "jp": "それは話を蒸し返すだけだ。", "en": "That's just rehashing old arguments.", "alt": [], "function": "nuance", "note": "rehash = 蒸し返す。" },
+    { "id": "lv5-084", "jp": "彼の言うことは話半分でいい。", "en": "Take what he says with a pinch of salt.", "alt": [], "function": "nuance", "note": "pinch of salt = 鵜呑みにしない。" },
+    { "id": "lv5-085", "jp": "それは取り越し苦労だよ。", "en": "You're worrying over nothing.", "alt": [], "function": "nuance", "note": "worry over nothing = 杞憂。" },
+    { "id": "lv5-086", "jp": "今さら何を言っても遅い。", "en": "That horse has already bolted.", "alt": [], "function": "nuance", "note": "イディオム=後の祭り。" },
+    { "id": "lv5-087", "jp": "彼は計算高い。", "en": "He always has an angle.", "alt": [], "function": "nuance", "note": "have an angle = 下心がある。" },
+    { "id": "lv5-088", "jp": "それは見せかけだけだ。", "en": "It's all smoke and mirrors.", "alt": [], "function": "nuance", "note": "smoke and mirrors = まやかし。" },
+    { "id": "lv5-089", "jp": "本音と建前があるからね。", "en": "There's what people say and what they really mean.", "alt": [], "function": "nuance", "note": "say vs really mean = 建前と本音。" },
+    { "id": "lv5-090", "jp": "それは大げさに言いすぎ。", "en": "You're blowing it out of proportion.", "alt": [], "function": "nuance", "note": "blow out of proportion = 誇張する。" },
+    { "id": "lv5-091", "jp": "それは時間稼ぎだろ。", "en": "You're just stalling.", "alt": [], "function": "nuance", "note": "stall = 引き延ばす。" },
+    { "id": "lv5-092", "jp": "彼は調子のいいことばかり言う。", "en": "He tells people what they want to hear.", "alt": [], "function": "nuance", "note": "what they want to hear = 耳ざわりのいいこと。" },
+    { "id": "lv5-093", "jp": "それは身から出た錆だ。", "en": "He made his own bed.", "alt": [], "function": "nuance", "note": "make one's own bed = 自業自得。" },
+    { "id": "lv5-094", "jp": "それは綱渡りだったね。", "en": "That was touch and go.", "alt": [], "function": "nuance", "note": "touch and go = 危うい状況。" },
+    { "id": "lv5-095", "jp": "ここが踏ん張りどころだ。", "en": "This is do or die.", "alt": [], "function": "nuance", "note": "do or die = 正念場。" },
+    { "id": "lv5-096", "jp": "それは決め手に欠ける。", "en": "It's not exactly a slam dunk.", "alt": [], "function": "nuance", "note": "slam dunk = 確実なもの。" },
+    { "id": "lv5-097", "jp": "肩透かしを食らった気分だ。", "en": "That was a bit anticlimactic.", "alt": [], "function": "nuance", "note": "anticlimactic = 拍子抜け。" },
+    { "id": "lv5-098", "jp": "それは想定の範囲内だ。", "en": "That's par for the course.", "alt": [], "function": "nuance", "note": "par for the course = 想定内・よくあること。" },
+    { "id": "lv5-099", "jp": "深追いは禁物だ。", "en": "Quit while you're ahead.", "alt": [], "function": "nuance", "note": "quit while ahead = 引き際が肝心。" },
+    { "id": "lv5-100", "jp": "備えあれば憂いなし。", "en": "Better safe than sorry.", "alt": [], "function": "nuance", "note": "ことわざの定型。" }
   ]
 }

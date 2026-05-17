@@ -38,7 +38,9 @@ CONCURRENCY = 1
 def collect_problems() -> list[dict]:
     out = []
     idx = json.loads((DATA_DIR / "index.json").read_text(encoding="utf-8"))
-    for s in idx["scenes"]:
+    # 新フォーマット (sources) と旧フォーマット (scenes) 両対応
+    entries = idx.get("sources") or idx.get("scenes") or []
+    for s in entries:
         path = DATA_DIR / s["file"]
         d = json.loads(path.read_text(encoding="utf-8"))
         for p in d["problems"]:

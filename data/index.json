@@ -1,16 +1,33 @@
 {
-  "scenes": [
-    { "id": "lv1",        "label": "Lv1 基礎",        "file": "levels/lv1.json" },
-    { "id": "lv2",        "label": "Lv2 日常基本",    "file": "levels/lv2.json" },
-    { "id": "lv3",        "label": "Lv3 会話標準",    "file": "levels/lv3.json" },
-    { "id": "lv4",        "label": "Lv4 中上級",      "file": "levels/lv4.json" },
-    { "id": "lv5",        "label": "Lv5 上級ニュアンス", "file": "levels/lv5.json" },
-    { "id": "daily",      "label": "日常会話",   "file": "scenes/daily.json" },
-    { "id": "work",       "label": "仕事",       "file": "scenes/work.json" },
-    { "id": "travel",     "label": "旅行",       "file": "scenes/travel.json" },
-    { "id": "restaurant", "label": "飲食店",     "file": "scenes/restaurant.json" },
-    { "id": "trouble",    "label": "謝罪・確認", "file": "scenes/trouble.json" },
-    { "id": "emotion",    "label": "感情・反応", "file": "scenes/emotion.json" },
-    { "id": "reduction",  "label": "リダクション特訓", "file": "scenes/reduction.json" }
+  "levels": [
+    { "id": 1, "label": "Lv1 基礎", "cefr": "A1",
+      "goal": "単語を並べて最低限の意思疎通ができる",
+      "criteria": "30問を日本語を見て3秒以内に口から出せる" },
+    { "id": 2, "label": "Lv2 日常基本", "cefr": "A2",
+      "goal": "日常の出来事を自分の言葉で説明できる",
+      "criteria": "過去・進行・未来を混ぜて自分の1日を話せる" },
+    { "id": 3, "label": "Lv3 会話標準", "cefr": "B1",
+      "goal": "普通の雑談が双方向で続く（実用の最低ライン）",
+      "criteria": "会話モードの台本を日本語ヒントだけで詰まらず返せる" },
+    { "id": 4, "label": "Lv4 中上級", "cefr": "B2",
+      "goal": "ニュアンスと丁寧さを操り、込み入った話ができる",
+      "criteria": "読解モードで和訳を見ず内容理解クイズ8割" },
+    { "id": 5, "label": "Lv5 上級ニュアンス", "cefr": "B2+〜C1",
+      "goal": "ネイティブの言い回し・含意を理解し使える",
+      "criteria": "リダクション特訓を聞き取れ、Lv5を見ずに言える" }
+  ],
+  "sources": [
+    { "file": "levels/lv1.json", "level": 1, "scene": "general", "sceneLabel": "全般" },
+    { "file": "levels/lv2.json", "level": 2, "scene": "general", "sceneLabel": "全般" },
+    { "file": "levels/lv3.json", "level": 3, "scene": "general", "sceneLabel": "全般" },
+    { "file": "levels/lv4.json", "level": 4, "scene": "general", "sceneLabel": "全般" },
+    { "file": "levels/lv5.json", "level": 5, "scene": "general", "sceneLabel": "全般" },
+    { "file": "scenes/daily.json", "level": 3, "scene": "daily", "sceneLabel": "日常会話" },
+    { "file": "scenes/work.json", "level": 3, "scene": "work", "sceneLabel": "仕事" },
+    { "file": "scenes/travel.json", "level": 3, "scene": "travel", "sceneLabel": "旅行" },
+    { "file": "scenes/restaurant.json", "level": 3, "scene": "restaurant", "sceneLabel": "飲食店" },
+    { "file": "scenes/trouble.json", "level": 3, "scene": "trouble", "sceneLabel": "謝罪・確認" },
+    { "file": "scenes/emotion.json", "level": 3, "scene": "emotion", "sceneLabel": "感情・反応" },
+    { "file": "scenes/reduction.json", "level": 5, "scene": "reduction", "sceneLabel": "リダクション特訓" }
   ]
 }

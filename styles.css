@@ -82,6 +82,36 @@ main {
   flex-direction: column;
 }
 
+.level-banner {
+  background: linear-gradient(135deg, rgba(74,158,255,0.12), rgba(74,158,255,0.04));
+  border: 1px solid var(--accent);
+  border-radius: 12px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+}
+.level-banner:empty { display: none; }
+.level-banner .lb-head {
+  font-size: 16px; font-weight: 700; margin-bottom: 6px;
+}
+.level-banner .lb-cefr {
+  font-size: 11px; color: var(--text-dim);
+  border: 1px solid var(--border); border-radius: 8px;
+  padding: 1px 6px; margin-left: 6px; vertical-align: middle;
+}
+.level-banner .lb-goal { font-size: 14px; margin-bottom: 3px; }
+.level-banner .lb-crit { font-size: 12px; color: var(--text-dim); margin-bottom: 10px; }
+.level-banner .lb-bar {
+  height: 8px; background: var(--surface-2);
+  border-radius: 4px; overflow: hidden;
+}
+.level-banner .lb-fill {
+  height: 100%; background: var(--accent);
+  transition: width 0.4s ease;
+}
+.level-banner .lb-pct {
+  font-size: 12px; color: var(--text-dim); margin-top: 5px; text-align: right;
+}
+
 .mode-tabs {
   display: flex;
   background: var(--surface-2);
@@ -89,6 +119,7 @@ main {
   padding: 4px;
   margin-bottom: 16px;
   gap: 4px;
+  overflow-x: auto;
 }
 
 .mode-tab {

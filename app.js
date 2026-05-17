@@ -18,6 +18,7 @@ let state = null;            // { byId: {...}, sessionRetry: [] }
 let settings = {
   geminiTts: false,
   rate: 0.95,
+  levelFilter: 1,
   sceneFilter: 'all',
   mode: 'study',
   reviewGap: 2.5,
@@ -48,7 +49,9 @@ async function init() {
   bindUI();
   await loadAllProblems();
   loadOrCreateState();
+  renderLevelSelector();
   renderSceneSelector();
+  renderLevelBanner();
   buildSessionQueue();
   nextProblem();
   applyMode();
@@ -96,25 +99,48 @@ function saveState() {
 // ====================================================================
 // Problem loading
 // ====================================================================
+let levelsMeta = [];   // [{id,label,cefr,goal,criteria}]
+
 async function loadAllProblems() {
-  const idxRes = await fetch('data/index.json');
-  const idx = await idxRes.json();
-  scenes = idx.scenes;
+  const idx = await (await fetch('data/index.json')).json();
+  levelsMeta = idx.levels;
   allProblems = [];
-  for (const s of scenes) {
-    const r = await fetch('data/' + s.file);
-    const data = await r.json();
+  for (const src of idx.sources) {
+    const data = await (await fetch('data/' + src.file)).json();
     for (const p of data.problems) {
-      p.scene = s.id;
-      p.sceneLabel = s.label;
+      p.level = src.level;
+      p.scene = src.scene;
+      p.sceneLabel = src.sceneLabel;
       allProblems.push(p);
     }
   }
 }
 
+function currentLevel() {
+  return settings.levelFilter || 1;
+}
+
+function levelMeta(lv) {
+  return levelsMeta.find(m => m.id === lv) || { label: 'Lv' + lv, goal: '', criteria: '', cefr: '' };
+}
+
+// 現レベル内に存在するシーン一覧
+function scenesForLevel(lv) {
+  const seen = new Map();
+  for (const p of allProblems) {
+    if (p.level === lv && !seen.has(p.scene)) seen.set(p.scene, p.sceneLabel);
+  }
+  return [...seen.entries()].map(([id, label]) => ({ id, label }));
+}
+
+// レベル + シーンで絞ったプール
 function problemsForCurrentScene() {
-  if (settings.sceneFilter === 'all') return allProblems;
-  return allProblems.filter(p => p.scene === settings.sceneFilter);
+  const lv = currentLevel();
+  let pool = allProblems.filter(p => p.level === lv);
+  if (settings.sceneFilter && settings.sceneFilter !== 'all') {
+    pool = pool.filter(p => p.scene === settings.sceneFilter);
+  }
+  return pool;
 }
 
 // ====================================================================
@@ -180,6 +206,7 @@ function updateProgress() {
   document.getElementById('progress').textContent = `${learned} / ${total}`;
   const remaining = (state.currentQueue?.length || 0) + (state.sessionRetry?.length || 0);
   document.getElementById('due-count').textContent = `本日残: ${remaining}`;
+  renderLevelBanner();
 }
 
 function showEmpty() {
@@ -418,10 +445,46 @@ function renderShadowResult(heard, correct) {
 // ====================================================================
 // Scene selector
 // ====================================================================
+function renderLevelSelector() {
+  const sel = document.getElementById('level-select');
+  if (!sel) return;
+  sel.innerHTML = '';
+  for (const m of levelsMeta) {
+    const o = document.createElement('option');
+    o.value = String(m.id);
+    o.textContent = m.label;
+    if (m.id === currentLevel()) o.selected = true;
+    sel.appendChild(o);
+  }
+}
+
+function renderLevelBanner() {
+  const lv = currentLevel();
+  const m = levelMeta(lv);
+  const pool = allProblems.filter(p => p.level === lv);
+  const learned = pool.filter(p => (state.byId[p.id]?.seen || 0) > 0).length;
+  const total = pool.length;
+  const pct = total > 0 ? Math.round((learned / total) * 100) : 0;
+  const el = document.getElementById('level-banner');
+  if (!el) return;
+  el.innerHTML =
+    `<div class="lb-head">🎯 ${escapeHtml(m.label)} <span class="lb-cefr">${escapeHtml(m.cefr || '')}</span></div>` +
+    `<div class="lb-goal">目標: ${escapeHtml(m.goal)}</div>` +
+    `<div class="lb-crit">卒業: ${escapeHtml(m.criteria)}</div>` +
+    `<div class="lb-bar"><div class="lb-fill" style="width:${pct}%"></div></div>` +
+    `<div class="lb-pct">${learned} / ${total} 学習済 (${pct}%)</div>`;
+}
+
 function renderSceneSelector() {
   const sel = document.getElementById('scene-select');
   sel.innerHTML = '';
-  const opts = [{ id: 'all', label: 'すべて' }, ...scenes];
+  const list = scenesForLevel(currentLevel());
+  // このレベルでシーンが1種(全般のみ)なら「すべて」だけ出す
+  const opts = [{ id: 'all', label: 'すべて' }, ...list];
+  // 選択中シーンがこのレベルに無ければ all に戻す
+  if (settings.sceneFilter !== 'all' && !list.some(s => s.id === settings.sceneFilter)) {
+    settings.sceneFilter = 'all';
+  }
   for (const s of opts) {
     const o = document.createElement('option');
     o.value = s.id;
@@ -429,22 +492,32 @@ function renderSceneSelector() {
     if (s.id === settings.sceneFilter) o.selected = true;
     sel.appendChild(o);
   }
+  // シーンが実質1種ならセレクタを隠す
+  sel.style.display = list.length <= 1 ? 'none' : '';
+}
+
+function refreshCurrentMode() {
+  state.sessionRetry = [];
+  buildSessionQueue();
+  nextProblem();
+  renderLevelBanner();
+  if (settings.mode === 'review') { buildReviewQueue(); renderReviewCard(); }
+  else if (settings.mode === 'list') renderList();
+  else if (settings.mode === 'dictation') startDictation();
+}
+
+function onLevelChange(e) {
+  settings.levelFilter = parseInt(e.target.value, 10);
+  settings.sceneFilter = 'all';
+  saveSettings();
+  renderSceneSelector();
+  refreshCurrentMode();
 }
 
 function onSceneChange(e) {
   settings.sceneFilter = e.target.value;
   saveSettings();
-  state.sessionRetry = [];
-  buildSessionQueue();
-  nextProblem();
-  if (settings.mode === 'review') {
-    buildReviewQueue();
-    renderReviewCard();
-  } else if (settings.mode === 'list') {
-    renderList();
-  } else if (settings.mode === 'dictation') {
-    startDictation();
-  }
+  refreshCurrentMode();
 }
 
 // ====================================================================
@@ -1263,6 +1336,8 @@ function bindUI() {
     location.reload();
   });
   document.getElementById('scene-select').addEventListener('change', onSceneChange);
+  const lvSel = document.getElementById('level-select');
+  if (lvSel) lvSel.addEventListener('change', onLevelChange);
   document.querySelectorAll('.mode-tab').forEach(t => {
     t.addEventListener('click', () => switchMode(t.dataset.mode));
   });

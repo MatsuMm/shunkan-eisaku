@@ -396,6 +396,282 @@
         }
       ],
       "level": 3
+    },
+    {
+      "id": "dlg-11",
+      "scene": "daily",
+      "level": 1,
+      "title": "あいさつ (基礎)",
+      "turns": [
+        {
+          "sp": "A",
+          "en": "Hi, how are you?",
+          "jp": "やあ、元気？"
+        },
+        {
+          "sp": "YOU",
+          "en": "I'm good, thanks. And you?",
+          "jp": "元気だよ、ありがとう。あなたは？"
+        },
+        {
+          "sp": "A",
+          "en": "Pretty good. Where are you going?",
+          "jp": "まあまあかな。どこ行くの？"
+        },
+        {
+          "sp": "YOU",
+          "en": "I'm going home.",
+          "jp": "家に帰るところ。"
+        },
+        {
+          "sp": "A",
+          "en": "Okay, see you tomorrow.",
+          "jp": "そっか、また明日ね。"
+        },
+        {
+          "sp": "YOU",
+          "en": "See you. Have a good day.",
+          "jp": "またね。良い一日を。"
+        }
+      ]
+    },
+    {
+      "id": "dlg-12",
+      "scene": "restaurant",
+      "level": 1,
+      "title": "カフェで注文 (基礎)",
+      "turns": [
+        {
+          "sp": "A",
+          "en": "Hi, what would you like?",
+          "jp": "こんにちは、何にしますか？"
+        },
+        {
+          "sp": "YOU",
+          "en": "A coffee, please.",
+          "jp": "コーヒーをください。"
+        },
+        {
+          "sp": "A",
+          "en": "Hot or iced?",
+          "jp": "ホットですか、アイスですか？"
+        },
+        {
+          "sp": "YOU",
+          "en": "Hot, please.",
+          "jp": "ホットでお願いします。"
+        },
+        {
+          "sp": "A",
+          "en": "For here or to go?",
+          "jp": "店内ですか、お持ち帰りですか？"
+        },
+        {
+          "sp": "YOU",
+          "en": "To go, please.",
+          "jp": "持ち帰りで。"
+        },
+        {
+          "sp": "A",
+          "en": "That's three dollars.",
+          "jp": "3ドルです。"
+        },
+        {
+          "sp": "YOU",
+          "en": "Here you are. Thank you.",
+          "jp": "はい、どうぞ。ありがとう。"
+        }
+      ]
+    },
+    {
+      "id": "dlg-13",
+      "scene": "travel",
+      "level": 1,
+      "title": "道を聞く (基礎)",
+      "turns": [
+        {
+          "sp": "YOU",
+          "en": "Excuse me, where is the station?",
+          "jp": "すみません、駅はどこですか？"
+        },
+        {
+          "sp": "A",
+          "en": "Go straight. It's on the left.",
+          "jp": "まっすぐ行ってください。左にあります。"
+        },
+        {
+          "sp": "YOU",
+          "en": "Is it far?",
+          "jp": "遠いですか？"
+        },
+        {
+          "sp": "A",
+          "en": "No, about five minutes.",
+          "jp": "いいえ、5分くらいです。"
+        },
+        {
+          "sp": "YOU",
+          "en": "Thank you very much.",
+          "jp": "どうもありがとうございます。"
+        },
+        {
+          "sp": "A",
+          "en": "You're welcome.",
+          "jp": "どういたしまして。"
+        }
+      ]
+    },
+    {
+      "id": "dlg-14",
+      "scene": "work",
+      "level": 4,
+      "title": "難しい交渉",
+      "turns": [
+        {
+          "sp": "A",
+          "en": "Honestly, this timeline seems unrealistic.",
+          "jp": "正直、このスケジュールは非現実的に思えます。"
+        },
+        {
+          "sp": "YOU",
+          "en": "I see your point, but we have some flexibility.",
+          "jp": "おっしゃることは分かりますが、多少の融通は利きます。"
+        },
+        {
+          "sp": "A",
+          "en": "What exactly can we adjust?",
+          "jp": "具体的に何を調整できますか？"
+        },
+        {
+          "sp": "YOU",
+          "en": "We could push the second phase back a week.",
+          "jp": "第2フェーズを1週間後ろ倒しにできます。"
+        },
+        {
+          "sp": "A",
+          "en": "That might work. Let's not jump to conclusions, though.",
+          "jp": "それなら行けるかも。ただ、早合点はやめましょう。"
+        },
+        {
+          "sp": "YOU",
+          "en": "Agreed. Let's find some middle ground.",
+          "jp": "同感です。妥協点を探りましょう。"
+        }
+      ]
+    },
+    {
+      "id": "dlg-15",
+      "scene": "trouble",
+      "level": 4,
+      "title": "クレーム対応",
+      "turns": [
+        {
+          "sp": "A",
+          "en": "This is the third time this has happened.",
+          "jp": "これで3回目ですよ。"
+        },
+        {
+          "sp": "YOU",
+          "en": "I completely understand your frustration.",
+          "jp": "ご不満は重々承知しております。"
+        },
+        {
+          "sp": "A",
+          "en": "Understanding isn't enough. I want a solution.",
+          "jp": "理解だけじゃ足りない。解決策が欲しい。"
+        },
+        {
+          "sp": "YOU",
+          "en": "You're absolutely right. Here's what we'll do.",
+          "jp": "おっしゃる通りです。こうさせてください。"
+        },
+        {
+          "sp": "A",
+          "en": "I'm listening.",
+          "jp": "聞きましょう。"
+        },
+        {
+          "sp": "YOU",
+          "en": "We'll issue a full refund and look into the root cause.",
+          "jp": "全額返金し、根本原因を調査します。"
+        }
+      ]
+    },
+    {
+      "id": "dlg-16",
+      "scene": "daily",
+      "level": 5,
+      "title": "込み入った世間話",
+      "turns": [
+        {
+          "sp": "A",
+          "en": "So, are you still thinking about quitting?",
+          "jp": "で、まだ辞めること考えてるの？"
+        },
+        {
+          "sp": "YOU",
+          "en": "Honestly, I'm on the fence about it.",
+          "jp": "正直、どっちつかずなんだよね。"
+        },
+        {
+          "sp": "A",
+          "en": "Well, don't burn any bridges.",
+          "jp": "まあ、後戻りできなくなることはするなよ。"
+        },
+        {
+          "sp": "YOU",
+          "en": "Fair point. I'll play it by ear for now.",
+          "jp": "もっともだ。当面は様子を見るよ。"
+        },
+        {
+          "sp": "A",
+          "en": "Smart. No need to rush such a big call.",
+          "jp": "賢明だ。そんな大きな決断、急ぐ必要はない。"
+        },
+        {
+          "sp": "YOU",
+          "en": "Exactly. I'll cross that bridge when I come to it.",
+          "jp": "その通り。その時が来たら考えるよ。"
+        }
+      ]
+    },
+    {
+      "id": "dlg-17",
+      "scene": "emotion",
+      "level": 5,
+      "title": "微妙な感情のやりとり",
+      "turns": [
+        {
+          "sp": "A",
+          "en": "You seem a bit off today. Everything okay?",
+          "jp": "今日ちょっと元気ないね。大丈夫？"
+        },
+        {
+          "sp": "YOU",
+          "en": "It's nothing, really. Just a rough patch.",
+          "jp": "本当に何でもないよ。ちょっとうまくいかない時期ってだけ。"
+        },
+        {
+          "sp": "A",
+          "en": "You know you can talk to me, right?",
+          "jp": "話していいんだからね、わかってる？"
+        },
+        {
+          "sp": "YOU",
+          "en": "I appreciate that. I just need to clear my head.",
+          "jp": "ありがとう。ただ少し頭を整理したいだけ。"
+        },
+        {
+          "sp": "A",
+          "en": "Take your time. I'm here either way.",
+          "jp": "ゆっくりでいい。どっちにしても俺はここにいる。"
+        },
+        {
+          "sp": "YOU",
+          "en": "That means a lot. Thanks for understanding.",
+          "jp": "それすごく嬉しい。分かってくれてありがとう。"
+        }
+      ]
     }
   ]
 }

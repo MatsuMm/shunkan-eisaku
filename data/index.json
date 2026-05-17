@@ -18,7 +18,13 @@
   ],
   "sources": [
     { "file": "levels/lv1.json", "level": 1, "scene": "general", "sceneLabel": "全般" },
+    { "file": "levels/lv1-work.json", "level": 1, "scene": "work", "sceneLabel": "仕事" },
+    { "file": "levels/lv1-travel.json", "level": 1, "scene": "travel", "sceneLabel": "旅行" },
+    { "file": "levels/lv1-restaurant.json", "level": 1, "scene": "restaurant", "sceneLabel": "飲食店" },
     { "file": "levels/lv2.json", "level": 2, "scene": "general", "sceneLabel": "全般" },
+    { "file": "levels/lv2-work.json", "level": 2, "scene": "work", "sceneLabel": "仕事" },
+    { "file": "levels/lv2-travel.json", "level": 2, "scene": "travel", "sceneLabel": "旅行" },
+    { "file": "levels/lv2-restaurant.json", "level": 2, "scene": "restaurant", "sceneLabel": "飲食店" },
     { "file": "levels/lv3.json", "level": 3, "scene": "general", "sceneLabel": "全般" },
     { "file": "levels/lv4.json", "level": 4, "scene": "general", "sceneLabel": "全般" },
     { "file": "levels/lv5.json", "level": 5, "scene": "general", "sceneLabel": "全般" },

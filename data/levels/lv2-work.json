@@ -1,0 +1,25 @@
+{
+  "scene": "work",
+  "label": "仕事",
+  "description": "Lv2 × 仕事: 進行形・過去・依頼で職場の基本を回す。",
+  "problems": [
+    { "id": "lv2w-001", "jp": "今その作業をしています。", "en": "I'm working on it now.", "alt": [], "function": "work", "note": "現在進行形。" },
+    { "id": "lv2w-002", "jp": "昨日それを終わらせました。", "en": "I finished it yesterday.", "alt": [], "function": "work", "note": "過去形。" },
+    { "id": "lv2w-003", "jp": "明日までにやります。", "en": "I'll do it by tomorrow.", "alt": [], "function": "work", "note": "by = 期限。" },
+    { "id": "lv2w-004", "jp": "ちょっと確認してもらえますか？", "en": "Can you check this for me?", "alt": [], "function": "work", "note": "依頼。" },
+    { "id": "lv2w-005", "jp": "後で折り返します。", "en": "I'll get back to you later.", "alt": [], "function": "work", "note": "get back to = 折り返す。" },
+    { "id": "lv2w-006", "jp": "それは私がやります。", "en": "I'll handle that.", "alt": [], "function": "work", "note": "handle = 担当する。" },
+    { "id": "lv2w-007", "jp": "少し時間がかかります。", "en": "It'll take some time.", "alt": [], "function": "work", "note": "take time。" },
+    { "id": "lv2w-008", "jp": "間に合いそうですか？", "en": "Will it be ready in time?", "alt": [], "function": "work", "note": "in time = 間に合う。" },
+    { "id": "lv2w-009", "jp": "会議に遅れます。", "en": "I'll be late for the meeting.", "alt": [], "function": "work", "note": "late for 〜。" },
+    { "id": "lv2w-010", "jp": "資料を送ってもらえますか？", "en": "Could you send me the documents?", "alt": [], "function": "work", "note": "Could you = 丁寧依頼。" },
+    { "id": "lv2w-011", "jp": "それ受け取りました。", "en": "I got it.", "alt": ["I received it."], "function": "work", "note": "受領連絡。" },
+    { "id": "lv2w-012", "jp": "質問があります。", "en": "I have a question.", "alt": [], "function": "work", "note": "発言の切り出し。" },
+    { "id": "lv2w-013", "jp": "それはどういう意味ですか？", "en": "What do you mean by that?", "alt": [], "function": "work", "note": "確認。" },
+    { "id": "lv2w-014", "jp": "もう一度教えてください。", "en": "Could you tell me again?", "alt": [], "function": "work", "note": "聞き返し。" },
+    { "id": "lv2w-015", "jp": "了解です、進めます。", "en": "Got it, I'll go ahead.", "alt": [], "function": "work", "note": "go ahead = 進める。" },
+    { "id": "lv2w-016", "jp": "今日は残業します。", "en": "I'll work late today.", "alt": [], "function": "work", "note": "work late = 残業。" },
+    { "id": "lv2w-017", "jp": "手が空いたら手伝います。", "en": "I'll help when I'm free.", "alt": [], "function": "work", "note": "when I'm free = 手が空いたら。" },
+    { "id": "lv2w-018", "jp": "お先に失礼します。", "en": "I'm heading out. See you tomorrow.", "alt": [], "function": "work", "note": "head out = 退勤する。" }
+  ]
+}

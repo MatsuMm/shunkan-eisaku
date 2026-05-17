@@ -1,0 +1,25 @@
+{
+  "scene": "restaurant",
+  "label": "飲食店",
+  "description": "Lv1 × 飲食店: 注文・支払いの超基礎。",
+  "problems": [
+    { "id": "lv1r-001", "jp": "2人です。", "en": "Two people.", "alt": ["Table for two."], "function": "restaurant", "note": "人数。" },
+    { "id": "lv1r-002", "jp": "メニューをください。", "en": "Menu, please.", "alt": [], "function": "restaurant", "note": "シンプル依頼。" },
+    { "id": "lv1r-003", "jp": "これをください。", "en": "This one, please.", "alt": ["I'll have this."], "function": "restaurant", "note": "指差し注文。" },
+    { "id": "lv1r-004", "jp": "同じものを。", "en": "The same, please.", "alt": [], "function": "restaurant", "note": "連れと同じ。" },
+    { "id": "lv1r-005", "jp": "水をください。", "en": "Water, please.", "alt": [], "function": "restaurant", "note": "飲み物。" },
+    { "id": "lv1r-006", "jp": "おすすめは？", "en": "What do you recommend?", "alt": [], "function": "restaurant", "note": "店員に聞く。" },
+    { "id": "lv1r-007", "jp": "これは何ですか？", "en": "What is this?", "alt": [], "function": "restaurant", "note": "メニュー確認。" },
+    { "id": "lv1r-008", "jp": "辛いですか？", "en": "Is it spicy?", "alt": [], "function": "restaurant", "note": "確認。" },
+    { "id": "lv1r-009", "jp": "おいしいです。", "en": "It's delicious.", "alt": [], "function": "restaurant", "note": "感想。" },
+    { "id": "lv1r-010", "jp": "もう一つください。", "en": "One more, please.", "alt": [], "function": "restaurant", "note": "追加。" },
+    { "id": "lv1r-011", "jp": "お会計お願いします。", "en": "Check, please.", "alt": ["Bill, please."], "function": "restaurant", "note": "会計。" },
+    { "id": "lv1r-012", "jp": "カードで払えますか？", "en": "Can I pay by card?", "alt": [], "function": "restaurant", "note": "支払い方法。" },
+    { "id": "lv1r-013", "jp": "現金で払います。", "en": "I'll pay in cash.", "alt": [], "function": "restaurant", "note": "in cash = 現金で。" },
+    { "id": "lv1r-014", "jp": "レシートをください。", "en": "Receipt, please.", "alt": [], "function": "restaurant", "note": "receipt。" },
+    { "id": "lv1r-015", "jp": "持ち帰りできますか？", "en": "Can I take this to go?", "alt": [], "function": "restaurant", "note": "to go = 持ち帰り。" },
+    { "id": "lv1r-016", "jp": "トイレはどこですか？", "en": "Where is the bathroom?", "alt": [], "function": "restaurant", "note": "必須。" },
+    { "id": "lv1r-017", "jp": "ごちそうさま、おいしかった。", "en": "Thank you, it was great.", "alt": [], "function": "restaurant", "note": "退店時。" },
+    { "id": "lv1r-018", "jp": "またお願いします。", "en": "Thank you, see you.", "alt": [], "function": "restaurant", "note": "別れ。" }
+  ]
+}

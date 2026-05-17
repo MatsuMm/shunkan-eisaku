@@ -1,0 +1,25 @@
+{
+  "scene": "restaurant",
+  "label": "飲食店",
+  "description": "Lv2 × 飲食店: 要望・変更・トラブルを文で伝える。",
+  "problems": [
+    { "id": "lv2r-001", "jp": "予約していません。", "en": "I don't have a reservation.", "alt": [], "function": "restaurant", "note": "予約なし。" },
+    { "id": "lv2r-002", "jp": "どれくらい待ちますか？", "en": "How long is the wait?", "alt": [], "function": "restaurant", "note": "待ち時間。" },
+    { "id": "lv2r-003", "jp": "窓際の席はありますか？", "en": "Do you have a window seat?", "alt": [], "function": "restaurant", "note": "席の希望。" },
+    { "id": "lv2r-004", "jp": "注文してもいいですか？", "en": "Can we order now?", "alt": [], "function": "restaurant", "note": "注文の合図。" },
+    { "id": "lv2r-005", "jp": "玉ねぎ抜きでお願いします。", "en": "No onions, please.", "alt": [], "function": "restaurant", "note": "No 〜 = 〜抜き。" },
+    { "id": "lv2r-006", "jp": "アレルギーがあります。", "en": "I have an allergy.", "alt": ["I'm allergic to nuts."], "function": "restaurant", "note": "命に関わるので明確に。" },
+    { "id": "lv2r-007", "jp": "氷なしでお願いします。", "en": "No ice, please.", "alt": [], "function": "restaurant", "note": "ドリンク要望。" },
+    { "id": "lv2r-008", "jp": "おかわりできますか？", "en": "Can I get a refill?", "alt": [], "function": "restaurant", "note": "refill = おかわり。" },
+    { "id": "lv2r-009", "jp": "これは注文していません。", "en": "I didn't order this.", "alt": [], "function": "restaurant", "note": "やんわり訂正。" },
+    { "id": "lv2r-010", "jp": "料理がまだ来ません。", "en": "My food hasn't come yet.", "alt": [], "function": "restaurant", "note": "hasn't come yet。" },
+    { "id": "lv2r-011", "jp": "別々に払えますか？", "en": "Can we pay separately?", "alt": [], "function": "restaurant", "note": "separately = 別々に。" },
+    { "id": "lv2r-012", "jp": "一緒でお願いします。", "en": "Together, please.", "alt": ["All together."], "function": "restaurant", "note": "まとめて会計。" },
+    { "id": "lv2r-013", "jp": "サービス料は込みですか？", "en": "Is service charge included?", "alt": [], "function": "restaurant", "note": "included = 込み。" },
+    { "id": "lv2r-014", "jp": "残りを包んでもらえますか？", "en": "Could you wrap up the rest?", "alt": [], "function": "restaurant", "note": "wrap up = 包む。" },
+    { "id": "lv2r-015", "jp": "ミディアムでお願いします。", "en": "Medium, please.", "alt": [], "function": "restaurant", "note": "ステーキ焼き加減。" },
+    { "id": "lv2r-016", "jp": "もう少しゆっくりしてもいいですか？", "en": "Can we stay a little longer?", "alt": [], "function": "restaurant", "note": "滞在延長。" },
+    { "id": "lv2r-017", "jp": "とてもおいしかったです。", "en": "That was really delicious.", "alt": [], "function": "restaurant", "note": "感想。" },
+    { "id": "lv2r-018", "jp": "また来ます。", "en": "We'll come back.", "alt": [], "function": "restaurant", "note": "退店。" }
+  ]
+}

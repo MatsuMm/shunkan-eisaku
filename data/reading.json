@@ -171,6 +171,108 @@
       "answer": 0,
       "level": 4,
       "scene": "general"
+    },
+    {
+      "id": "rd-11",
+      "kind": "notice",
+      "level": 1,
+      "scene": "general",
+      "title": "短い貼り紙 (基礎)",
+      "en": "The store is closed today. We will open tomorrow at 9 a.m. Thank you.",
+      "jp": "本日休業です。明日午前9時に開きます。ありがとうございます。",
+      "q": "When will the store open?",
+      "choices": [
+        "Tomorrow at 9 a.m.",
+        "Today at 9 a.m.",
+        "Tomorrow at 5 p.m.",
+        "Never"
+      ],
+      "answer": 0
+    },
+    {
+      "id": "rd-12",
+      "kind": "chat",
+      "level": 1,
+      "scene": "daily",
+      "title": "短いメッセージ (基礎)",
+      "en": "— Are you free tonight? — Yes, I am. — Let's have dinner. — Sounds good. See you at seven.",
+      "jp": "—今夜ひま？ —うん、ひまだよ。 —夕飯食べよう。 —いいね。7時に会おう。",
+      "q": "What time will they meet?",
+      "choices": [
+        "Seven",
+        "Six",
+        "Eight",
+        "Nine"
+      ],
+      "answer": 0
+    },
+    {
+      "id": "rd-13",
+      "kind": "email",
+      "level": 1,
+      "scene": "general",
+      "title": "短いお知らせ (基礎)",
+      "en": "Hello. The meeting is on Friday at 2 p.m. Please come to room 5. Thank you.",
+      "jp": "こんにちは。会議は金曜の午後2時です。5番の部屋に来てください。よろしく。",
+      "q": "Where is the meeting?",
+      "choices": [
+        "Room 5",
+        "Room 2",
+        "Friday",
+        "At 2 rooms"
+      ],
+      "answer": 0
+    },
+    {
+      "id": "rd-14",
+      "kind": "article",
+      "level": 5,
+      "scene": "general",
+      "title": "コラム: 失敗の価値",
+      "en": "We tend to view failure as the opposite of success, but that framing is misleading. Most lasting success is built on a pile of failures that were never wasted, only mined for lessons. The people who get ahead are rarely those who avoid mistakes; they are the ones who fail faster, reflect honestly, and refuse to take the setbacks personally.",
+      "jp": "私たちは失敗を成功の反対と捉えがちだが、その枠組みは誤解を招く。長続きする成功の多くは、無駄にされず教訓として活かされた失敗の山の上に築かれている。前進する人は、ミスを避ける人ではなく、より速く失敗し、正直に省み、挫折を個人的に受け取らない人だ。",
+      "q": "According to the passage, who tends to get ahead?",
+      "choices": [
+        "Those who fail faster and learn",
+        "Those who avoid all mistakes",
+        "Those who never reflect",
+        "Those who take it personally"
+      ],
+      "answer": 0
+    },
+    {
+      "id": "rd-15",
+      "kind": "article",
+      "level": 5,
+      "scene": "general",
+      "title": "コラム: 注意の経済",
+      "en": "In an age where attention is the scarcest resource, the ability to focus deeply has quietly become a competitive advantage. Ironically, the tools designed to make us productive often fragment our concentration into useless shards. The real skill of the coming decade may not be working harder, but protecting uninterrupted blocks of thought from a world engineered to interrupt them.",
+      "jp": "注意が最も希少な資源となった時代において、深く集中する能力は静かに競争優位となった。皮肉にも、生産性を高めるはずの道具がしばしば集中を無用な断片に砕く。来る10年の本当のスキルは、より懸命に働くことではなく、中断するよう設計された世界から、途切れない思考の時間を守ることかもしれない。",
+      "q": "What does the passage call a competitive advantage?",
+      "choices": [
+        "Deep focus",
+        "Working harder",
+        "Using more tools",
+        "Multitasking"
+      ],
+      "answer": 0
+    },
+    {
+      "id": "rd-16",
+      "kind": "email",
+      "level": 5,
+      "scene": "work",
+      "title": "婉曲なビジネスメール",
+      "en": "Dear Mr. Lee, thank you for your proposal. While the concept has merit, we have some reservations about the projected timeline and would appreciate the chance to discuss adjustments before moving forward. Please let us know a convenient time. We remain optimistic that we can find a path that works for both sides.",
+      "jp": "リー様、ご提案ありがとうございます。コンセプトには価値がありますが、想定スケジュールには懸念があり、前進する前に調整について話し合う機会をいただければ幸いです。ご都合のよい時間をお知らせください。双方にとって良い道が見つかると楽観しております。",
+      "q": "What is the sender's main concern?",
+      "choices": [
+        "The projected timeline",
+        "The price",
+        "The concept itself",
+        "The location"
+      ],
+      "answer": 0
     }
   ]
 }

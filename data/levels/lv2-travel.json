@@ -1,0 +1,25 @@
+{
+  "scene": "travel",
+  "label": "旅行",
+  "description": "Lv2 × 旅行: 依頼・トラブル・確認を文で伝える。",
+  "problems": [
+    { "id": "lv2t-001", "jp": "通路側の席をお願いします。", "en": "I'd like an aisle seat, please.", "alt": [], "function": "travel", "note": "I'd like = 丁寧な希望。" },
+    { "id": "lv2t-002", "jp": "搭乗ゲートはどこですか？", "en": "Where is the boarding gate?", "alt": [], "function": "travel", "note": "boarding gate。" },
+    { "id": "lv2t-003", "jp": "乗り継ぎがあります。", "en": "I have a connecting flight.", "alt": [], "function": "travel", "note": "connecting flight = 乗り継ぎ便。" },
+    { "id": "lv2t-004", "jp": "荷物が出てきません。", "en": "My bag didn't come out.", "alt": [], "function": "travel", "note": "トラブル報告。" },
+    { "id": "lv2t-005", "jp": "両替したいです。", "en": "I'd like to exchange money.", "alt": [], "function": "travel", "note": "exchange money = 両替。" },
+    { "id": "lv2t-006", "jp": "ここからどれくらいですか？", "en": "How far is it from here?", "alt": [], "function": "travel", "note": "how far = どれくらいの距離。" },
+    { "id": "lv2t-007", "jp": "メーターを使ってください。", "en": "Please use the meter.", "alt": [], "function": "travel", "note": "タクシー対策。" },
+    { "id": "lv2t-008", "jp": "急いでもらえますか？", "en": "Could you hurry, please?", "alt": [], "function": "travel", "note": "丁寧な急かし。" },
+    { "id": "lv2t-009", "jp": "早くチェックインできますか？", "en": "Can I check in early?", "alt": [], "function": "travel", "note": "アーリーチェックイン。" },
+    { "id": "lv2t-010", "jp": "荷物を預かってもらえますか？", "en": "Could you keep my luggage?", "alt": [], "function": "travel", "note": "keep = 預かる。" },
+    { "id": "lv2t-011", "jp": "部屋を変えてもらえますか？", "en": "Could I change rooms?", "alt": [], "function": "travel", "note": "change rooms。" },
+    { "id": "lv2t-012", "jp": "エアコンが効きません。", "en": "The air conditioner isn't working.", "alt": [], "function": "travel", "note": "isn't working = 動かない。" },
+    { "id": "lv2t-013", "jp": "タオルをもう一枚ください。", "en": "Could I get one more towel?", "alt": [], "function": "travel", "note": "追加依頼。" },
+    { "id": "lv2t-014", "jp": "道に迷いました。", "en": "I got lost.", "alt": [], "function": "travel", "note": "get lost = 迷う。" },
+    { "id": "lv2t-015", "jp": "ここに行きたいです。", "en": "I want to go here.", "alt": ["I'd like to go here."], "function": "travel", "note": "地図を見せて。" },
+    { "id": "lv2t-016", "jp": "近くにコンビニはありますか？", "en": "Is there a convenience store nearby?", "alt": [], "function": "travel", "note": "nearby = 近くに。" },
+    { "id": "lv2t-017", "jp": "これを試着できますか？", "en": "Can I try this on?", "alt": [], "function": "travel", "note": "try on = 試着。" },
+    { "id": "lv2t-018", "jp": "もう少し安くなりますか？", "en": "Could you give me a little discount?", "alt": [], "function": "travel", "note": "値引き交渉。" }
+  ]
+}

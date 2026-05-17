@@ -1,0 +1,25 @@
+{
+  "scene": "work",
+  "label": "仕事",
+  "description": "Lv1 × 仕事: 職場の超基礎フレーズ。",
+  "problems": [
+    { "id": "lv1w-001", "jp": "おはようございます。", "en": "Good morning.", "alt": [], "function": "work", "note": "朝の挨拶。" },
+    { "id": "lv1w-002", "jp": "お疲れさまです。", "en": "Good work today.", "alt": ["Thanks for your work."], "function": "work", "note": "直訳なし、労いで代用。" },
+    { "id": "lv1w-003", "jp": "今いいですか？", "en": "Do you have a moment?", "alt": ["Got a sec?"], "function": "work", "note": "声かけの基本。" },
+    { "id": "lv1w-004", "jp": "わかりました。", "en": "Understood.", "alt": ["Got it."], "function": "work", "note": "了解の返事。" },
+    { "id": "lv1w-005", "jp": "やっておきます。", "en": "I'll take care of it.", "alt": ["I'll do it."], "function": "work", "note": "take care of = 対応する。" },
+    { "id": "lv1w-006", "jp": "少々お待ちください。", "en": "One moment, please.", "alt": ["Just a moment."], "function": "work", "note": "保留の定型。" },
+    { "id": "lv1w-007", "jp": "後で確認します。", "en": "I'll check later.", "alt": [], "function": "work", "note": "check = 確認する。" },
+    { "id": "lv1w-008", "jp": "手伝いましょうか？", "en": "Do you need help?", "alt": ["Need a hand?"], "function": "work", "note": "申し出。" },
+    { "id": "lv1w-009", "jp": "ありがとうございます、助かります。", "en": "Thanks, that helps.", "alt": [], "function": "work", "note": "感謝。" },
+    { "id": "lv1w-010", "jp": "すみません、遅れます。", "en": "Sorry, I'll be late.", "alt": [], "function": "work", "note": "遅刻連絡。" },
+    { "id": "lv1w-011", "jp": "会議は何時ですか？", "en": "What time is the meeting?", "alt": [], "function": "work", "note": "時刻確認。" },
+    { "id": "lv1w-012", "jp": "資料はどこですか？", "en": "Where are the documents?", "alt": [], "function": "work", "note": "documents = 資料。" },
+    { "id": "lv1w-013", "jp": "もう一度説明してください。", "en": "Please explain again.", "alt": [], "function": "work", "note": "聞き返し。" },
+    { "id": "lv1w-014", "jp": "それでいいです。", "en": "That's fine.", "alt": ["That works."], "function": "work", "note": "承諾。" },
+    { "id": "lv1w-015", "jp": "問題ありません。", "en": "No problem.", "alt": [], "function": "work", "note": "OK の定型。" },
+    { "id": "lv1w-016", "jp": "メールを送ります。", "en": "I'll send an email.", "alt": [], "function": "work", "note": "send an email。" },
+    { "id": "lv1w-017", "jp": "電話してもいいですか？", "en": "Can I call you?", "alt": [], "function": "work", "note": "許可。" },
+    { "id": "lv1w-018", "jp": "また明日。", "en": "See you tomorrow.", "alt": [], "function": "work", "note": "退勤の挨拶。" }
+  ]
+}

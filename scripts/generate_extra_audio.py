@@ -33,9 +33,7 @@ def collect():
     rd = json.loads((DATA / "reading.json").read_text(encoding="utf-8"))
     for p in rd["passages"]:
         jobs.append((EN_DIR / f"{p['id']}.mp3", p["en"], GUY))
-    vc = json.loads((DATA / "vocab.json").read_text(encoding="utf-8"))
-    for it in vc["items"]:
-        jobs.append((EN_DIR / f"{it['id']}.mp3", it["en"], ARIA))
+    # vocab は廃止 (フレーズプールから派生) のため対象外
     return jobs
 
 

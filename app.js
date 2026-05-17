@@ -1162,6 +1162,23 @@ function applyMode() {
   document.getElementById('dialogue').classList.toggle('hidden', mode !== 'dialogue');
   document.getElementById('reading').classList.toggle('hidden', mode !== 'reading');
   document.getElementById('vocab').classList.toggle('hidden', mode !== 'vocab');
+  // レベル/シーン/目標バナーは「コア4モード」だけで意味を持つ。
+  // 文法/会話/読解/語彙 はシーン非連動の独立コンテンツなので隠す。
+  const coreMode = ['study', 'list', 'review', 'dictation'].includes(mode);
+  const lvSel = document.getElementById('level-select');
+  const scSel = document.getElementById('scene-select');
+  const banner = document.getElementById('level-banner');
+  if (lvSel) lvSel.style.display = coreMode ? '' : 'none';
+  if (banner) banner.style.display = coreMode ? '' : 'none';
+  if (scSel) {
+    if (!coreMode) {
+      scSel.style.display = 'none';
+    } else {
+      // コア時は scenesForLevel の結果に応じて表示/非表示を再計算
+      scSel.style.display = scenesForLevel(currentLevel()).length <= 1 ? 'none' : '';
+    }
+  }
+
   if (mode !== 'review') stopReview();
   if (mode !== 'dictation') stopSpeech();
   if (mode === 'list') renderList();

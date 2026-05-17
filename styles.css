@@ -82,6 +82,13 @@ main {
   flex-direction: column;
 }
 
+.core-controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+.core-controls .scene-select { flex: 1; min-width: 0; }
+
 .level-banner {
   background: linear-gradient(135deg, rgba(74,158,255,0.12), rgba(74,158,255,0.04));
   border: 1px solid var(--accent);

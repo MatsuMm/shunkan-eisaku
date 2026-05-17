@@ -13,8 +13,6 @@
 <body>
 <header>
   <h1>瞬間英作</h1>
-  <select id="level-select" class="scene-select" aria-label="レベル選択"></select>
-  <select id="scene-select" class="scene-select" aria-label="シーン選択"></select>
   <div class="stats">
     <span id="progress">0 / 0</span>
     <span class="sep">·</span>
@@ -23,7 +21,6 @@
 </header>
 
 <main>
-  <div id="level-banner" class="level-banner"></div>
   <div class="mode-tabs">
     <button class="mode-tab active" data-mode="study">学習</button>
     <button class="mode-tab" data-mode="list">一覧</button>
@@ -34,6 +31,12 @@
     <button class="mode-tab" data-mode="reading">読解</button>
     <button class="mode-tab" data-mode="vocab">語彙</button>
   </div>
+
+  <div id="core-controls" class="core-controls">
+    <select id="level-select" class="scene-select" aria-label="レベル選択"></select>
+    <select id="scene-select" class="scene-select" aria-label="シーン選択"></select>
+  </div>
+  <div id="level-banner" class="level-banner"></div>
 
   <section id="card" class="card">
     <div class="level-tag" id="level-tag">B1</div>

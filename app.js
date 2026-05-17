@@ -504,6 +504,9 @@ function refreshCurrentMode() {
   if (settings.mode === 'review') { buildReviewQueue(); renderReviewCard(); }
   else if (settings.mode === 'list') renderList();
   else if (settings.mode === 'dictation') startDictation();
+  else if (settings.mode === 'dialogue') startDialogue();
+  else if (settings.mode === 'reading') startReading();
+  else if (settings.mode === 'vocab') startVocab();
 }
 
 function onLevelChange(e) {
@@ -740,25 +743,44 @@ let dialoguesData = null;
 let dlgIndex = 0;
 let dlgTurn = 0;
 
+let dlgList = [];   // 現 Lv/シーンで絞った会話
+
+function dialoguesForCurrent() {
+  const lv = currentLevel();
+  return (dialoguesData || []).filter(d =>
+    d.level === lv &&
+    (settings.sceneFilter === 'all' || d.scene === settings.sceneFilter));
+}
+
 async function startDialogue() {
   if (!dialoguesData) {
     try {
       dialoguesData = (await (await fetch('data/dialogues.json')).json()).dialogues;
     } catch { return; }
   }
+  dlgList = dialoguesForCurrent();
+  dlgIndex = 0;
   dlgTurn = 0;
   renderDialogueTurn();
 }
 
-function currentDialogue() { return dialoguesData[dlgIndex]; }
+function currentDialogue() { return dlgList[dlgIndex]; }
 
 function renderDialogueTurn() {
-  const d = currentDialogue();
-  document.getElementById('dlg-title').textContent = d.title;
-  document.getElementById('dlg-progress').textContent = `${dlgIndex + 1} / ${dialoguesData.length}`;
   const log = document.getElementById('dlg-log');
   const prompt = document.getElementById('dlg-prompt');
   const done = document.getElementById('dlg-done');
+  if (dlgList.length === 0) {
+    document.getElementById('dlg-title').textContent = 'この Lv / シーンの会話はまだ準備中';
+    document.getElementById('dlg-progress').textContent = '0 / 0';
+    log.innerHTML = '<div style="color:var(--text-dim);padding:24px;text-align:center">レベルかシーンを変えてみてください。</div>';
+    prompt.classList.add('hidden');
+    done.classList.add('hidden');
+    return;
+  }
+  const d = currentDialogue();
+  document.getElementById('dlg-title').textContent = d.title;
+  document.getElementById('dlg-progress').textContent = `${dlgIndex + 1} / ${dlgList.length}`;
   if (dlgTurn === 0) log.innerHTML = '';
   prompt.classList.add('hidden');
   done.classList.add('hidden');
@@ -821,7 +843,8 @@ function dlgContinue() {
 }
 
 function dlgNextDialogue() {
-  dlgIndex = (dlgIndex + 1) % dialoguesData.length;
+  if (dlgList.length === 0) return;
+  dlgIndex = (dlgIndex + 1) % dlgList.length;
   dlgTurn = 0;
   renderDialogueTurn();
 }
@@ -834,20 +857,42 @@ let readingData = null;
 let rdIndex = 0;
 let rdAnswered = false;
 
+let rdList = [];
+
+function readingForCurrent() {
+  const lv = currentLevel();
+  return (readingData || []).filter(p =>
+    p.level === lv &&
+    (settings.sceneFilter === 'all' || p.scene === settings.sceneFilter));
+}
+
 async function startReading() {
   if (!readingData) {
     try {
       readingData = (await (await fetch('data/reading.json')).json()).passages;
     } catch { return; }
   }
+  rdList = readingForCurrent();
+  rdIndex = 0;
   renderReading();
 }
 
 function renderReading() {
-  const p = readingData[rdIndex];
+  if (rdList.length === 0) {
+    document.getElementById('rd-kind').textContent = '—';
+    document.getElementById('rd-progress').textContent = '0 / 0';
+    document.getElementById('rd-title').textContent = 'この Lv / シーンの読解はまだ準備中';
+    document.getElementById('rd-en').textContent = 'レベルかシーンを変えてみてください。';
+    document.getElementById('rd-jp').classList.add('hidden');
+    document.getElementById('rd-q').textContent = '';
+    document.getElementById('rd-choices').innerHTML = '';
+    document.getElementById('rd-next-wrap').classList.add('hidden');
+    return;
+  }
+  const p = rdList[rdIndex];
   rdAnswered = false;
   document.getElementById('rd-kind').textContent = p.kind;
-  document.getElementById('rd-progress').textContent = `${rdIndex + 1} / ${readingData.length}`;
+  document.getElementById('rd-progress').textContent = `${rdIndex + 1} / ${rdList.length}`;
   document.getElementById('rd-title').textContent = p.title;
   document.getElementById('rd-en').textContent = p.en;
   const jpEl = document.getElementById('rd-jp');
@@ -869,7 +914,7 @@ function renderReading() {
 function rdAnswer(i, btn) {
   if (rdAnswered) return;
   rdAnswered = true;
-  const p = readingData[rdIndex];
+  const p = rdList[rdIndex];
   const buttons = document.querySelectorAll('#rd-choices .rd-choice');
   buttons.forEach((b, idx) => {
     b.disabled = true;
@@ -881,26 +926,22 @@ function rdAnswer(i, btn) {
 }
 
 function rdNext() {
-  rdIndex = (rdIndex + 1) % readingData.length;
+  if (rdList.length === 0) return;
+  rdIndex = (rdIndex + 1) % rdList.length;
   renderReading();
 }
 
 // ====================================================================
-// Vocab mode
+// Vocab mode - 現 Lv/シーンのフレーズプールから派生 (英→日 意味当て)
 // ====================================================================
-let vocabData = null;
-let vocOrder = [];
+let vocItems = [];   // 現プールのフレーズ配列
 let vocPos = 0;
 let vocScore = 0;
 let vocAnswered = false;
 
-async function startVocab() {
-  if (!vocabData) {
-    try {
-      vocabData = (await (await fetch('data/vocab.json')).json()).items;
-    } catch { return; }
-  }
-  vocOrder = vocabData.map((_, i) => i).sort(() => Math.random() - 0.5);
+function startVocab() {
+  const pool = problemsForCurrentScene();
+  vocItems = pool.slice().sort(() => Math.random() - 0.5);
   vocPos = 0;
   vocScore = 0;
   renderVocab();
@@ -908,19 +949,27 @@ async function startVocab() {
 
 function renderVocab() {
   vocAnswered = false;
-  const item = vocabData[vocOrder[vocPos]];
-  document.getElementById('voc-progress').textContent = `${vocPos + 1} / ${vocabData.length}`;
-  document.getElementById('voc-score').textContent = `正解 ${vocScore}`;
-  document.getElementById('voc-word').textContent = item.word;
-  document.getElementById('voc-ex').textContent = item.en;
   document.getElementById('voc-explain').classList.add('hidden');
   document.getElementById('voc-next-wrap').classList.add('hidden');
+  const ch = document.getElementById('voc-choices');
+  if (vocItems.length === 0) {
+    document.getElementById('voc-progress').textContent = '0 / 0';
+    document.getElementById('voc-score').textContent = '';
+    document.getElementById('voc-word').textContent = 'この Lv / シーンの語彙はまだ準備中';
+    document.getElementById('voc-ex').textContent = '';
+    ch.innerHTML = '';
+    return;
+  }
+  const item = vocItems[vocPos];
+  document.getElementById('voc-progress').textContent = `${vocPos + 1} / ${vocItems.length}`;
+  document.getElementById('voc-score').textContent = `正解 ${vocScore}`;
+  document.getElementById('voc-word').textContent = item.en;
+  document.getElementById('voc-ex').textContent = '↓ 意味は？';
 
-  // 4択 (正解 + 他項目から3つ)
-  const others = vocabData.filter(x => x.id !== item.id);
+  // 4択: 正解 = この文の jp、ダミー = プール内の他の文の jp
+  const others = vocItems.filter(x => x.id !== item.id && x.jp !== item.jp);
   const distractors = others.sort(() => Math.random() - 0.5).slice(0, 3).map(x => x.jp);
   const choices = [item.jp, ...distractors].sort(() => Math.random() - 0.5);
-  const ch = document.getElementById('voc-choices');
   ch.innerHTML = '';
   choices.forEach(c => {
     const btn = document.createElement('button');
@@ -943,15 +992,19 @@ function vocAnswer(choice, item, btn) {
   });
   if (!correct) btn.classList.add('bad');
   const ex = document.getElementById('voc-explain');
-  ex.innerHTML = `<b>${escapeHtml(item.word)}</b> = ${escapeHtml(item.jp)}<br>${escapeHtml(item.en)}<br><span style="color:var(--text-dim)">${escapeHtml(item.exjp)}</span>`;
+  let html = `<b>${escapeHtml(item.en)}</b><br>= ${escapeHtml(item.jp)}`;
+  if (item.note) html += `<br><span style="color:var(--text-dim)">${escapeHtml(item.note)}</span>`;
+  if (item.tip) html += `<br><span style="color:#f0b87b">🎧 ${escapeHtml(item.tip)}</span>`;
+  ex.innerHTML = html;
   ex.classList.remove('hidden');
   document.getElementById('voc-score').textContent = `正解 ${vocScore}`;
   document.getElementById('voc-next-wrap').classList.remove('hidden');
 }
 
 function vocNext() {
-  vocPos = (vocPos + 1) % vocabData.length;
-  if (vocPos === 0) vocOrder.sort(() => Math.random() - 0.5);
+  if (vocItems.length === 0) return;
+  vocPos = (vocPos + 1) % vocItems.length;
+  if (vocPos === 0) vocItems.sort(() => Math.random() - 0.5);
   renderVocab();
 }
 
@@ -1164,7 +1217,8 @@ function applyMode() {
   document.getElementById('vocab').classList.toggle('hidden', mode !== 'vocab');
   // レベル/シーン/目標バナーは「コア4モード」だけで意味を持つ。
   // 文法/会話/読解/語彙 はシーン非連動の独立コンテンツなので隠す。
-  const coreMode = ['study', 'list', 'review', 'dictation'].includes(mode);
+  // Lv/シーンは文法以外の全モードで有効 (会話/読解/語彙も Lv×シーン連動に統合済)
+  const coreMode = mode !== 'grammar';
   const controls = document.getElementById('core-controls');
   const banner = document.getElementById('level-banner');
   const scSel = document.getElementById('scene-select');
@@ -1402,11 +1456,11 @@ function bindUI() {
   document.getElementById('dlg-next-dialogue').addEventListener('click', dlgNextDialogue);
   document.getElementById('dlg-replay').addEventListener('click', dlgReplay);
   document.getElementById('rd-play').addEventListener('click', () => {
-    const p = readingData && readingData[rdIndex];
+    const p = rdList[rdIndex];
     if (p) speak({ id: p.id, en: p.en });
   });
   document.getElementById('rd-play-slow').addEventListener('click', () => {
-    const p = readingData && readingData[rdIndex];
+    const p = rdList[rdIndex];
     if (p) speakSlow({ id: p.id, en: p.en });
   });
   document.getElementById('rd-toggle-jp').addEventListener('click', () => {
@@ -1414,7 +1468,7 @@ function bindUI() {
   });
   document.getElementById('rd-next').addEventListener('click', rdNext);
   document.getElementById('voc-play').addEventListener('click', () => {
-    const it = vocabData && vocabData[vocOrder[vocPos]];
+    const it = vocItems[vocPos];
     if (it) speak({ id: it.id, en: it.en });
   });
   document.getElementById('voc-next').addEventListener('click', vocNext);

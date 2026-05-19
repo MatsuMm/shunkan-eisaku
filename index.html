@@ -11,12 +11,31 @@
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div id="app-loading">
+  <div class="logo">英</div>
+  <div class="spin"></div>
+</div>
+
+<div id="onboarding" class="onboarding hidden">
+  <div class="ob-card">
+    <div class="ob-emoji" id="ob-emoji">⚡️</div>
+    <h2 class="ob-title" id="ob-title"></h2>
+    <p class="ob-body" id="ob-body"></p>
+    <div class="ob-dots" id="ob-dots"></div>
+    <div class="ob-actions">
+      <button class="btn ghost" id="ob-skip">スキップ</button>
+      <button class="btn primary" id="ob-next">次へ</button>
+    </div>
+  </div>
+</div>
+
 <header>
   <h1>瞬間英作</h1>
-  <div class="stats">
-    <span id="progress">0 / 0</span>
-    <span class="sep">·</span>
-    <span id="due-count">本日残: 0</span>
+  <div class="hdr-stats">
+    <span class="streak" id="streak" title="連続学習日数">🔥 0</span>
+    <span class="today" id="today-count">今日 <b>0</b></span>
+    <span id="progress" hidden></span>
+    <span id="due-count" hidden></span>
   </div>
 </header>
 

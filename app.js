@@ -59,6 +59,88 @@ async function init() {
     buildReviewQueue();
     renderReviewCard();
   }
+  renderHeaderStats();
+  hideAppLoading();
+  maybeShowOnboarding();
+}
+
+function hideAppLoading() {
+  const ld = document.getElementById('app-loading');
+  if (ld) setTimeout(() => ld.classList.add('hidden'), 250);
+}
+// フェイルセーフ: 初期化が失敗してもローディングは必ず消す
+window.addEventListener('load', () => setTimeout(hideAppLoading, 4000));
+
+// ====================================================================
+// Streak / daily stats (retention)
+// ====================================================================
+function todayStr() {
+  const d = new Date();
+  return `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
+}
+function dayDiff(a, b) {
+  const pa = a.split('-').map(Number), pb = b.split('-').map(Number);
+  const da = new Date(pa[0], pa[1] - 1, pa[2]);
+  const db = new Date(pb[0], pb[1] - 1, pb[2]);
+  return Math.round((db - da) / 86400000);
+}
+function ensureStats() {
+  if (!state.stats) state.stats = { streak: 0, lastDay: null, today: null, todayCount: 0 };
+  const t = todayStr();
+  if (state.stats.today !== t) { state.stats.today = t; state.stats.todayCount = 0; }
+}
+function recordStudy() {
+  ensureStats();
+  const t = todayStr();
+  const last = state.stats.lastDay;
+  if (last !== t) {
+    if (last && dayDiff(last, t) === 1) state.stats.streak += 1;
+    else state.stats.streak = 1;
+    state.stats.lastDay = t;
+  }
+  state.stats.todayCount += 1;
+  saveState();
+  renderHeaderStats();
+}
+function renderHeaderStats() {
+  if (!state) return;
+  ensureStats();
+  const s = document.getElementById('streak');
+  const tc = document.getElementById('today-count');
+  if (s) s.textContent = `🔥 ${state.stats.streak}`;
+  if (tc) tc.innerHTML = `今日 <b>${state.stats.todayCount}</b>`;
+}
+
+// ====================================================================
+// Onboarding (first run)
+// ====================================================================
+const ONBOARD_KEY = 'shunkan-onboarded-v1';
+const OB_STEPS = [
+  { e: '⚡️', t: '瞬間英作へようこそ', b: '日本語を見て、英語が口から出るまで反射的に練習するアプリ。会話で本当に使う型だけを厳選しています。' },
+  { e: '📈', t: 'レベルを選んで進む', b: 'Lv1(基礎)〜Lv5(ネイティブ表現)を上から順に。各レベルに目標と卒業基準があり、進捗バーで到達度が見えます。' },
+  { e: '🎧', t: '5つの鍛え方', b: '学習(産出)/復習(聞き流し)/聞き取り/会話/語彙を同じ教材で多角的に。通勤中は復習タブで垂れ流しがおすすめ。' },
+];
+let obIndex = 0;
+function maybeShowOnboarding() {
+  try { if (localStorage.getItem(ONBOARD_KEY)) return; } catch { return; }
+  obIndex = 0;
+  renderOnboarding();
+  document.getElementById('onboarding').classList.remove('hidden');
+}
+function renderOnboarding() {
+  const st = OB_STEPS[obIndex];
+  document.getElementById('ob-emoji').textContent = st.e;
+  document.getElementById('ob-title').textContent = st.t;
+  document.getElementById('ob-body').textContent = st.b;
+  const dots = document.getElementById('ob-dots');
+  dots.innerHTML = OB_STEPS.map((_, i) =>
+    `<span class="ob-dot${i === obIndex ? ' active' : ''}"></span>`).join('');
+  document.getElementById('ob-next').textContent =
+    obIndex === OB_STEPS.length - 1 ? '始める' : '次へ';
+}
+function finishOnboarding() {
+  try { localStorage.setItem(ONBOARD_KEY, '1'); } catch {}
+  document.getElementById('onboarding').classList.add('hidden');
 }
 
 // ====================================================================
@@ -203,9 +285,13 @@ function updateProgress() {
   const pool = problemsForCurrentScene();
   const total = pool.length;
   const learned = pool.filter(p => state.byId[p.id]?.seen > 0).length;
-  document.getElementById('progress').textContent = `${learned} / ${total}`;
-  const remaining = (state.currentQueue?.length || 0) + (state.sessionRetry?.length || 0);
-  document.getElementById('due-count').textContent = `本日残: ${remaining}`;
+  const pg = document.getElementById('progress');
+  if (pg) pg.textContent = `${learned} / ${total}`;
+  const dc = document.getElementById('due-count');
+  if (dc) {
+    const remaining = (state.currentQueue?.length || 0) + (state.sessionRetry?.length || 0);
+    dc.textContent = `本日残: ${remaining}`;
+  }
   renderLevelBanner();
 }
 
@@ -234,6 +320,7 @@ function grade(g) {
     if (!state.sessionRetry) state.sessionRetry = [];
     if (!state.sessionRetry.includes(currentId)) state.sessionRetry.push(currentId);
   }
+  recordStudy();
   saveState();
   nextProblem();
 }
@@ -1388,6 +1475,13 @@ function reviewNext() {
 // UI bindings
 // ====================================================================
 function bindUI() {
+  const obNext = document.getElementById('ob-next');
+  if (obNext) obNext.addEventListener('click', () => {
+    if (obIndex < OB_STEPS.length - 1) { obIndex++; renderOnboarding(); }
+    else finishOnboarding();
+  });
+  const obSkip = document.getElementById('ob-skip');
+  if (obSkip) obSkip.addEventListener('click', finishOnboarding);
   document.getElementById('btn-reveal').addEventListener('click', showAnswer);
   document.getElementById('btn-tts').addEventListener('click', () => speak(currentProblem));
   document.getElementById('btn-tts-slow').addEventListener('click', () => speakSlow(currentProblem));

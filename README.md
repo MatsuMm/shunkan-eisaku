@@ -59,6 +59,12 @@ git push -u origin main
 
 将来 B2 を作る時は `data/problems-b2.json` に分離予定。
 
+## 仕事英語（社内IT向けメモ）
+
+会話練習アプリとは別に、チケット・障害連絡・定例向けの定型と LLM 練習手順があります。
+
+→ **[docs/work-it/README.md](docs/work-it/README.md)**（1週間スターター・フレーズ集・テンプレ）
+
 ## Gemini TTS (任意・将来追加)
 
 より自然な音声を使いたい時用。今は Web Speech API のみ実装。
@@ -75,6 +81,8 @@ shunkan-eisaku/
 ├── sw.js              # Service Worker
 ├── data/
 │   └── problems-b1.json
+├── docs/
+│   └── work-it/       # 社内IT向け（フレーズ・テンプレ・LLM手順）
 ├── icons/
 │   ├── icon-192.png
 │   └── icon-512.png

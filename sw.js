@@ -1,32 +1,62 @@
 // Service Worker - network-first (オンラインなら常に最新)、オフライン時のみキャッシュ
-const CACHE = 'shunkan-eisaku-v21';
-// プリキャッシュ対象は最低限 (HTML/JS/CSS/JSON)。音声 mp3 は再生時に都度キャッシュされる。
+const CACHE = 'shunkan-eisaku-v23';
+// プリキャッシュ対象 (HTML/JS/CSS/JSON/icons/legal)。音声 mp3 は再生時に都度キャッシュされる。
 const ASSETS = [
+  // shell
   './',
   './index.html',
   './styles.css',
   './app.js',
   './manifest.json',
+  './START_HERE.md',
+  // icons
+  './icons/icon-192.png',
+  './icons/icon-512.png',
+  // legal
+  './legal/terms.html',
+  './legal/privacy.html',
+  './legal/start-here.html',
+  // data
   './data/index.json',
+  './data/grammar.json',
+  './data/dialogues.json',
+  './data/reading.json',
+  // scenes
   './data/scenes/daily.json',
   './data/scenes/work.json',
+  './data/scenes/it-support.json',
   './data/scenes/travel.json',
   './data/scenes/restaurant.json',
   './data/scenes/trouble.json',
   './data/scenes/emotion.json',
   './data/scenes/reduction.json',
+  // levels
   './data/levels/lv1.json',
   './data/levels/lv2.json',
   './data/levels/lv3.json',
   './data/levels/lv4.json',
   './data/levels/lv5.json',
-  './data/grammar.json',
-  './data/dialogues.json',
-  './data/reading.json',
+  './data/levels/lv1-work.json',
+  './data/levels/lv1-travel.json',
+  './data/levels/lv1-restaurant.json',
+  './data/levels/lv2-work.json',
+  './data/levels/lv2-travel.json',
+  './data/levels/lv2-restaurant.json',
+  './data/levels/lv4-work.json',
+  './data/levels/lv4-travel.json',
+  './data/levels/lv4-restaurant.json',
+  './data/levels/lv5-work.json',
+  './data/levels/lv5-travel.json',
+  './data/levels/lv5-restaurant.json',
 ];
 
 self.addEventListener('install', e => {
-  e.waitUntil(caches.open(CACHE).then(c => c.addAll(ASSETS)));
+  // 1 asset の 404 で install 全体を落とさない
+  e.waitUntil(
+    caches.open(CACHE).then(c =>
+      Promise.allSettled(ASSETS.map(url => c.add(url).catch(() => undefined)))
+    )
+  );
   self.skipWaiting();
 });
 

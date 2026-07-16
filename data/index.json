@@ -36,6 +36,7 @@
     { "file": "levels/lv5-restaurant.json", "level": 5, "scene": "restaurant", "sceneLabel": "飲食店" },
     { "file": "scenes/daily.json", "level": 3, "scene": "daily", "sceneLabel": "日常会話" },
     { "file": "scenes/work.json", "level": 3, "scene": "work", "sceneLabel": "仕事" },
+    { "file": "scenes/it-support.json", "level": 3, "scene": "it-support", "sceneLabel": "社内IT" },
     { "file": "scenes/travel.json", "level": 3, "scene": "travel", "sceneLabel": "旅行" },
     { "file": "scenes/restaurant.json", "level": 3, "scene": "restaurant", "sceneLabel": "飲食店" },
     { "file": "scenes/trouble.json", "level": 3, "scene": "trouble", "sceneLabel": "謝罪・確認" },

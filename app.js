@@ -16,7 +16,6 @@ let allProblems = [];        // 全シーン統合
 let scenes = [];             // [{id, label, file}]
 let state = null;            // { byId: {...}, sessionRetry: [] }
 let settings = {
-  geminiTts: false,
   rate: 0.95,
   levelFilter: 1,
   sceneFilter: 'all',
@@ -27,10 +26,20 @@ let settings = {
   reviewLoop: false,
   reviewOnlySeen: false,
   listShowEn: true,
+  sttEnabled: true,
+  dailyGoal: 15,
+  requireSaid: true,
+  studyTimerSec: 3,
+  studyTimerOn: true,
 };
 let listSearchTerm = '';
 let currentId = null;
 let currentProblem = null;
+let studyTimerHandle = null;
+let studyTimerLeft = 0;
+let studyTimedOut = false;
+let saidThisCard = false;
+let goalCelebratedDay = null;
 
 // Review mode state
 let reviewQueue = [];        // 学習済み problem IDs (current scene)
@@ -47,7 +56,25 @@ async function init() {
   loadSettings();
   applySettings();
   bindUI();
-  await loadAllProblems();
+  try {
+    await loadAllProblems();
+  } catch (err) {
+    console.error(err);
+    showAppError(
+      '教材データの読み込みに失敗しました',
+      'ネットワーク接続を確認して再読み込みしてください。オフラインの場合は、オンライン時に一度開いてキャッシュを作ってください。'
+    );
+    hideAppLoading();
+    return;
+  }
+  if (!allProblems.length) {
+    showAppError(
+      '問題データが空です',
+      'data/index.json または問題ファイルの配置を確認してください。'
+    );
+    hideAppLoading();
+    return;
+  }
   loadOrCreateState();
   renderLevelSelector();
   renderSceneSelector();
@@ -60,6 +87,7 @@ async function init() {
     renderReviewCard();
   }
   renderHeaderStats();
+  renderDailyGoal();
   hideAppLoading();
   maybeShowOnboarding();
 }
@@ -70,6 +98,20 @@ function hideAppLoading() {
 }
 // フェイルセーフ: 初期化が失敗してもローディングは必ず消す
 window.addEventListener('load', () => setTimeout(hideAppLoading, 4000));
+
+function showAppError(title, body) {
+  const el = document.getElementById('app-error');
+  if (!el) {
+    alert(title + '\n' + (body || ''));
+    return;
+  }
+  const t = document.getElementById('app-error-title');
+  const b = document.getElementById('app-error-body');
+  if (t) t.textContent = title;
+  if (b) b.textContent = body || '';
+  el.classList.remove('hidden');
+  document.getElementById('card')?.classList.add('hidden');
+}
 
 // ====================================================================
 // Streak / daily stats (retention)
@@ -101,6 +143,8 @@ function recordStudy() {
   state.stats.todayCount += 1;
   saveState();
   renderHeaderStats();
+  renderDailyGoal();
+  maybeCelebrateGoal();
 }
 function renderHeaderStats() {
   if (!state) return;
@@ -109,6 +153,31 @@ function renderHeaderStats() {
   const tc = document.getElementById('today-count');
   if (s) s.textContent = `🔥 ${state.stats.streak}`;
   if (tc) tc.innerHTML = `今日 <b>${state.stats.todayCount}</b>`;
+  updateProgress();
+}
+function renderDailyGoal() {
+  if (!state) return;
+  ensureStats();
+  const goal = Math.max(1, settings.dailyGoal || 15);
+  const n = state.stats.todayCount || 0;
+  const fill = document.getElementById('daily-goal-fill');
+  const label = document.getElementById('daily-goal-label');
+  const wrap = document.getElementById('daily-goal');
+  if (fill) fill.style.width = Math.min(100, Math.round((n / goal) * 100)) + '%';
+  if (label) label.textContent = `今日の目標 ${n} / ${goal}`;
+  if (wrap) wrap.classList.toggle('done', n >= goal);
+}
+function maybeCelebrateGoal() {
+  const goal = Math.max(1, settings.dailyGoal || 15);
+  const t = todayStr();
+  if ((state.stats.todayCount || 0) < goal) return;
+  if (goalCelebratedDay === t) return;
+  goalCelebratedDay = t;
+  const toast = document.getElementById('goal-toast');
+  if (!toast) return;
+  toast.classList.remove('hidden');
+  toast.textContent = `🎯 今日の目標 ${goal} 問クリア！`;
+  setTimeout(() => toast.classList.add('hidden'), 3200);
 }
 
 // ====================================================================
@@ -116,9 +185,9 @@ function renderHeaderStats() {
 // ====================================================================
 const ONBOARD_KEY = 'shunkan-onboarded-v1';
 const OB_STEPS = [
-  { e: '⚡️', t: '瞬間英作へようこそ', b: '日本語を見て、英語が口から出るまで反射的に練習するアプリ。会話で本当に使う型だけを厳選しています。' },
-  { e: '📈', t: 'レベルを選んで進む', b: 'Lv1(基礎)〜Lv5(ネイティブ表現)を上から順に。各レベルに目標と卒業基準があり、進捗バーで到達度が見えます。' },
-  { e: '🎧', t: '5つの鍛え方', b: '学習(産出)/復習(聞き流し)/聞き取り/会話/語彙を同じ教材で多角的に。通勤中は復習タブで垂れ流しがおすすめ。' },
+  { e: '⚡️', t: '瞬間英作へようこそ', b: '日本語を見て、英語を瞬時に口に出す練習アプリです。学習・復習・聞き取り・会話・読解・語彙・文法を同じ教材で回せます。' },
+  { e: '📈', t: 'レベルとシーン', b: 'Lv1(基礎)〜Lv5。仕事・旅行・飲食などのシーンも選べます。各レベルに目標があり、ヘッダーで進捗と本日残りが見えます。' },
+  { e: '🗣️', t: '声に出して自己採点', b: '答えを見る前に声に出しましょう。◯=3日後 / △=明日 / ×=今日もう一度。マイク機能は任意（設定でオフ可）。進捗は端末内のみ保存されます。' },
 ];
 let obIndex = 0;
 function maybeShowOnboarding() {
@@ -175,7 +244,80 @@ function loadOrCreateState() {
   saveState();
 }
 function saveState() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch (e) {
+    console.warn('saveState failed', e);
+  }
+}
+
+const BACKUP_VERSION = 1;
+
+function exportProgress() {
+  const payload = {
+    version: BACKUP_VERSION,
+    exportedAt: new Date().toISOString(),
+    app: 'shunkan-eisaku',
+    state: state,
+    settings: {
+      rate: settings.rate,
+      levelFilter: settings.levelFilter,
+      sceneFilter: settings.sceneFilter,
+      dailyGoal: settings.dailyGoal,
+      requireSaid: settings.requireSaid,
+      studyTimerOn: settings.studyTimerOn,
+      studyTimerSec: settings.studyTimerSec,
+      sttEnabled: settings.sttEnabled,
+      reviewGap: settings.reviewGap,
+      reviewNextGap: settings.reviewNextGap,
+      reviewJpTts: settings.reviewJpTts,
+      reviewLoop: settings.reviewLoop,
+      reviewOnlySeen: settings.reviewOnlySeen,
+      listShowEn: settings.listShowEn,
+    },
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+  const a = document.createElement('a');
+  const day = todayStr().replace(/-/g, '');
+  a.href = URL.createObjectURL(blob);
+  a.download = `shunkan-eisaku-backup-${day}.json`;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => {
+    URL.revokeObjectURL(a.href);
+    a.remove();
+  }, 500);
+}
+
+function importProgressFromFile(file) {
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const data = JSON.parse(reader.result);
+      if (!data || typeof data !== 'object') throw new Error('invalid');
+      if (data.state && data.state.byId) {
+        state = data.state;
+        saveState();
+      } else if (data.byId) {
+        // raw state dump
+        state = data;
+        saveState();
+      } else {
+        throw new Error('no state');
+      }
+      if (data.settings && typeof data.settings === 'object') {
+        settings = { ...settings, ...data.settings };
+        saveSettings();
+      }
+      alert('進捗をインポートしました。画面を再読み込みします。');
+      location.reload();
+    } catch (e) {
+      alert('インポートに失敗しました。バックアップ JSON を確認してください。');
+      console.error(e);
+    }
+  };
+  reader.readAsText(file);
 }
 
 // ====================================================================
@@ -184,18 +326,32 @@ function saveState() {
 let levelsMeta = [];   // [{id,label,cefr,goal,criteria}]
 
 async function loadAllProblems() {
-  const idx = await (await fetch('data/index.json')).json();
-  levelsMeta = idx.levels;
+  const idxRes = await fetch('data/index.json');
+  if (!idxRes.ok) throw new Error('index.json HTTP ' + idxRes.status);
+  const idx = await idxRes.json();
+  levelsMeta = idx.levels || [];
   allProblems = [];
-  for (const src of idx.sources) {
-    const data = await (await fetch('data/' + src.file)).json();
-    for (const p of data.problems) {
-      p.level = src.level;
-      p.scene = src.scene;
-      p.sceneLabel = src.sceneLabel;
-      allProblems.push(p);
+  const errors = [];
+  for (const src of idx.sources || []) {
+    try {
+      const res = await fetch('data/' + src.file);
+      if (!res.ok) throw new Error(src.file + ' HTTP ' + res.status);
+      const data = await res.json();
+      const problems = data.problems || [];
+      for (const p of problems) {
+        p.level = src.level;
+        p.scene = src.scene;
+        p.sceneLabel = src.sceneLabel;
+        allProblems.push(p);
+      }
+    } catch (e) {
+      errors.push(String(e.message || e));
     }
   }
+  if (!allProblems.length && errors.length) {
+    throw new Error(errors.join('; '));
+  }
+  if (errors.length) console.warn('Some content failed to load:', errors);
 }
 
 function currentLevel() {
@@ -278,7 +434,65 @@ function renderProblem() {
   document.getElementById('note').textContent = currentProblem.note || '';
   document.getElementById('tip').textContent = currentProblem.tip || '';
   document.getElementById('level-tag').textContent = currentProblem.sceneLabel || currentProblem.scene;
+  saidThisCard = false;
+  studyTimedOut = false;
+  const saidEl = document.getElementById('said-check');
+  if (saidEl) saidEl.checked = false;
+  updateSaidGate();
+  startStudyTimer();
   updateProgress();
+}
+
+function clearStudyTimer() {
+  if (studyTimerHandle) {
+    clearInterval(studyTimerHandle);
+    studyTimerHandle = null;
+  }
+  const el = document.getElementById('study-timer');
+  if (el) {
+    el.classList.add('hidden');
+    el.textContent = '';
+    el.classList.remove('timeout');
+  }
+}
+
+function startStudyTimer() {
+  clearStudyTimer();
+  if (!settings.studyTimerOn) return;
+  const sec = Math.max(1, Number(settings.studyTimerSec) || 3);
+  studyTimerLeft = sec;
+  studyTimedOut = false;
+  const el = document.getElementById('study-timer');
+  if (!el) return;
+  el.classList.remove('hidden', 'timeout');
+  el.textContent = `${studyTimerLeft}`;
+  el.title = '目標反応時間（秒）';
+  studyTimerHandle = setInterval(() => {
+    studyTimerLeft -= 1;
+    if (studyTimerLeft <= 0) {
+      clearInterval(studyTimerHandle);
+      studyTimerHandle = null;
+      studyTimedOut = true;
+      el.textContent = '…';
+      el.classList.add('timeout');
+      el.title = '時間オーバー（詰まったサイン）';
+    } else {
+      el.textContent = `${studyTimerLeft}`;
+    }
+  }, 1000);
+}
+
+function updateSaidGate() {
+  const require = settings.requireSaid !== false;
+  const wrap = document.getElementById('said-check-wrap');
+  if (wrap) wrap.classList.toggle('hidden', !require);
+  const btn = document.getElementById('btn-reveal');
+  if (!btn) return;
+  if (!require) {
+    btn.disabled = false;
+    return;
+  }
+  btn.disabled = !saidThisCard;
 }
 
 function updateProgress() {
@@ -299,6 +513,18 @@ function showEmpty() {
   document.getElementById('card').classList.add('hidden');
   document.getElementById('empty').classList.remove('hidden');
   updateProgress();
+}
+
+/** 進捗を消さず、現在のレベル×シーンを追加練習（SRS の nextDue は変えない） */
+function practiceAgain() {
+  const pool = problemsForCurrentScene();
+  if (!pool.length) return;
+  state.sessionRetry = [];
+  state.currentQueue = shuffle(pool.map(p => p.id));
+  saveState();
+  document.getElementById('empty').classList.add('hidden');
+  document.getElementById('card').classList.remove('hidden');
+  nextProblem();
 }
 
 // ====================================================================
@@ -326,14 +552,36 @@ function grade(g) {
 }
 
 function hideAnswer() {
+  clearStudyTimer();
   document.getElementById('answer').classList.add('hidden');
   document.getElementById('actions-pre').classList.remove('hidden');
   const shadow = document.getElementById('shadow-result');
   if (shadow) { shadow.classList.remove('visible'); shadow.innerHTML = ''; }
+  const mic = document.getElementById('mic-result');
+  if (mic) mic.textContent = '';
 }
 function showAnswer() {
+  if (settings.requireSaid !== false && !saidThisCard) {
+    const wrap = document.getElementById('said-check-wrap');
+    if (wrap) {
+      wrap.classList.add('shake');
+      setTimeout(() => wrap.classList.remove('shake'), 400);
+    }
+    return;
+  }
+  clearStudyTimer();
   document.getElementById('answer').classList.remove('hidden');
   document.getElementById('actions-pre').classList.add('hidden');
+  const flag = document.getElementById('timer-flag');
+  if (flag) {
+    if (settings.studyTimerOn && studyTimedOut) {
+      flag.textContent = '⏱ 時間内に出なかった（詰まり）';
+      flag.classList.remove('hidden');
+    } else {
+      flag.classList.add('hidden');
+      flag.textContent = '';
+    }
+  }
   speak(currentProblem);
 }
 
@@ -458,6 +706,10 @@ function initSTT() {
   return r;
 }
 function startMic() {
+  if (settings.sttEnabled === false) {
+    document.getElementById('mic-result').textContent = '設定でマイク入力がオフです';
+    return;
+  }
   if (!recognition) recognition = initSTT();
   if (!recognition) {
     document.getElementById('mic-result').textContent = '⚠ この端末は音声認識に未対応';
@@ -483,6 +735,11 @@ function startShadowing() {
   if (!currentProblem) return;
   const shadowEl = document.getElementById('shadow-result');
   shadowEl.classList.add('visible');
+  if (settings.sttEnabled === false) {
+    shadowEl.innerHTML = '<div class="label">設定でマイク入力がオフです。模範音声のみ再生します。</div>';
+    speak(currentProblem);
+    return;
+  }
   shadowEl.innerHTML = '<div class="label">▶ 模範音声を再生中...</div>';
   speakAudio(`audio/${currentProblem.id}.mp3`, currentProblem.en, 'en-US', () => {
     // 模範終了後にマイク ON
@@ -552,14 +809,18 @@ function renderLevelBanner() {
   const learned = pool.filter(p => (state.byId[p.id]?.seen || 0) > 0).length;
   const total = pool.length;
   const pct = total > 0 ? Math.round((learned / total) * 100) : 0;
+  // ゆるい卒業指標: 当該Lvの 80% 以上を1回以上学習
+  const gradReady = total > 0 && learned / total >= 0.8;
   const el = document.getElementById('level-banner');
   if (!el) return;
   el.innerHTML =
-    `<div class="lb-head">🎯 ${escapeHtml(m.label)} <span class="lb-cefr">${escapeHtml(m.cefr || '')}</span></div>` +
+    `<div class="lb-head">🎯 ${escapeHtml(m.label)} <span class="lb-cefr">${escapeHtml(m.cefr || '')}</span>` +
+    (gradReady ? ` <span class="lb-grad">卒業ライン到達</span>` : '') +
+    `</div>` +
     `<div class="lb-goal">目標: ${escapeHtml(m.goal)}</div>` +
     `<div class="lb-crit">卒業: ${escapeHtml(m.criteria)}</div>` +
-    `<div class="lb-bar"><div class="lb-fill" style="width:${pct}%"></div></div>` +
-    `<div class="lb-pct">${learned} / ${total} 学習済 (${pct}%)</div>`;
+    `<div class="lb-bar"><div class="lb-fill${gradReady ? ' grad' : ''}" style="width:${pct}%"></div></div>` +
+    `<div class="lb-pct">${learned} / ${total} 学習済 (${pct}%)${gradReady ? ' · 次のレベルへ進んでもOK' : ''}</div>`;
 }
 
 function renderSceneSelector() {
@@ -654,6 +915,11 @@ function tokenizeForDict(s) {
     .split(/\s+/)
     .map(w => w.replace(/^[,.!?;:"()]+|[,.!?;:"()]+$/g, ''))
     .filter(Boolean);
+}
+
+/** シャドウイング・採点用: 小文字化してからトークン化 */
+function normalizeForDict(s) {
+  return tokenizeForDict(String(s || '').toLowerCase().replace(/[’']/g, "'"));
 }
 
 function shuffle(arr) {
@@ -1490,11 +1756,67 @@ function bindUI() {
   document.querySelectorAll('.grade-buttons .btn').forEach(b => {
     b.addEventListener('click', () => grade(b.dataset.grade));
   });
+  const saidEl = document.getElementById('said-check');
+  if (saidEl) {
+    saidEl.addEventListener('change', (e) => {
+      saidThisCard = !!e.target.checked;
+      updateSaidGate();
+    });
+  }
+  const btnPractice = document.getElementById('btn-practice-again');
+  if (btnPractice) btnPractice.addEventListener('click', practiceAgain);
   document.getElementById('btn-restart').addEventListener('click', () => {
     if (!confirm('全進捗をリセットします。よろしいですか？')) return;
     localStorage.removeItem(STORAGE_KEY);
     location.reload();
   });
+  const btnErrReload = document.getElementById('app-error-reload');
+  if (btnErrReload) btnErrReload.addEventListener('click', () => location.reload());
+  const btnExport = document.getElementById('btn-export');
+  if (btnExport) btnExport.addEventListener('click', exportProgress);
+  const btnImport = document.getElementById('btn-import');
+  const importFile = document.getElementById('import-file');
+  if (btnImport && importFile) {
+    btnImport.addEventListener('click', () => importFile.click());
+    importFile.addEventListener('change', () => {
+      const f = importFile.files && importFile.files[0];
+      importProgressFromFile(f);
+      importFile.value = '';
+    });
+  }
+  const optGoal = document.getElementById('opt-daily-goal');
+  if (optGoal) {
+    optGoal.addEventListener('change', (e) => {
+      settings.dailyGoal = Math.max(1, parseInt(e.target.value, 10) || 15);
+      saveSettings();
+      renderDailyGoal();
+    });
+  }
+  const optSaid = document.getElementById('opt-require-said');
+  if (optSaid) {
+    optSaid.addEventListener('change', (e) => {
+      settings.requireSaid = e.target.checked;
+      saveSettings();
+      updateSaidGate();
+    });
+  }
+  const optTimer = document.getElementById('opt-study-timer');
+  if (optTimer) {
+    optTimer.addEventListener('change', (e) => {
+      settings.studyTimerOn = e.target.checked;
+      saveSettings();
+      if (settings.mode === 'study' && currentProblem) startStudyTimer();
+      else clearStudyTimer();
+    });
+  }
+  const optTimerSec = document.getElementById('opt-timer-sec');
+  if (optTimerSec) {
+    optTimerSec.addEventListener('change', (e) => {
+      settings.studyTimerSec = Math.max(1, parseInt(e.target.value, 10) || 3);
+      saveSettings();
+      if (settings.studyTimerOn && settings.mode === 'study' && currentProblem) startStudyTimer();
+    });
+  }
   document.getElementById('scene-select').addEventListener('change', onSceneChange);
   const lvSel = document.getElementById('level-select');
   if (lvSel) lvSel.addEventListener('change', onLevelChange);
@@ -1566,19 +1888,30 @@ function bindUI() {
     if (it) speak({ id: it.id, en: it.en });
   });
   document.getElementById('voc-next').addEventListener('click', vocNext);
-  document.getElementById('opt-gemini-tts').addEventListener('change', (e) => {
-    settings.geminiTts = e.target.checked;
-    saveSettings();
-  });
   document.getElementById('opt-rate').addEventListener('input', (e) => {
     settings.rate = parseFloat(e.target.value);
     document.getElementById('rate-label').textContent = settings.rate.toFixed(2);
     saveSettings();
   });
+  const optStt = document.getElementById('opt-stt');
+  if (optStt) {
+    optStt.addEventListener('change', (e) => {
+      settings.sttEnabled = e.target.checked;
+      saveSettings();
+      applySttUi();
+    });
+  }
+}
+
+function applySttUi() {
+  const on = settings.sttEnabled !== false;
+  ['btn-mic', 'btn-shadow'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.style.display = on ? '' : 'none';
+  });
 }
 
 function applySettings() {
-  document.getElementById('opt-gemini-tts').checked = !!settings.geminiTts;
   document.getElementById('opt-rate').value = settings.rate;
   document.getElementById('rate-label').textContent = (settings.rate || 0.95).toFixed(2);
   document.getElementById('rev-gap').value = settings.reviewGap;
@@ -1589,6 +1922,19 @@ function applySettings() {
   document.getElementById('rev-loop').checked = !!settings.reviewLoop;
   document.getElementById('rev-only-seen').checked = !!settings.reviewOnlySeen;
   document.getElementById('list-show-en').checked = settings.listShowEn !== false;
+  const optStt = document.getElementById('opt-stt');
+  if (optStt) optStt.checked = settings.sttEnabled !== false;
+  const optGoal = document.getElementById('opt-daily-goal');
+  if (optGoal) optGoal.value = settings.dailyGoal || 15;
+  const optSaid = document.getElementById('opt-require-said');
+  if (optSaid) optSaid.checked = settings.requireSaid !== false;
+  const optTimer = document.getElementById('opt-study-timer');
+  if (optTimer) optTimer.checked = settings.studyTimerOn !== false;
+  const optTimerSec = document.getElementById('opt-timer-sec');
+  if (optTimerSec) optTimerSec.value = settings.studyTimerSec || 3;
+  applySttUi();
+  updateSaidGate();
+  renderDailyGoal();
 }
 
 // ====================================================================

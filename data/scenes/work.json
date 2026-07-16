@@ -169,13 +169,13 @@
     {
       "id": "work-015",
       "jp": "認識違いがあったかも。",
-      "en": "We might be on different pages.",
+      "en": "We might not be on the same page.",
       "alt": [
         "There might be a misunderstanding.",
-        "I think we're miscommunicating."
+        "I think we're misaligned."
       ],
       "function": "clarify",
-      "note": "on different pages = 認識ズレ。on the same page の逆。"
+      "note": "not on the same page = 認識ズレ。on the same page の否定形が自然。"
     },
     {
       "id": "work-016",
@@ -329,7 +329,7 @@
         "One thing caught my eye."
       ],
       "function": "opinion",
-      "note": "concern = 懸念。catch eye = 目に留まる。"
+      "note": "concern = 懸念。catch one's eye = 目に留まる。"
     },
     {
       "id": "work-030",
@@ -357,13 +357,13 @@
     {
       "id": "work-032",
       "jp": "助かります、ありがとう。",
-      "en": "That would be a huge help.",
+      "en": "That's a huge help. Thank you.",
       "alt": [
-        "That'd be great, thanks.",
+        "Thanks, that helps a lot.",
         "Much appreciated."
       ],
       "function": "thanks",
-      "note": "would = 仮定 (お願いした場合の感謝)。"
+      "note": "助かります = すでに助かっている感謝。That would be... は依頼時。"
     },
     {
       "id": "work-033",
@@ -390,13 +390,13 @@
     {
       "id": "work-035",
       "jp": "進捗を教えてください。",
-      "en": "Could you keep me posted?",
+      "en": "Could you give me a status update?",
       "alt": [
-        "Keep me in the loop.",
-        "Let me know how it goes."
+        "What's the progress?",
+        "Could you keep me posted?"
       ],
       "function": "request",
-      "note": "keep posted = 状況を教える、in the loop = 情報共有の輪に入れる。",
+      "note": "進捗を教えて = 現状報告。keep me posted は継続的に知らせて、の意味。",
       "tip": "could you → クッジャ /ˈkʊdʒə/: d + y で /dʒ/ 音"
     }
   ]

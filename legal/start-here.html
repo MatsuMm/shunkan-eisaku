@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1a1a1a">
+<title>はじめにお読みください — 瞬間英作</title>
+<style>
+  :root { --bg:#121417; --surface:#181b20; --text:#eceef1; --text-dim:#969ca6; --accent:#4a9eff; --border:#2a2f37; }
+  * { box-sizing: border-box; }
+  body { margin:0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans", Meiryo, sans-serif; background:var(--bg); color:var(--text); line-height:1.75; font-size:15px; }
+  .wrap { max-width:720px; margin:0 auto; padding:28px 20px 64px; }
+  h1 { font-size:1.35rem; margin:0 0 8px; }
+  h2 { font-size:1.05rem; margin:1.8em 0 0.5em; border-bottom:1px solid var(--border); padding-bottom:6px; }
+  .meta { color:var(--text-dim); font-size:0.88rem; margin-bottom:24px; }
+  pre, code { background:var(--surface); border:1px solid var(--border); border-radius:8px; }
+  pre { padding:12px 14px; overflow:auto; font-size:13px; }
+  code { padding:1px 5px; font-size:0.9em; }
+  table { width:100%; border-collapse:collapse; font-size:0.92rem; }
+  th, td { border:1px solid var(--border); padding:8px 10px; text-align:left; vertical-align:top; }
+  th { color:var(--text-dim); font-weight:600; }
+  a { color:var(--accent); }
+  footer { margin-top:40px; padding-top:20px; border-top:1px solid var(--border); text-align:center; color:var(--text-dim); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>はじめにお読みください</h1>
+  <p class="meta">瞬間英作 v1.0.0</p>
+  <p>ブラウザで動く英語トレーニング（PWA）です。Android Chrome からホーム画面に追加して使えます。</p>
+
+  <h2>3ステップで開始（Windows）</h2>
+  <ol>
+    <li>このフォルダを好きな場所に置く</li>
+    <li>フォルダでコマンドを開き、次を実行:</li>
+  </ol>
+  <pre>python -m http.server 8765</pre>
+  <ol start="3">
+    <li>Chrome で <code>http://localhost:8765/</code> を開く</li>
+  </ol>
+  <p><strong>注意:</strong> HTML をダブルクリックで開くと動きません（セキュリティ制限）。必ず HTTP サーバ経由で。</p>
+
+  <h2>Android（同じ Wi‑Fi）</h2>
+  <ol>
+    <li>PC: <code>python -m http.server 8765 --bind 0.0.0.0</code></li>
+    <li>PC の IPv4 を確認（ipconfig）</li>
+    <li>スマホ Chrome で <code>http://&lt;PCのIP&gt;:8765/</code></li>
+    <li>メニュー → ホーム画面に追加</li>
+  </ol>
+
+  <h2>最初にやること</h2>
+  <ol>
+    <li>Lv1 の「学習」で声に出す</li>
+    <li>答えの前に「口に出した」をチェック</li>
+    <li>◯△× で自己採点</li>
+    <li>設定から進捗をエクスポート（機種変更対策）</li>
+  </ol>
+
+  <h2>重要</h2>
+  <table>
+    <tr><th>項目</th><th>内容</th></tr>
+    <tr><td>進捗</td><td>端末ブラウザ内のみ。消えたらインポートで復元</td></tr>
+    <tr><td>音声</td><td>同梱 MP3 優先。無い場合はブラウザ読み上げ</td></tr>
+    <tr><td>マイク</td><td>任意。Chrome では認識がクラウド経由の場合あり</td></tr>
+    <tr><td>対応</td><td>Android Chrome 推奨 / iOS は制限あり</td></tr>
+  </table>
+
+  <h2>困ったとき</h2>
+  <ul>
+    <li>読み込み失敗 → 再読み込み。一度オンラインで開く</li>
+    <li>進捗消失 → 設定のインポート（事前エクスポートが必要）</li>
+    <li>問い合わせ → 購入した販売ページのメッセージ</li>
+  </ul>
+
+  <footer>
+    <a href="../index.html">アプリに戻る</a>
+    · <a href="terms.html">利用規約</a>
+    · <a href="privacy.html">プライバシー</a>
+  </footer>
+</div>
+</body>
+</html>

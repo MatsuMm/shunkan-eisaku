@@ -63,12 +63,34 @@ header h1 {
   flex-shrink: 0;
 }
 
+.app-ver {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-dim);
+  margin-left: 6px;
+  letter-spacing: 0;
+  vertical-align: middle;
+}
+.lb-grad {
+  display: inline-block;
+  margin-left: 8px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--ok);
+  background: rgba(46, 204, 113, 0.12);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+.lb-fill.grad { background: var(--ok); }
+
 .hdr-stats {
   display: flex;
   align-items: center;
   gap: 10px;
   font-size: 13px;
   font-variant-numeric: tabular-nums;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 .hdr-stats .streak {
   color: var(--tri);
@@ -1044,3 +1066,208 @@ main > section, .level-banner, .core-controls, .mode-tabs {
 .ob-dot.active { background: var(--accent); }
 .ob-actions { display: flex; gap: 8px; }
 .ob-actions .btn { flex: 1; }
+
+/* ============ Feature UI (stats / error / legal / said / timer / goal / a11y) ============ */
+
+/* Header stats: progress + due pills */
+.hdr-stats .progress,
+.hdr-stats .due {
+  color: var(--text-dim);
+  font-size: 12px;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  background: var(--surface-2);
+  padding: 3px 8px;
+  border-radius: 999px;
+  white-space: nowrap;
+  line-height: 1.3;
+}
+
+/* App error state (mirrors .empty) */
+.app-error {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--text-dim);
+}
+.app-error p { font-size: 18px; margin: 8px 0; color: var(--text); font-weight: 600; }
+.app-error .sub { font-size: 14px; color: var(--text-dim); font-weight: 400; }
+
+/* Empty actions spacing */
+.empty .btn {
+  margin: 6px 4px;
+}
+.empty .btn + .btn {
+  margin-top: 8px;
+}
+
+/* Legal footer links */
+.legal-links a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.legal-links a:hover {
+  text-decoration: underline;
+}
+
+/* Spoken-said checkbox row */
+.said-check {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 12px 0;
+  padding: 10px 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  color: var(--text);
+  cursor: pointer;
+  user-select: none;
+}
+.said-check input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+/* Study timer countdown */
+.study-timer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 3.2em;
+  font-size: 15px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+}
+.study-timer.ring {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  border-radius: 50%;
+  border: 2px solid var(--surface-2);
+  border-top-color: var(--accent);
+  font-size: 12px;
+}
+
+/* Daily goal bar under header */
+.daily-goal {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 16px 10px;
+  font-size: 12px;
+  color: var(--text-dim);
+}
+.daily-goal-track {
+  flex: 1;
+  height: 4px;
+  background: var(--surface-2);
+  border-radius: 999px;
+  overflow: hidden;
+  min-width: 0;
+}
+.daily-goal-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  border-radius: 999px;
+  transition: width 0.35s var(--ease);
+}
+.daily-goal.done #daily-goal-label { color: var(--ok); font-weight: 600; }
+.daily-goal.done .daily-goal-fill { background: var(--ok); }
+
+.goal-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 88px;
+  transform: translateX(-50%);
+  z-index: 80;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text);
+  padding: 12px 18px;
+  border-radius: 12px;
+  box-shadow: var(--shadow);
+  font-size: 14px;
+  font-weight: 600;
+  max-width: min(92vw, 360px);
+  text-align: center;
+}
+.goal-toast.hidden { display: none; }
+
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.study-timer.timeout { color: var(--tri); }
+.timer-flag {
+  font-size: 12px;
+  color: var(--tri);
+  margin-bottom: 8px;
+}
+.timer-flag.hidden { display: none; }
+
+.said-check.shake {
+  animation: saidShake 0.35s var(--ease);
+}
+@keyframes saidShake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+.num-input {
+  width: 4.5em;
+  background: var(--surface-2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 6px 8px;
+  font-family: inherit;
+  font-size: 14px;
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Backup import/export button row */
+.backup-row {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.backup-row .btn {
+  flex: 1 1 auto;
+  min-width: 120px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  main > section, .level-banner, .core-controls, .mode-tabs {
+    animation: none;
+  }
+  #app-loading .spin {
+    animation: none;
+    border-top-color: var(--surface-2);
+    opacity: 0.7;
+  }
+  .btn { transition: none; }
+  .daily-goal > span,
+  .daily-goal .bar { transition: none; }
+}
+
+/* Keyboard focus-visible */
+.btn:focus-visible,
+.mode-tab:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

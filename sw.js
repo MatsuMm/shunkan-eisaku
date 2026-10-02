@@ -1,5 +1,5 @@
 // Service Worker - network-first (オンラインなら常に最新)、オフライン時のみキャッシュ
-const CACHE = 'shunkan-eisaku-v24';
+const CACHE = 'shunkan-eisaku-v25';
 // プリキャッシュ対象 (HTML/JS/CSS/JSON/icons/legal)。音声 mp3 は再生時に都度キャッシュされる。
 const ASSETS = [
   // shell

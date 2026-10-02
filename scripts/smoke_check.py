@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -87,6 +88,13 @@ def main() -> int:
         warn("gemini string still in app.js")
     else:
         ok("no gemini dead UI in app.js")
+
+    # JS が classList で 'hidden' を付け外しする要素は、共通 .hidden ルールで消える必要がある
+    css = (ROOT / "styles.css").read_text(encoding="utf-8")
+    if re.search(r"(^|[\s,}])\.hidden\s*\{[^}]*display:\s*none\s*!important", css, re.M):
+        ok("css generic .hidden rule")
+    else:
+        err("css missing generic `.hidden { display: none !important; }`")
 
     sw = (ROOT / "sw.js").read_text(encoding="utf-8")
     if "it-support.json" in sw:

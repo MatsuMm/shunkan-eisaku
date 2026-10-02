@@ -1091,6 +1091,7 @@ main > section, .level-banner, .core-controls, .mode-tabs {
 }
 .app-error p { font-size: 18px; margin: 8px 0; color: var(--text); font-weight: 600; }
 .app-error .sub { font-size: 14px; color: var(--text-dim); font-weight: 400; }
+.app-error.hidden { display: none; }
 
 /* Empty actions spacing */
 .empty .btn {
@@ -1208,6 +1209,7 @@ main > section, .level-banner, .core-controls, .mode-tabs {
   margin-bottom: 8px;
 }
 .study-timer.timeout { color: var(--tri); }
+.study-timer.hidden { display: none; }
 .timer-flag {
   font-size: 12px;
   color: var(--tri);

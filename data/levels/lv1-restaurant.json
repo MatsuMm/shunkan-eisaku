@@ -14,12 +14,12 @@
     { "id": "lv1r-009", "jp": "おいしいです。", "en": "It's delicious.", "alt": [], "function": "restaurant", "note": "感想。" },
     { "id": "lv1r-010", "jp": "もう一つください。", "en": "One more, please.", "alt": [], "function": "restaurant", "note": "追加。" },
     { "id": "lv1r-011", "jp": "お会計お願いします。", "en": "Check, please.", "alt": ["Bill, please."], "function": "restaurant", "note": "会計。" },
-    { "id": "lv1r-012", "jp": "カードで払えますか？", "en": "Can I pay by card?", "alt": [], "function": "restaurant", "note": "支払い方法。" },
+    { "id": "lv1r-012", "jp": "カードで払えますか？", "en": "Can I pay by card?", "alt": ["Do you take cards?"], "function": "restaurant", "note": "支払い方法。take cards = カードは使えますか。" },
     { "id": "lv1r-013", "jp": "現金で払います。", "en": "I'll pay in cash.", "alt": [], "function": "restaurant", "note": "in cash = 現金で。" },
     { "id": "lv1r-014", "jp": "レシートをください。", "en": "Receipt, please.", "alt": [], "function": "restaurant", "note": "receipt。" },
-    { "id": "lv1r-015", "jp": "持ち帰りできますか？", "en": "Can I take this to go?", "alt": [], "function": "restaurant", "note": "to go = 持ち帰り。" },
+    { "id": "lv1r-015", "jp": "持ち帰りできますか？", "en": "Can I get this to go?", "alt": ["Can I take this to go?"], "function": "restaurant", "note": "to go = 持ち帰り。" },
     { "id": "lv1r-016", "jp": "トイレはどこですか？", "en": "Where is the bathroom?", "alt": [], "function": "restaurant", "note": "必須。" },
     { "id": "lv1r-017", "jp": "ごちそうさま、おいしかった。", "en": "Thank you, it was great.", "alt": [], "function": "restaurant", "note": "退店時。" },
-    { "id": "lv1r-018", "jp": "またお願いします。", "en": "Thank you, see you.", "alt": [], "function": "restaurant", "note": "別れ。" }
+    { "id": "lv1r-018", "jp": "またお願いします。", "en": "Thank you. See you next time.", "alt": ["I'll be back."], "function": "restaurant", "note": "退店時の別れ。" }
   ]
 }

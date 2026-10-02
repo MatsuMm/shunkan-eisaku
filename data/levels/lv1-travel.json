@@ -7,11 +7,11 @@
     { "id": "lv1t-002", "jp": "観光です。", "en": "Sightseeing.", "alt": ["For tourism."], "function": "travel", "note": "入国審査の答え。" },
     { "id": "lv1t-003", "jp": "3日間います。", "en": "Three days.", "alt": ["For three days."], "function": "travel", "note": "滞在日数。" },
     { "id": "lv1t-004", "jp": "これは私のかばんです。", "en": "This is my bag.", "alt": [], "function": "travel", "note": "荷物受取。" },
-    { "id": "lv1t-005", "jp": "タクシーはどこですか？", "en": "Where are the taxis?", "alt": [], "function": "travel", "note": "場所を聞く。" },
-    { "id": "lv1t-006", "jp": "ここまでお願いします。", "en": "Here, please.", "alt": ["To this address, please."], "function": "travel", "note": "住所を見せて。" },
+    { "id": "lv1t-005", "jp": "タクシーはどこですか？", "en": "Where can I get a taxi?", "alt": ["Where is the taxi stand?"], "function": "travel", "note": "タクシー乗り場を聞く定番。" },
+    { "id": "lv1t-006", "jp": "ここまでお願いします。", "en": "To this address, please.", "alt": ["Here, please."], "function": "travel", "note": "住所・地図を見せて行き先を伝える。" },
     { "id": "lv1t-007", "jp": "いくらですか？", "en": "How much is it?", "alt": [], "function": "travel", "note": "料金確認。" },
     { "id": "lv1t-008", "jp": "ここで止めてください。", "en": "Stop here, please.", "alt": [], "function": "travel", "note": "降車。" },
-    { "id": "lv1t-009", "jp": "チェックインお願いします。", "en": "Check in, please.", "alt": [], "function": "travel", "note": "ホテル。" },
+    { "id": "lv1t-009", "jp": "チェックインお願いします。", "en": "I'd like to check in, please.", "alt": ["Checking in, please."], "function": "travel", "note": "ホテル到着時。" },
     { "id": "lv1t-010", "jp": "予約しています。", "en": "I have a reservation.", "alt": [], "function": "travel", "note": "reservation = 予約。" },
     { "id": "lv1t-011", "jp": "名前は田中です。", "en": "My name is Tanaka.", "alt": [], "function": "travel", "note": "名乗る。" },
     { "id": "lv1t-012", "jp": "Wi-Fiはありますか？", "en": "Is there Wi-Fi?", "alt": [], "function": "travel", "note": "Is there 〜? = 〜ある?。" },
@@ -19,7 +19,7 @@
     { "id": "lv1t-014", "jp": "部屋を見せてください。", "en": "Can I see the room?", "alt": [], "function": "travel", "note": "許可。" },
     { "id": "lv1t-015", "jp": "駅はどこですか？", "en": "Where is the station?", "alt": [], "function": "travel", "note": "道を聞く。" },
     { "id": "lv1t-016", "jp": "歩いて行けますか？", "en": "Can I walk there?", "alt": [], "function": "travel", "note": "徒歩可否。" },
-    { "id": "lv1t-017", "jp": "写真を撮ってください。", "en": "Please take a photo.", "alt": ["Can you take a picture?"], "function": "travel", "note": "観光定番。" },
-    { "id": "lv1t-018", "jp": "ありがとう、助かりました。", "en": "Thank you, that helped.", "alt": [], "function": "travel", "note": "感謝。" }
+    { "id": "lv1t-017", "jp": "写真を撮ってください。", "en": "Could you take a photo, please?", "alt": ["Can you take a picture?"], "function": "travel", "note": "観光定番。Could you の方が丁寧。" },
+    { "id": "lv1t-018", "jp": "ありがとう、助かりました。", "en": "Thank you, that helps.", "alt": ["Thank you, I appreciate it."], "function": "travel", "note": "感謝。that helps は現在の助けへの返し。" }
   ]
 }

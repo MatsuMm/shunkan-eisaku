@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1a1a1a">
+<title>プライバシーポリシー — 瞬間英作</title>
+<style>
+  :root {
+    --bg: #121417;
+    --surface: #181b20;
+    --text: #eceef1;
+    --text-dim: #969ca6;
+    --accent: #4a9eff;
+    --border: #2a2f37;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Sans",
+      "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 15px;
+  }
+  .wrap {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 28px 20px 64px;
+  }
+  h1 {
+    font-size: 1.45rem;
+    font-weight: 700;
+    margin: 0 0 8px;
+    letter-spacing: 0.02em;
+  }
+  .meta {
+    color: var(--text-dim);
+    font-size: 0.88rem;
+    margin-bottom: 28px;
+  }
+  h2 {
+    font-size: 1.05rem;
+    margin: 2em 0 0.6em;
+    padding-bottom: 6px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  p, li { color: var(--text); }
+  p { margin: 0.7em 0; }
+  ul, ol { padding-left: 1.35em; margin: 0.5em 0; }
+  li { margin: 0.35em 0; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .note {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    color: var(--text-dim);
+    font-size: 0.92rem;
+    margin: 1.2em 0;
+  }
+  strong { font-weight: 600; }
+  footer {
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    color: var(--text-dim);
+    font-size: 0.9rem;
+  }
+  footer a { margin: 0 6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>プライバシーポリシー</h1>
+  <p class="meta">瞬間英作（Shunkan Eisaku）　最終更新: 2026年7月17日</p>
+
+  <div class="note">
+    本アプリは<strong>バックエンドサーバーを持たない静的 PWA</strong>です。
+    学習進捗は原則としてご利用端末内のみに保存され、提供者のサーバーへ送信されません。
+  </div>
+
+  <h2>1. 事業者について</h2>
+  <p>本サービス「瞬間英作」は個人により開発・販売されています。連絡先は購入した販売ページ（BOOTH / DLsite 等）またはパッケージ同梱の案内に記載します。</p>
+
+  <h2>2. 収集する情報</h2>
+  <h3 style="font-size:1rem;margin:1.2em 0 0.4em;color:var(--text-dim);">2.1 端末内のみ（提供者へ送信しない）</h3>
+  <p>以下はブラウザの <strong>localStorage</strong> 等に保存され、アプリの学習機能のために使用されます。</p>
+  <ul>
+    <li>学習進捗（問題ごとの自己採点結果、次回出題予定、連続正解など）</li>
+    <li>設定（レベル／シーン、音声速度、マイク使用の有無、復習オプションなど）</li>
+    <li>オンボーディング表示済みフラグ等の UI 状態</li>
+  </ul>
+  <p>これらのデータは、提供者が運営するサーバーには送信されません（本アプリに専用バックエンドはありません）。</p>
+
+  <h3 style="font-size:1rem;margin:1.2em 0 0.4em;color:var(--text-dim);">2.2 マイク・音声認識（任意）</h3>
+  <ul>
+    <li>発音確認・シャドウイングのためにマイク入力を利用できます。設定から無効化できます。</li>
+    <li>音声認識にはブラウザの <strong>Web Speech Recognition API</strong> を使用します。</li>
+    <li>Google Chrome 等では、音声が端末外（クラウド）の認識サービスへ送られる場合があります。これはブラウザ／OS の実装に依存し、本アプリ提供者がその音声データを受領・保管するものではありません。</li>
+    <li>マイクをオフにすれば、当該処理は行われません。</li>
+  </ul>
+
+  <h3 style="font-size:1rem;margin:1.2em 0 0.4em;color:var(--text-dim);">2.3 ネットワーク通信</h3>
+  <ul>
+    <li>初回表示や更新時に、HTML / JS / CSS / JSON / 音声 MP3 等の静的ファイルを取得します。</li>
+    <li>Service Worker は <strong>network-first</strong>（オンライン時は最新を取得し、失敗時のみキャッシュ）で動作します。一度取得した音声などは端末キャッシュに残ることがあります。</li>
+    <li>ZIP をローカル HTTP サーバーで開く場合、通信先は主にご自身の端末／LAN 内です。</li>
+    <li>外部ホスティング（GitHub Pages 等）で配信する場合、当該ホストのアクセスログ方針が別途適用されます。本アプリ自体はアクセス解析タグを必須としては埋め込みません（将来変更する場合は本ポリシーを更新します）。</li>
+  </ul>
+
+  <h3 style="font-size:1rem;margin:1.2em 0 0.4em;color:var(--text-dim);">2.4 販売・決済</h3>
+  <p>BOOTH・DLsite 等での購入・決済に関する個人情報は、各プラットフォームのプライバシーポリシーに従い取り扱われます。提供者はプラットフォームが提供する範囲の注文情報を知り得る場合がありますが、本アプリの学習データとは別です。</p>
+
+  <h2>3. 利用目的</h2>
+  <ul>
+    <li>学習進捗の表示・SRS（間隔反復）による出題制御</li>
+    <li>設定の保持と UX の維持</li>
+    <li>（任意）発音確認のための音声認識</li>
+    <li>アプリ本体および学習コンテンツの配信・キャッシュ</li>
+  </ul>
+
+  <h2>4. 第三者提供</h2>
+  <p>提供者は、学習進捗データを第三者に販売・提供しません。ただし、以下は例外または利用者の環境に依存する処理です。</p>
+  <ul>
+    <li>法令に基づく開示が必要な場合</li>
+    <li>ブラウザの音声認識機能がクラウドへ音声を送る場合（2.2 参照）</li>
+    <li>販売プラットフォーム・決済事業者による取引処理</li>
+  </ul>
+
+  <h2>5. データの保管期間・削除</h2>
+  <ul>
+    <li>localStorage 上のデータは、利用者がブラウザデータ削除・アプリ内リセット・端末初期化等を行うまで端末に残ります。</li>
+    <li>学習データの削除は、アプリ内のリセット操作、またはブラウザのサイトデータ削除により行えます。</li>
+    <li>エクスポート機能がある場合、出力ファイルの保管は利用者の責任です。</li>
+  </ul>
+
+  <h2>6. セキュリティ</h2>
+  <p>本サービスは静的ファイルと端末内保存が中心です。端末の紛失・共用・マルウェア等によるデータ漏洩リスクは、利用者側の端末管理に依存します。共用端末ではブラウザデータの扱いにご注意ください。</p>
+
+  <h2>7. お子様の利用</h2>
+  <p>本サービスは一般向けの英語学習ツールです。保護者の判断と監督のもとでご利用ください。マイク利用時は特にご注意ください。</p>
+
+  <h2>8. ポリシーの変更</h2>
+  <p>機能追加（例: クラウド同期、外部解析）に伴い本ポリシーを改定することがあります。重要な変更は、アプリ内または配布物にて告知します。</p>
+
+  <h2>9. お問い合わせ</h2>
+  <p>プライバシーに関するお問い合わせは、購入した販売ページの連絡手段、またはパッケージ同梱の案内までお願いいたします。</p>
+
+  <footer>
+    <a href="../index.html">← アプリに戻る</a>
+    ·
+    <a href="terms.html">利用規約</a>
+  </footer>
+</div>
+</body>
+</html>

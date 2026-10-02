@@ -18,6 +18,9 @@
 
 * { box-sizing: border-box; }
 
+/* JS が付け外しする共通の非表示クラス (要素側の display 指定より優先) */
+.hidden { display: none !important; }
+
 ::-webkit-scrollbar { width: 7px; height: 7px; }
 ::-webkit-scrollbar-thumb { background: var(--surface-2); border-radius: 4px; }
 ::selection { background: var(--accent-dim); }
